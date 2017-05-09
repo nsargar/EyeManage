@@ -7,6 +7,7 @@ import org.springframework.stereotype.*;
 @Entity
 @Table(name="UserDetails")
 @Component
+//New line
 public class UserPOJO {
 	private String userId;
 	private String name;
