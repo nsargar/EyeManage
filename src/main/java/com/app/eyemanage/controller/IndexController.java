@@ -32,7 +32,7 @@ public class IndexController {
 	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
 	public String login(Model model) {
-		logger.info("Get");
+		logger.info("Login Get");
 		UserPOJO pojo=new UserPOJO();
 		model.addAttribute("user",pojo);
 		return "login";
@@ -40,8 +40,7 @@ public class IndexController {
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public String loginForm(@ModelAttribute("user")UserPOJO user, ModelMap modelMap) {
-		logger.info("Kadu");
-		logger.info("Lakud");
+		logger.info("Login Post");
 		logger.info(user.getUserId());
 		logger.info(user.getPassword());
 		return "login";
