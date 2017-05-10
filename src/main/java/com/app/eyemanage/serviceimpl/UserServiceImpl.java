@@ -21,7 +21,7 @@ public class UserServiceImpl {
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	
 	//private final UserService user; 
-
+	@Autowired
 	private UserService user;
 	public UserServiceImpl(UserService user) {
 	
@@ -35,5 +35,6 @@ public class UserServiceImpl {
 	public void add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
 		this.user.save(userDetails);
+		logger.info("2 User Service Impl , User ::: " + userDetails.toString());
 	}	
 }
