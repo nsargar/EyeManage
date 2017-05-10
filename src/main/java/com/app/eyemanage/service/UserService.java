@@ -7,5 +7,5 @@ import com.app.eyemanage.pojo.UserPOJO;
 
 @Service
 public interface UserService extends CrudRepository<UserPOJO, String>{
-	//public void addUser(UserPOJO user);
+	
 }
