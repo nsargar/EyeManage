@@ -15,20 +15,25 @@ import com.app.eyemanage.service.UserService;
 @ComponentScan
 @Service
 @Transactional
-@DependsOn("")
+//@DependsOn("")
 public class UserServiceImpl {
 
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	
 	//private final UserService user; 
+
 	private UserService user;
 	public UserServiceImpl(UserService user) {
 	
 		this.user = user;
 	}
 
-	public void add() {
-		logger.info("User Service Impl , User ::: " );
-		this.user.save(new UserPOJO("Nilis08", "nilis", "voidprongzz", "ggfjyskjf.asdg@dhf.com"));
+	public UserServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void add(UserPOJO userDetails) {
+		logger.info("User Service Impl , User ::: " + userDetails.toString());
+		this.user.save(userDetails);
 	}	
 }

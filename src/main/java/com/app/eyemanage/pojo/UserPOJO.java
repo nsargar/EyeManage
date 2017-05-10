@@ -2,6 +2,7 @@ package com.app.eyemanage.pojo;
 
 import javax.persistence.*;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 
 @Entity
