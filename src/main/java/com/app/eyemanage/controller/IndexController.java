@@ -61,6 +61,7 @@ public class IndexController {
 		logger.info(user.getUserId());
 		logger.info(user.getEmail());
 		logger.info(user.getPassword());
+		//user.setUserId(100);
 		userService.add(user);
 		return "registration";
 	}

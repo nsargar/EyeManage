@@ -10,7 +10,7 @@ import org.springframework.stereotype.*;
 @Component
 //New line
 public class UserPOJO {
-	private String userId;
+	private Integer userId;
 	private String name;
 	private String password;
 	private String email;
@@ -19,7 +19,7 @@ public class UserPOJO {
 		System.out.println("Def Ctor UserPOJO");
 	}
 	
-	public UserPOJO(String userId, String name, String password, String email) {
+	public UserPOJO(Integer userId, String name, String password, String email) {
 		super();
 		this.userId = userId;
 		this.name = name;
@@ -29,11 +29,14 @@ public class UserPOJO {
 	
 	
 	@Id
-	@Column(length=10)
-	public String getUserId() {
+	@Column(name = "Id", unique = true, nullable = false)
+	@SequenceGenerator(name="User_SEQ", sequenceName="User_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="User_SEQ")
+	//@Column(length=10)
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	
