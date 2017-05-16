@@ -1,8 +1,6 @@
 package com.app.eyemanage.pojo;
 
 import javax.persistence.*;
-
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 
 @Entity
@@ -28,11 +26,11 @@ public class UserPOJO {
 	}
 	
 	
+	@Column(name = "userId", unique = true, nullable = false)
 	@Id
-	@Column(name = "Id", unique = true, nullable = false)
-	@SequenceGenerator(name="User_SEQ", sequenceName="User_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="User_SEQ")
-	//@Column(length=10)
+	@SequenceGenerator( name="UserDetails_SEQ", sequenceName="UserDetails_SEQ", allocationSize=1 )
+	@GeneratedValue( generator="UserDetails_SEQ",strategy=GenerationType.SEQUENCE )
+	//@GeneratedValue()
 	public Integer getUserId() {
 		return userId;
 	}
