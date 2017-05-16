@@ -1,18 +1,21 @@
 package com.app.eyemanage.configuration;
 
-import java.util.Properties;
-
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.*;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAutoConfiguration
+@EntityScan(basePackages = {"com.app.eyemanage"})
+@EnableJpaRepositories(basePackages = {"com.app.eyemanage"})
 public class DatabaseConfig {
 
   @Value("${spring.datasource.driver_class}")
@@ -39,6 +42,7 @@ public class DatabaseConfig {
   @Value("${entitymanager.packagesToScan}")
   private String ENTITYMANAGER_PACKAGES_TO_SCAN;
   
+ 
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -49,6 +53,7 @@ public class DatabaseConfig {
     return dataSource;
   }
 
+/*
   @Bean
   public LocalSessionFactoryBean sessionFactory() {
     LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -70,5 +75,11 @@ public class DatabaseConfig {
     transactionManager.setSessionFactory(sessionFactory().getObject());
     return transactionManager;
   }
-
+*/
+  @Bean
+  JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+      JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(entityManagerFactory);
+      return transactionManager;
+  }
 }
