@@ -4,7 +4,7 @@ import javax.persistence.*;
 import org.springframework.stereotype.*;
 
 @Entity
-@Table(name="UserDetails")
+@Table(name="Users")
 @Component
 //New line
 public class UserPOJO {

@@ -38,7 +38,8 @@ public class IndexController {
 		logger.info("Login Post");
 		logger.info(user.getUserId());
 		logger.info(user.getPassword());
-		if( userService.validateLogin(user) == false)
+		int a	=	 userService.validateLogin(user);
+		if (a == 0)
 			logger.info("Failed");
 		else
 			logger.info("Success");
