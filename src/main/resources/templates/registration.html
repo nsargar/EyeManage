@@ -43,6 +43,41 @@
 			</tr>
 			<tr>
 				<td>
+					<label>Confirm Password : </label>
+				</td>
+				<td>
+					<input type="password" th:field="*{cnfPassword}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label> Password : </label>
+				</td>
+				<td>
+					<input type="password" th:field="*{password}" />
+				</td>
+			</tr>
+				<td>
+					<label> Security Question : </label>
+				</td>
+				<td>
+					<select>
+					  	<option value="1">First</option>
+					  	<option value="2">Second</option>
+					  	<option value="3">Third</option>
+						<option value="4">Fourth</option>
+					</select>
+				</td>
+			<tr>
+				<td>
+					<label> Answer : </label>
+				</td>
+				<td>
+					<input type="password" th:field="*{answer}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<input type="submit" value="Register" />
 				</td>
 			</tr>
