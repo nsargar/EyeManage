@@ -7,8 +7,6 @@ import org.springframework.stereotype.*;
 import com.app.eyemanage.pojo.UserPOJO;
 
 @Repository
-public interface UserService extends CrudRepository<UserPOJO, Integer>{
+public interface UserService extends CrudRepository<UserPOJO, Integer>,LoginService{
 	
-	@Query("from user_details u where u.user_id=:id and u.password=:password")
-	Integer validateLogin( @Param("id") Integer id , @Param("password") String password);
 }

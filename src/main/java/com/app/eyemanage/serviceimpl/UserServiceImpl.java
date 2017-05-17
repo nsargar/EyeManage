@@ -18,10 +18,10 @@ public class UserServiceImpl {
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	
 	@Autowired
-	private UserService user;
+	private UserService userService;
 	
-	public UserServiceImpl(UserService user) {
-		this.user = user;
+	public UserServiceImpl(UserService userService) {
+		this.userService = userService;
 	}
 
 	public UserServiceImpl() {
@@ -31,15 +31,16 @@ public class UserServiceImpl {
 	@Transactional
 	public void add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
-		UserPOJO demoUser	=	this.user.save(userDetails);
+		UserPOJO demoUser	=	this.userService.save(userDetails);
 		logger.info("Returned Object::: " + demoUser.toString());
 		logger.info("2 User Service Impl , User ::: " + userDetails.toString());
 	}
 	
 	
-	public boolean validateLogin(UserLogin userLogin) {
-		logger.info("In ValidateLogin method");		
-		return this.user.exists(userLogin.getUserId());
+	public Integer validateLogin(UserLogin userLogin) {
+		logger.info("In ValidateLogin method");	
+		int result	=	this.userService.validateLogin(userLogin.getUserId(), userLogin.getPassword());
+		return result;
 	}
 	
 	
