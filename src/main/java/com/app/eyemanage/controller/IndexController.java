@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
+import com.app.eyemanage.service.UserService;
 import com.app.eyemanage.serviceimpl.UserServiceImpl;
 
 @Controller
@@ -16,9 +17,9 @@ import com.app.eyemanage.serviceimpl.UserServiceImpl;
 public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
-	@Autowired
-	UserServiceImpl userService;
 	
+	@Autowired 
+	UserService userService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index() {
@@ -38,12 +39,15 @@ public class IndexController {
 		logger.info("Login Post");
 		logger.info(user.getUserId());
 		logger.info(user.getPassword());
-		int a	=	 userService.validateLogin(user);
-		if (a == 0)
+		int a	=	 userService.validateLogin(user.getUserId(),user.getPassword());
+		if (a == 0) {
 			logger.info("Failed");
-		else
+			return "redirect:/login";
+		}
+		else {
 			logger.info("Success");
-		return "login";
+			return "redirect:/dashboard";
+		}
 	}
 	
 		@RequestMapping(value="/registration", method=RequestMethod.GET)
@@ -61,9 +65,13 @@ public class IndexController {
 		logger.info(user.getUserId());
 		logger.info(user.getEmail());
 		logger.info(user.getPassword());
-		//user.setUserId(100);
 		userService.add(user);
 		return "registration";
 	}
 	
+	@RequestMapping(value="/dashboard" , method=RequestMethod.GET)
+	public String dashboard(Model model) {
+		logger.info("Dashboard Get");
+		return "dashboard";
+	}
 }

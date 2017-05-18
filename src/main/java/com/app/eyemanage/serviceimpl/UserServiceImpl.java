@@ -13,7 +13,7 @@ import com.app.eyemanage.service.UserService;
 @ComponentScan
 @Service
 @Transactional
-public class UserServiceImpl {
+public class UserServiceImpl{
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	
@@ -33,15 +33,12 @@ public class UserServiceImpl {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
 		UserPOJO demoUser	=	this.userService.save(userDetails);
 		logger.info("Returned Object::: " + demoUser.toString());
-		logger.info("2 User Service Impl , User ::: " + userDetails.toString());
 	}
-	
 	
 	public Integer validateLogin(UserLogin userLogin) {
 		logger.info("In ValidateLogin method");	
 		int result	=	this.userService.validateLogin(userLogin.getUserId(), userLogin.getPassword());
 		return result;
 	}
-	
 	
 }
