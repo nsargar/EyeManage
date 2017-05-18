@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.app.eyemanage.model.ForgotPassword;
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.UserService;
@@ -61,11 +62,11 @@ public class IndexController {
 	@RequestMapping(value="/registration",method=RequestMethod.POST)
 	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
 		logger.info("Register Post");
-		logger.info(user.getName());
-		logger.info(user.getUserId());
-		logger.info(user.getEmail());
-		logger.info(user.getPassword());
-		userService.add(user);
+		if(userService.add(user) == true){
+			logger.info("Registration Successful, Redirecting to Login page");
+			return "redirect:/login";
+		}
+		logger.info("Registration failed");
 		return "registration";
 	}
 	
@@ -74,4 +75,20 @@ public class IndexController {
 		logger.info("Dashboard Get");
 		return "dashboard";
 	}
+	
+	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)
+	public String showForgotPassword(Model model) {
+		logger.info("ForgotPassword Get");
+		ForgotPassword pojo	=	new ForgotPassword();
+		model.addAttribute("forgotUser", pojo);
+		return "forgotPassword";
+	}
+	
+	@RequestMapping(value="/forgotPassword",method=RequestMethod.POST)
+	public String forgotPassword(@ModelAttribute("forgotUser")ForgotPassword user,ModelMap modelMap) {
+		logger.info("Register Post");
+		return "redirect:/login";
+	}
+	
+	
 }

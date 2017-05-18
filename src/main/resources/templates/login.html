@@ -12,12 +12,30 @@
 
  -->
  <form action="#" method="post" th:action="@{/login}" th:object="${user}">
-	 <label> UserID : </label>
-	 <input type="text" th:field="*{userId}" />
-	 
-	 <label> Password : </label>
-	 <input type="password" th:field="*{password}"/>
-	 <input type="submit" value="Login"/>
+	 <table>
+		 <tr>
+		 	<td>
+			 	<label> UserID : </label>
+			 	<input type="text" th:field="*{userId}" />
+			 </td>
+		 </tr>
+		 <tr>
+		 	<td>
+				<label> Password : </label>
+				<input type="password" th:field="*{password}"/>
+			 </td>
+		 </tr>
+		 <tr>
+		 	<td colspan="2" align="right">
+		 		<input type="submit" value="Login"/>
+		 	</td>
+		 </tr>
+		 <tr>
+		 	<td>
+		 		<a th:href="@{/forgotPassword}">Forgot Password</a>
+		 	</td>
+		 </tr>
+	 </table>
 </form>
 </body>
 </html>
