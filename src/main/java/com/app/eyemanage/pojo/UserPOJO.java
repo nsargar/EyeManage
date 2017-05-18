@@ -47,7 +47,7 @@ public class UserPOJO {
 		this.userId = userId;
 	}
 	
-	@Column(length=20)
+	@Column(length=30)
 	@NotEmpty
 	public String getName() {
 		return name;
@@ -65,7 +65,7 @@ public class UserPOJO {
 		this.password = password;
 	}
 	
-	@Column(length=30)
+	@Column(length=60)
 	@Email
 	@NotEmpty
 	public String getEmail() {
