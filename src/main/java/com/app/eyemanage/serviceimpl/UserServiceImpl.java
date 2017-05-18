@@ -29,10 +29,16 @@ public class UserServiceImpl{
 	}
 	
 	@Transactional
-	public void add(UserPOJO userDetails) {
+	public boolean add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
 		UserPOJO demoUser	=	this.userService.save(userDetails);
 		logger.info("Returned Object::: " + demoUser.toString());
+		if( demoUser.getUserId() != 0){
+			return true;
+		}
+		else
+			return false;
+		
 	}
 	
 	public Integer validateLogin(UserLogin userLogin) {

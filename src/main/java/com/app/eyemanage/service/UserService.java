@@ -8,5 +8,5 @@ import com.app.eyemanage.pojo.UserPOJO;
 
 @Repository
 public interface UserService extends CrudRepository<UserPOJO, Integer>,LoginService{
-	void add(UserPOJO userDetails);
+	boolean add(UserPOJO userDetails);
 }
