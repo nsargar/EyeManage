@@ -46,12 +46,20 @@
 					<label> Security Question : </label>
 				</td>
 				<td>
-					<select>
+					<!-- <select>
 					  	<option value="1">First</option>
 					  	<option value="2">Second</option>
 					  	<option value="3">Third</option>
 						<option value="4">Fourth</option>
-					</select>
+					</select> -->
+					<!-- <div th:object="${question}"> -->
+					<div>
+						<select name="questionList" >
+							<option value="">Select Option</option>
+							<option th:each="question : ${questions}" th:value="${question.key}"
+								th:text="${question.key} + ' : ' + ${question.value}"></option>
+						</select>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -63,7 +71,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="2" align="right">
 					<input type="submit" value="Register" />
 				</td>
 			</tr>

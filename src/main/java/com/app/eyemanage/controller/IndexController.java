@@ -1,5 +1,7 @@
 package com.app.eyemanage.controller;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -8,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.eyemanage.model.ForgotPassword;
+import com.app.eyemanage.model.SecQuestions;
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.UserService;
@@ -56,6 +59,16 @@ public class IndexController {
 		logger.info("Register Get");
 		UserPOJO pojo	=	new UserPOJO();
 		model.addAttribute("newUser", pojo);
+
+		HashMap<Integer, String> question	=	new HashMap<>();
+		//SecQuestions question	=	new SecQuestions();
+		model.addAttribute("question",question);
+		
+		HashMap<Integer, String> questions	=	new HashMap<>();
+		questions.put(1, "What's your nick name?");
+		questions.put(2, "Who is magar?");
+		questions.put(3, "Who is lakud?");
+		model.addAttribute("questions", questions);
 		return "registration";
 	}
 	
@@ -89,6 +102,5 @@ public class IndexController {
 		logger.info("Register Post");
 		return "redirect:/login";
 	}
-	
 	
 }
