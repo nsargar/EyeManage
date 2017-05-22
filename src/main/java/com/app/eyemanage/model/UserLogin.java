@@ -2,16 +2,16 @@ package com.app.eyemanage.model;
 
 import org.apache.log4j.Logger;
 
-import com.app.eyemanage.controller.IndexController;
+import com.app.eyemanage.controller.UserController;
 
 public class UserLogin {
 	private Integer userId;
 	private String password;
 	
-	private static final Logger logger = Logger.getLogger(IndexController.class);
+	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	public UserLogin() {
-		logger.info("Def Ctor user Login");
+		logger.info("Default Constructor User Login");
 	}
 	
 	public UserLogin(Integer userId, String password) {

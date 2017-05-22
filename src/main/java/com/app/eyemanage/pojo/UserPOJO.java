@@ -23,7 +23,7 @@ public class UserPOJO {
 	private String answer;
 	
 	public UserPOJO() {
-		System.out.println("Def Ctor UserPOJO");
+		System.out.println("Default Constructor UserPOJO");
 	}
 	
 	public UserPOJO(Integer userId, String name, String password, String email) {
