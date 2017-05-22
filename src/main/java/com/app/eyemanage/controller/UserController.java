@@ -2,12 +2,17 @@ package com.app.eyemanage.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.eyemanage.model.ForgotPassword;
 import com.app.eyemanage.model.SecQuestions;
@@ -18,18 +23,18 @@ import com.app.eyemanage.serviceimpl.UserServiceImpl;
 
 @Controller
 //@RequestMapping("/main")
-public class IndexController {
+public class UserController  {
 	
-	private static final Logger logger = Logger.getLogger(IndexController.class);
+	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired 
 	UserService userService;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	/*@RequestMapping(method=RequestMethod.GET)
 	public String index() {
 		return "index";
 	}
-	
+	*/
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
 	public String login(Model model) {
 		logger.info("Login Get");
@@ -39,18 +44,19 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
-	public String loginForm(@ModelAttribute("user")UserLogin user, ModelMap modelMap) {
+	public String loginForm(@ModelAttribute("user")UserLogin user, ModelMap modelMap, HttpSession session) {
 		logger.info("Login Post");
 		logger.info(user.getUserId());
 		logger.info(user.getPassword());
 		int a	=	 userService.validateLogin(user.getUserId(),user.getPassword());
 		if (a == 0) {
-			logger.info("Failed");
+			logger.info("Login Failed");
 			return "redirect:/login";
 		}
 		else {
-			logger.info("Success");
-			return "redirect:/dashboard";
+			logger.info("Successfully Logged in");
+			session.setAttribute("UserDetails", user );
+			return "redirect:/dashboard/home";
 		}
 	}
 	
@@ -61,7 +67,8 @@ public class IndexController {
 		model.addAttribute("newUser", pojo);
 
 		HashMap<Integer, String> question	=	new HashMap<>();
-		//SecQuestions question	=	new SecQuestions();
+		/*SecQuestions question	=	new SecQuestions();*/
+		
 		model.addAttribute("question",question);
 		
 		HashMap<Integer, String> questions	=	new HashMap<>();
@@ -81,12 +88,6 @@ public class IndexController {
 		}
 		logger.info("Registration failed");
 		return "registration";
-	}
-	
-	@RequestMapping(value="/dashboard" , method=RequestMethod.GET)
-	public String dashboard(Model model) {
-		logger.info("Dashboard Get");
-		return "dashboard";
 	}
 	
 	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)

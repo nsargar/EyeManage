@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
-import com.app.eyemanage.controller.IndexController;
+import com.app.eyemanage.controller.UserController;
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.UserService;
@@ -15,7 +15,7 @@ import com.app.eyemanage.service.UserService;
 @Transactional
 public class UserServiceImpl{
 	
-	private static final Logger logger = Logger.getLogger(IndexController.class);
+	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
