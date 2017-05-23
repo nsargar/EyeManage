@@ -1,11 +1,17 @@
 package com.app.eyemanage.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.eyemanage.controller.UserController;
+import com.app.eyemanage.model.ForgotPassword;
+import com.app.eyemanage.model.SecQuestions;
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.UserService;
@@ -47,4 +53,18 @@ public class UserServiceImpl{
 		return result;
 	}
 	
+	public boolean forgotPassCheck(ForgotPassword forgotUser) {
+		logger.info("forgotPassCheck method");
+		if( forgotUser.getNewPassword().toString().equals(forgotUser.getConfirmPassword().toString()))
+			return true;
+		else
+			return false;
+	}
+	
+	public Map<Integer, String> findAllQues(){
+		logger.info("In ValidateLogin method");	
+		Map<Integer, String> quesList	=	this.userService.findAllQues();
+		logger.info(quesList);
+		return quesList;
+	}
 }

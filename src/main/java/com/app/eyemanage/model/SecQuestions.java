@@ -1,5 +1,8 @@
 package com.app.eyemanage.model;
+import javax.persistence.*;
 
+@Table(name="questions")
+@Entity
 public class SecQuestions {
 
 	private Integer id;
@@ -14,13 +17,17 @@ public class SecQuestions {
 		this.id = id;
 		this.question = question;
 	}
-
+	
+	@Id
+	@Column(length=2)
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	@Column(length=100)
 	public String getQuestion() {
 		return question;
 	}

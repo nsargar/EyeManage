@@ -1,6 +1,7 @@
 package com.app.eyemanage.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -56,25 +57,23 @@ public class UserController  {
 		else {
 			logger.info("Successfully Logged in");
 			session.setAttribute("UserDetails", user );
+			//logger.info(session.getAttribute("UserDetails").toString());
 			return "redirect:/dashboard/home";
 		}
 	}
 	
-		@RequestMapping(value="/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String showRegister(Model model) {
 		logger.info("Register Get");
 		UserPOJO pojo	=	new UserPOJO();
 		model.addAttribute("newUser", pojo);
-
 		HashMap<Integer, String> question	=	new HashMap<>();
 		/*SecQuestions question	=	new SecQuestions();*/
-		
 		model.addAttribute("question",question);
-		
 		HashMap<Integer, String> questions	=	new HashMap<>();
-		questions.put(1, "What's your nick name?");
-		questions.put(2, "Who is magar?");
-		questions.put(3, "Who is lakud?");
+		//questions.putAll(userService.findAllQues());
+		questions.put(1, "What is your nick name?");
+		logger.info("Questions Map"+questions.toString());
 		model.addAttribute("questions", questions);
 		return "registration";
 	}
@@ -100,8 +99,11 @@ public class UserController  {
 	
 	@RequestMapping(value="/forgotPassword",method=RequestMethod.POST)
 	public String forgotPassword(@ModelAttribute("forgotUser")ForgotPassword user,ModelMap modelMap) {
-		logger.info("Register Post");
-		return "redirect:/login";
+		logger.info("Forgot Password Post");
+		if(userService.forgotPassCheck(user))
+			return "redirect:/login";
+		else
+			return "forgotPassword";
 	}
 	
 }
