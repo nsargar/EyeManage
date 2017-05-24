@@ -107,7 +107,7 @@ public class UserPOJO {
 
 	@Override
 	public String toString() {
-		return "UserPOJO [userId=" + userId + ", name=" + name + ", password=" + password + ", email=" + email + "]";
+		return "UserPOJO [userId=" + userId + ", name=" + name + ", password=" + password + ", email=" + email
+				+ ", cnfPassword=" + cnfPassword + ", secQuest=" + secQuest + ", answer=" + answer + "]";
 	}
-	
 }

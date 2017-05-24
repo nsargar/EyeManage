@@ -1,25 +1,20 @@
 package com.app.eyemanage.controller;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.app.eyemanage.model.ForgotPassword;
 import com.app.eyemanage.model.SecQuestions;
 import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
+import com.app.eyemanage.service.SecQuestionService;
 import com.app.eyemanage.service.UserService;
-import com.app.eyemanage.serviceimpl.UserServiceImpl;
 
 @Controller
 //@RequestMapping("/main")
@@ -30,11 +25,14 @@ public class UserController  {
 	@Autowired 
 	UserService userService;
 	
-	/*@RequestMapping(method=RequestMethod.GET)
+	@Autowired
+	SecQuestionService passwordService;
+	
+	@RequestMapping(method=RequestMethod.GET)
 	public String index() {
 		return "index";
 	}
-	*/
+	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
 	public String login(Model model) {
 		logger.info("Login Get");
@@ -56,25 +54,22 @@ public class UserController  {
 		else {
 			logger.info("Successfully Logged in");
 			session.setAttribute("UserDetails", user );
+			//logger.info(session.getAttribute("UserDetails").toString());
 			return "redirect:/dashboard/home";
 		}
 	}
 	
-		@RequestMapping(value="/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String showRegister(Model model) {
 		logger.info("Register Get");
 		UserPOJO pojo	=	new UserPOJO();
 		model.addAttribute("newUser", pojo);
-
-		HashMap<Integer, String> question	=	new HashMap<>();
-		/*SecQuestions question	=	new SecQuestions();*/
 		
+		List<SecQuestions> question		=	new ArrayList<>();
 		model.addAttribute("question",question);
 		
-		HashMap<Integer, String> questions	=	new HashMap<>();
-		questions.put(1, "What's your nick name?");
-		questions.put(2, "Who is magar?");
-		questions.put(3, "Who is lakud?");
+		List<SecQuestions> questions	=	passwordService.findAllQues();
+		logger.info(questions);
 		model.addAttribute("questions", questions);
 		return "registration";
 	}
@@ -95,13 +90,23 @@ public class UserController  {
 		logger.info("ForgotPassword Get");
 		ForgotPassword pojo	=	new ForgotPassword();
 		model.addAttribute("forgotUser", pojo);
+		
+		List<SecQuestions> question		=	new ArrayList<>();
+		model.addAttribute("question",question);
+		
+		List<SecQuestions> questions	=	passwordService.findAllQues();
+		logger.info(questions);
+		model.addAttribute("questions", questions);
 		return "forgotPassword";
 	}
 	
 	@RequestMapping(value="/forgotPassword",method=RequestMethod.POST)
 	public String forgotPassword(@ModelAttribute("forgotUser")ForgotPassword user,ModelMap modelMap) {
-		logger.info("Register Post");
-		return "redirect:/login";
+		logger.info("Forgot Password Post");
+		if(userService.forgotPassCheck(user))
+			return "redirect:/login";
+		else
+			return "forgotPassword";
 	}
 	
 }

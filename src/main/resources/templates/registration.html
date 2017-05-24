@@ -46,18 +46,11 @@
 					<label> Security Question : </label>
 				</td>
 				<td>
-					<!-- <select>
-					  	<option value="1">First</option>
-					  	<option value="2">Second</option>
-					  	<option value="3">Third</option>
-						<option value="4">Fourth</option>
-					</select> -->
-					<!-- <div th:object="${question}"> -->
 					<div>
-						<select name="questionList" >
+						<select name="questionList" th:field="*{secQuest}">
 							<option value="">Select Option</option>
-							<option th:each="question : ${questions}" th:value="${question.key}"
-								th:text="${question.key} + ' : ' + ${question.value}"></option>
+							<option th:each="question : ${questions}" th:value="${question.question}"
+								th:text="${question.id} + ' : ' + ${question.question}"></option>
 						</select>
 					</div>
 				</td>
