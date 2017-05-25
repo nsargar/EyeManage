@@ -30,15 +30,13 @@ public class UserServiceImpl {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 	@Transactional
 	public boolean add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
-		if(Utils.cnfPass(userDetails.getPassword(), userDetails.getCnfPassword())) {
+		if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
 			UserPOJO demoUser	=	this.userService.save(userDetails);
 			logger.info("Returned Object::: " + demoUser.toString());
-				if( demoUser.getUserId() != 0){
+				if( !demoUser.getUserName().equalsIgnoreCase(null)){
 					return true;
 				}
 				else
@@ -48,10 +46,13 @@ public class UserServiceImpl {
 			return false;	
 	}
 	
+	@Transactional
 	public boolean forgotPassCheck(ForgotPassword forgotUser) {
 		logger.info("forgotPassCheck method");
-		if(Utils.cnfPass(forgotUser.getNewPassword(),forgotUser.getConfirmPassword()))
+		if(Utils.validatePass(forgotUser.getNewPassword(),forgotUser.getConfirmPassword()) && 
+				 (userService.updatePassword(forgotUser.getNewPassword(), forgotUser.getUserName()) > 0) ) {
 			return true;
+		}
 		else
 			return false;
 	}

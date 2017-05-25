@@ -6,7 +6,7 @@ public class Utils {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static boolean cnfPass(String pass,String cnfPass) {
+	public static boolean validatePass(String pass,String cnfPass) {
 		
 		return pass.equals(cnfPass);
 	}
