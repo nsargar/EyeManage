@@ -82,7 +82,7 @@ public class UserController  {
 			return "redirect:/login";
 		}
 		logger.info("Registration failed");
-		return "registration";
+		return "redirect:/registration";
 	}
 	
 	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)
@@ -106,7 +106,7 @@ public class UserController  {
 		if(userService.forgotPassCheck(user))
 			return "redirect:/login";
 		else
-			return "forgotPassword";
+			return "redirect:/forgotPassword";
 	}
 	
 }
