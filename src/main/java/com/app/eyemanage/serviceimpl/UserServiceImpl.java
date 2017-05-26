@@ -1,10 +1,5 @@
 package com.app.eyemanage.serviceimpl;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,11 +7,9 @@ import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.eyemanage.controller.UserController;
 import com.app.eyemanage.model.ForgotPassword;
-import com.app.eyemanage.model.SecQuestions;
-import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
-import com.app.eyemanage.service.SecQuestionService;
 import com.app.eyemanage.service.UserService;
+import com.app.eyemanage.utility.Utils;
 
 @ComponentScan
 @Service
@@ -28,9 +21,7 @@ public class UserServiceImpl {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private SecQuestionService passwordService;
-	
+
 	public UserServiceImpl(UserService userService) {
 		this.userService = userService;
 	}
@@ -42,20 +33,26 @@ public class UserServiceImpl {
 	@Transactional
 	public boolean add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
-		UserPOJO demoUser	=	this.userService.save(userDetails);
-		logger.info("Returned Object::: " + demoUser.toString());
-		if( demoUser.getUserId() != 0){
-			return true;
+		if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
+			UserPOJO demoUser	=	this.userService.save(userDetails);
+			logger.info("Returned Object::: " + demoUser.toString());
+				if( !demoUser.getUserName().equalsIgnoreCase(null)){
+					return true;
+				}
+				else
+					return false;
 		}
 		else
-			return false;
-		
+			return false;	
 	}
 	
+	@Transactional
 	public boolean forgotPassCheck(ForgotPassword forgotUser) {
 		logger.info("forgotPassCheck method");
-		if( forgotUser.getNewPassword().toString().equals(forgotUser.getConfirmPassword().toString()))
+		if(Utils.validatePass(forgotUser.getNewPassword(),forgotUser.getConfirmPassword()) && 
+				 (userService.updatePassword(forgotUser.getNewPassword(), forgotUser.getUserName()) > 0) ) {
 			return true;
+		}
 		else
 			return false;
 	}

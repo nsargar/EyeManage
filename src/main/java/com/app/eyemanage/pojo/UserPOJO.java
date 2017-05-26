@@ -1,20 +1,16 @@
 package com.app.eyemanage.pojo;
 
 import javax.persistence.*;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.*;
-
-import groovy.transform.EqualsAndHashCode;
-
 
 @Entity
 @Table(name="Users")
 @Component
 
 public class UserPOJO {
-	private Integer userId;
+	private String userName;
 	private String name;
 	private String password;
 	private String email;
@@ -26,32 +22,30 @@ public class UserPOJO {
 		System.out.println("Default Constructor UserPOJO");
 	}
 	
-	public UserPOJO(Integer userId, String name, String password, String email) {
+	public UserPOJO(String userName, String name, String password, String email) {
 		super();
-		this.userId = userId;
+		this.userName = userName;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 	}
 	
-
-	@Column(name = "userId", unique = true, nullable = false)
+	@Column(name = "userName", unique = true, nullable = false, length=20)
 	@Id
-	@SequenceGenerator( name="UserDetails_SEQ", sequenceName="UserDetails_SEQ", allocationSize=1 )
-	@GeneratedValue( generator="UserDetails_SEQ",strategy=GenerationType.SEQUENCE )
-	//@GeneratedValue()
-	public Integer getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
+
 	@Column(length=30)
 	@NotEmpty
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -75,8 +69,8 @@ public class UserPOJO {
 		this.email = email;
 	}
 	
-	@Column(length=16)
-	@NotEmpty
+	
+	//@Column(length=16)
 	@Transient
 	public String getCnfPassword() {
 		return cnfPassword;
@@ -107,7 +101,7 @@ public class UserPOJO {
 
 	@Override
 	public String toString() {
-		return "UserPOJO [userId=" + userId + ", name=" + name + ", password=" + password + ", email=" + email
+		return "UserPOJO [userName=" + userName + ", name=" + name + ", password=" + password + ", email=" + email
 				+ ", cnfPassword=" + cnfPassword + ", secQuest=" + secQuest + ", answer=" + answer + "]";
 	}
 }

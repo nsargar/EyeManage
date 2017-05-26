@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 public class ForgotPassword {
-	private Integer userId;
+	private String userName;
 	private String secQuest;
 	private String answer;
 	private String newPassword;
@@ -15,20 +15,20 @@ public class ForgotPassword {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ForgotPassword(Integer userId, String secQuest, String answer) {
+	public ForgotPassword(String userName, String secQuest, String answer) {
 		super();
-		this.userId = userId;
+		this.userName = userName;
 		this.secQuest = secQuest;
 		this.answer = answer;
 	}
 	
 	
 	@NotNull
-	public Integer getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	@NotNull
@@ -71,7 +71,7 @@ public class ForgotPassword {
 
 	@Override
 	public String toString() {
-		return "ForgotPassword [userId=" + userId + ", secQuest=" + secQuest + ", answer=" + answer + ", newPassword="
+		return "ForgotPassword [userName=" + userName + ", secQuest=" + secQuest + ", answer=" + answer + ", newPassword="
 				+ newPassword + ", confirmPassword=" + confirmPassword + "]";
 	}
 	

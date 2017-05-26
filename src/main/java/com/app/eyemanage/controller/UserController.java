@@ -17,7 +17,6 @@ import com.app.eyemanage.service.SecQuestionService;
 import com.app.eyemanage.service.UserService;
 
 @Controller
-//@RequestMapping("/main")
 public class UserController  {
 	
 	private static final Logger logger = Logger.getLogger(UserController.class);
@@ -44,9 +43,9 @@ public class UserController  {
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public String loginForm(@ModelAttribute("user")UserLogin user, ModelMap modelMap, HttpSession session) {
 		logger.info("Login Post");
-		logger.info(user.getUserId());
+		logger.info(user.getUserName());
 		logger.info(user.getPassword());
-		int a	=	 userService.validateLogin(user.getUserId(),user.getPassword());
+		int a	=	 userService.validateLogin(user.getUserName(),user.getPassword());
 		if (a == 0) {
 			logger.info("Login Failed");
 			return "redirect:/login";
@@ -82,7 +81,7 @@ public class UserController  {
 			return "redirect:/login";
 		}
 		logger.info("Registration failed");
-		return "registration";
+		return "redirect:/registration";
 	}
 	
 	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)
@@ -103,10 +102,15 @@ public class UserController  {
 	@RequestMapping(value="/forgotPassword",method=RequestMethod.POST)
 	public String forgotPassword(@ModelAttribute("forgotUser")ForgotPassword user,ModelMap modelMap) {
 		logger.info("Forgot Password Post");
-		if(userService.forgotPassCheck(user))
-			return "redirect:/login";
+		if ( userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()) > 0 ) {
+			logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
+			if(userService.forgotPassCheck(user))
+				return "redirect:/login";
+			else
+				return "redirect:/forgotPassword";
+		}
 		else
-			return "forgotPassword";
+			return "redirect:/forgotPassword";
 	}
 	
 }
