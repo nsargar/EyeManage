@@ -52,7 +52,7 @@ public class UserController  {
 		}
 		else {
 			logger.info("Successfully Logged in");
-			session.setAttribute("UserDetails", user );
+			session.setAttribute("UserDetails", user.getUserName() );
 			//logger.info(session.getAttribute("UserDetails").toString());
 			return "redirect:/dashboard/home";
 		}

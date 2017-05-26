@@ -5,7 +5,7 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<h1>Welcome to Eyemanage</h1>
+	<h1 th:text="'Welcome to Eyemanage, ' + ${userName}" ></h1>
 	<form action="#" method="post" th:action="@{/dashboard/home}" >
 		<input type="submit" name="logout" value="Log Out"/>
 	</form>

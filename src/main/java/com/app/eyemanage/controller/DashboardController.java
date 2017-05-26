@@ -23,7 +23,8 @@ public class DashboardController {
 		}
 		else {
 			session.getAttribute("UserDetails");
-			logger.info(((UserLogin)session.getAttribute("UserDetails")).toString());
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
+			logger.info((session.getAttribute("UserDetails")).toString());
 			return "dashboard";
 		}
 	}
