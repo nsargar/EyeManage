@@ -33,18 +33,29 @@ public class UserServiceImpl {
 	@Transactional
 	public boolean add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
-		if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
-			UserPOJO demoUser	=	this.userService.save(userDetails);
-			logger.info("Returned Object::: " + demoUser.toString());
-				if( !demoUser.getUserName().equalsIgnoreCase(null)){
-					return true;
-				}
-				else
-					return false;
+		if(userService.validateUserName(userDetails.getUserName()) <= 0) {
+			if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
+				UserPOJO demoUser	=	this.userService.save(userDetails);
+				logger.info("Returned Object::: " + demoUser.toString());
+					if( !demoUser.getUserName().equalsIgnoreCase(null)){
+						return true;
+					}
+					else {
+						logger.info("User could not be created !!!");
+						return false;
+					}
+			}
+			else {
+				logger.info("Passwords do not match !!!");
+				return false;
+			}
 		}
-		else
-			return false;	
+		else {
+			logger.info("UserName already exists !!!");
+			return false;
+		}
 	}
+	
 	
 	@Transactional
 	public boolean forgotPassCheck(ForgotPassword forgotUser) {

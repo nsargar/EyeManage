@@ -10,6 +10,10 @@ import com.app.eyemanage.pojo.UserPOJO;
 @Repository
 public interface UserService extends CrudRepository<UserPOJO, Integer>,LoginService,SecQuestionService{
 	boolean add(UserPOJO userDetails);
+	
+	@Query(value="select count(*) from UserPOJO u where u.userName=?1")
+	Integer validateUserName(String userName);
+	
 	boolean forgotPassCheck(ForgotPassword forgotUser);
 	
 	@Query(value="select count(*) from UserPOJO u where u.userName=?1 and u.secQuest=?2 and u.answer=?3")
