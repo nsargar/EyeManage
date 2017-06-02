@@ -1,9 +1,10 @@
 package com.app.eyemanage.model;
 
 import org.apache.log4j.Logger;
-
 import com.app.eyemanage.controller.UserController;
+import lombok.Data;
 
+@Data
 public class UserLogin {
 	private String userName;
 	private String password;
@@ -18,23 +19,5 @@ public class UserLogin {
 		super();
 		this.userName = userName;
 		this.password = password;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "UserLogin [userName=" + userName + ", password=" + password + "]";
 	}
 }
