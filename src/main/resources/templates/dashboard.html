@@ -1,13 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1"/>
-<title>Dashboard</title>
-</head>
-<body>
-	<h1 th:text="'Welcome to Eyemanage, ' + ${userName}" ></h1>
-	<form action="#" method="post" th:action="@{/dashboard/home}" >
-		<input type="submit" name="logout" value="Log Out"/>
-	</form>
-</body>
+	<head>
+		<title>Dashboard</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			
+		<link rel="stylesheet" type="text/css"  href="/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css"  href="/css/style.css" />
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1 th:text="'Welcome to Eyemanage, ' + ${userName}" ></h1>
+		<form action="#" method="post" th:action="@{/dashboard/home}" >
+			<ul>
+				<li><a th:href="@{/dashboard/home}">Dashboard</a></li>
+				<li><a th:href="@{/dashboard/patient}">Patient</a></li>
+				<li><a th:href="@{/dashboard/cases}">Cases</a></li>
+				<li><a th:href="@{/dashboard/settings}">Settings</a></li>
+			</ul>
+			<input type="submit" name="logout" value="Log Out"/>
+		</form>
+		
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script type="text/javascript" src="/js/bootstrap.js"></script>
+	</body>
 </html>
