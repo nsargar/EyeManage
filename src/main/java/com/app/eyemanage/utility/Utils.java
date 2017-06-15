@@ -10,5 +10,4 @@ public class Utils {
 		
 		return pass.equals(cnfPass);
 	}
-
 }
