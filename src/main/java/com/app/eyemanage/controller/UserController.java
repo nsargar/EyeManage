@@ -28,11 +28,6 @@ public class UserController {
 	@Autowired
 	SecQuestionService passwordService;
 	
-	/*@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
-		return "index";
-	}
-	*/
 	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index() {
 		return "index";
