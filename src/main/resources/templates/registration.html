@@ -1,82 +1,92 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1"/>
-<title>Register</title>
-</head>
-<body>
-<h2>Register</h2>
-<br/>
-<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}">
-	 <table>
-			<tr>
-				<td>
-					<label> User Name : </label>
-				</td>
-				<td>
-					<input type="text" th:field="*{userName}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Name : </label>
-				</td>
-				<td>
-					<input type="text" th:field="*{name}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Email : </label>
-				</td>
-				<td>
-					<input type="text" th:field="*{email}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Password : </label>
-				</td>
-				<td>
-					<input type="password" th:field="*{password}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Confirm Password : </label>
-				</td>
-				<td>
-					<input type="password" th:field="*{cnfPassword}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Security Question : </label>
-				</td>
-				<td>
-					<div>
-						<select name="questionList" th:field="*{secQuest}">
-							<option value="">Select Option</option>
-							<option th:each="question : ${questions}" th:value="${question.question}"
-								th:text="${question.id} + ' : ' + ${question.question}"></option>
-						</select>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Answer : </label>
-				</td>
-				<td>
-					<input type="password" th:field="*{answer}" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<input type="submit" value="Register" />
-				</td>
-			</tr>
-		</table>
-</form>
-</body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Register</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			
+		<link rel="stylesheet" type="text/css"  href="/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css"  href="/css/style.css" />
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h2>Register</h2>
+		<br/>
+		<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}">
+			 <table>
+					<tr>
+						<td>
+							<label> User Name : </label>
+						</td>
+						<td>
+							<input type="text" th:field="*{userName}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label> Name : </label>
+						</td>
+						<td>
+							<input type="text" th:field="*{name}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label> Email : </label>
+						</td>
+						<td>
+							<input type="text" th:field="*{email}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label> Password : </label>
+						</td>
+						<td>
+							<input type="password" th:field="*{password}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Confirm Password : </label>
+						</td>
+						<td>
+							<input type="password" th:field="*{cnfPassword}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label> Security Question : </label>
+						</td>
+						<td>
+							<div>
+								<select name="questionList" th:field="*{secQuest}">
+									<option value="">Select Option</option>
+									<option th:each="question : ${questions}" th:value="${question.question}"
+										th:text="${question.id} + ' : ' + ${question.question}"></option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label> Answer : </label>
+						</td>
+						<td>
+							<input type="password" th:field="*{answer}" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="right">
+							<input type="submit" value="Register" />
+						</td>
+					</tr>
+				</table>
+		</form>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script type="text/javascript" src="/js/bootstrap.js"></script>
+	</body>
 </html>
