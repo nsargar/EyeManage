@@ -1,5 +1,6 @@
 package com.app.eyemanage.controller;
 
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ import com.app.eyemanage.service.SecQuestionService;
 import com.app.eyemanage.service.UserService;
 
 @Controller
-public class UserController  {
+public class UserController {
 	
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	
@@ -27,7 +28,12 @@ public class UserController  {
 	@Autowired
 	SecQuestionService passwordService;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	/*@RequestMapping("/")
+	public String welcome(Map<String, Object> model) {
+		return "index";
+	}
+	*/
+	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index() {
 		return "index";
 	}
@@ -112,5 +118,4 @@ public class UserController  {
 		else
 			return "redirect:/forgotPassword";
 	}
-	
 }
