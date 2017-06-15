@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableAutoConfiguration
+@EnableAutoConfiguration	
 @EntityScan(basePackages = {"com.app.eyemanage"})
 @EnableJpaRepositories(basePackages = {"com.app.eyemanage"})
 public class DatabaseConfig {
@@ -39,9 +39,9 @@ public class DatabaseConfig {
   @Value("${spring.jpa.hibernate.ddl-auto}")
   private String HIBERNATE_HBM2DDL_AUTO;
 
-  @Value("${entitymanager.packagesToScan}")
+  /*@Value("${entitymanager.packagesToScan}")
   private String ENTITYMANAGER_PACKAGES_TO_SCAN;
-  
+  */
  
   @Bean
   public DataSource dataSource() {
@@ -53,29 +53,6 @@ public class DatabaseConfig {
     return dataSource;
   }
 
-/*
-  @Bean
-  public LocalSessionFactoryBean sessionFactory() {
-    LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-    sessionFactoryBean.setDataSource(dataSource());
-    sessionFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
-    Properties hibernateProperties = new Properties();
-    hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
-    hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
-    hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
-    sessionFactoryBean.setHibernateProperties(hibernateProperties);
-    
-    return sessionFactoryBean;
-  }
-
-  @Bean
-  public HibernateTransactionManager transactionManager() {
-    HibernateTransactionManager transactionManager = 
-        new HibernateTransactionManager();
-    transactionManager.setSessionFactory(sessionFactory().getObject());
-    return transactionManager;
-  }
-*/
   @Bean
   JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
       JpaTransactionManager transactionManager = new JpaTransactionManager();
