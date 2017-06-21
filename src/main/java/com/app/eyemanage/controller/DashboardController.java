@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.app.eyemanage.model.UserLogin;
+import com.app.eyemanage.utility.Utils;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -16,9 +16,11 @@ public class DashboardController {
 	
 	@RequestMapping(value="/home" , method=RequestMethod.GET)
 	public String showdashboard(Model model, HttpSession session) {
+		
 		logger.info("Dashboard Get"); 
-		if( null == session.getAttribute("UserDetails")) {
+		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
+			logger.info("You are not logged in. Redirecting to Login Page");
 			return "redirect:/login";
 		}
 		else {

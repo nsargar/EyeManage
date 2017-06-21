@@ -10,78 +10,75 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<h2>Register</h2>
-		<br/>
-		<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}">
-			 <table>
-					<tr>
-						<td>
-							<label> User Name : </label>
-						</td>
-						<td>
-							<input type="text" th:field="*{userName}" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label> Name : </label>
-						</td>
-						<td>
-							<input type="text" th:field="*{name}" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label> Email : </label>
-						</td>
-						<td>
-							<input type="text" th:field="*{email}" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label> Password : </label>
-						</td>
-						<td>
-							<input type="password" th:field="*{password}" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Confirm Password : </label>
-						</td>
-						<td>
-							<input type="password" th:field="*{cnfPassword}" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label> Security Question : </label>
-						</td>
-						<td>
-							<div>
-								<select name="questionList" th:field="*{secQuest}">
-									<option value="">Select Option</option>
-									<option th:each="question : ${questions}" th:value="${question.question}"
-										th:text="${question.id} + ' : ' + ${question.question}"></option>
-								</select>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label> Answer : </label>
-						</td>
-						<td>
-							<input type="password" th:field="*{answer}" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="right">
-							<input type="submit" value="Register" />
-						</td>
-					</tr>
-				</table>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">EyeManage</a>
+				</div>
+			</div>
+		</nav>
+		<div class="page-header">
+			<h2>Register</h2>
+		</div>
+		<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-2"> User Name : </label>
+				<div class="col-sm-10">
+			 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Name : </label>
+				<div class="col-sm-10">
+			 		<input type="text" th:field="*{name}" placeholder="Enter Name" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Email : </label>
+				<div class="col-sm-10">
+			 		<input type="text" th:field="*{email}" placeholder="Enter Email" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Password : </label>
+				<div class="col-sm-10">
+			 		<input type="password" th:field="*{password}" placeholder="Enter Password" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Confirm Password : </label>
+				<div class="col-sm-10">
+			 		<input type="password" th:field="*{cnfPassword}" placeholder="Re-enter Password" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Security Question : </label>
+				<div class="col-sm-10">
+			 		<select name="questionList" th:field="*{secQuest}">
+						<option value="">Select Option</option>
+						<option th:each="question : ${questions}" th:value="${question.question}"
+							th:text="${question.id} + ' : ' + ${question.question}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2"> Answer : </label>
+				<div class="col-sm-10">
+			 		<input type="password" th:field="*{answer}" placeholder="Enter an answer" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" value="Register" />
+				</div>
+			</div>
 		</form>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

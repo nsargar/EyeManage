@@ -1,5 +1,7 @@
 package com.app.eyemanage.utility;
 
+import javax.servlet.http.HttpSession;
+
 public class Utils {
 	
 	public Utils() {
@@ -10,4 +12,12 @@ public class Utils {
 		
 		return pass.equals(cnfPass);
 	}
+	
+	public static boolean validateSession( HttpSession session, String attribute) {
+		if ( null == session.getAttribute(attribute))
+			return false;
+		else
+			return true;
+	}
+	
 }

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
-import com.app.eyemanage.controller.UserController;
 import com.app.eyemanage.model.ForgotPassword;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.UserService;
@@ -16,12 +15,11 @@ import com.app.eyemanage.utility.Utils;
 @Transactional
 public class UserServiceImpl {
 	
-	private static final Logger logger = Logger.getLogger(UserController.class);
+	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	private UserService userService;
 	
-
 	public UserServiceImpl(UserService userService) {
 		this.userService = userService;
 	}
