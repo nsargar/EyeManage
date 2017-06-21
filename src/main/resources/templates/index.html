@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>EyeManage</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			
+		<meta name="viewport" http-equiv="Content-Type" content="text/html,charset=UTF-8, width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.css}" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -13,7 +12,7 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">EyeManage</a>
+					<a class="navbar-brand" th:href="@{/}">EyeManage</a>
 				</div>
 			</div>
 		</nav>
@@ -26,9 +25,10 @@
 					A simple to use Electronic Medical Record and Clinic Management software for Clinics.
 				    Browser based software deployed on your Local Area Network or the Cloud as per your need.
 				    We provide Accessible, On Time and Patient Centric care with managed Workflow and Reminders."
-				</p>	
-			<a href="#" class="btn btn-primary" role="button">Login</a>
-			<a href="#" class="btn btn-success" role="button">Register</a>	
+				</p>
+				
+				<a th:href="@{/login}" class="btn btn-primary" role="button">Login</a>
+				<a th:href="@{/registration}" class="btn btn-success" role="button">Register</a>	
 			</div>
 	
 		</div>

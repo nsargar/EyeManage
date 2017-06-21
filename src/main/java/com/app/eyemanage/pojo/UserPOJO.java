@@ -1,6 +1,7 @@
 package com.app.eyemanage.pojo;
 
 import javax.persistence.*;
+import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.*;
@@ -18,8 +19,9 @@ public class UserPOJO {
 	private String secQuest;
 	private String answer;
 	
+	private static final Logger logger = Logger.getLogger(UserPOJO.class);
 	public UserPOJO() {
-		System.out.println("Default Constructor UserPOJO");
+		logger.info("Default Constructor UserPOJO");
 	}
 	
 	public UserPOJO(String userName, String name, String password, String email) {

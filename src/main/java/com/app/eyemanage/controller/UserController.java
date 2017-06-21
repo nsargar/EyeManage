@@ -1,6 +1,5 @@
 package com.app.eyemanage.controller;
 
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -30,6 +29,7 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index() {
+		logger.info("Index Get");
 		return "index";
 	}
 	
