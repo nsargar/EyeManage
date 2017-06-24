@@ -27,10 +27,107 @@
 				    We provide Accessible, On Time and Patient Centric care with managed Workflow and Reminders."
 				</p>
 				
-				<a th:href="@{/login}" class="btn btn-primary" role="button">Login</a>
-				<a th:href="@{/registration}" class="btn btn-success" role="button">Register</a>	
+				<!-- <a th:href="@{/login}" class="btn btn-primary" role="button">Login</a>
+				<a th:href="@{/registration}" class="btn btn-success" role="button">Register</a> -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
+					<li><a data-toggle="tab" href="#register">Register</a></li>
+				</ul>
+				
+				<div class="tab-content">
+    				<div id="login" class="tab-pane fade in active">
+    					<form action="#" method="post" th:action="@{/login}" th:object="${user}" class="form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-sm-2"> UserName : </label>
+								<div class="col-sm-10">
+							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" />
+							 	</div>
+							</div>
+							 
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Password : </label>
+								<div class="col-sm-10">
+							 		<input type="password" th:field="*{password}" placeholder="Enter Password"/>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<input type="submit" value="Login"/>
+								</div>
+							</div>			
+							
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<a th:href="@{/forgotPassword}">Forgot Password</a>
+								</div>
+							</div>
+						</form>			
+    				</div>
+    				<div id="register" class="tab-pane fade">
+						<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-sm-2"> User Name : </label>
+								<div class="col-sm-10">
+							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Name : </label>
+								<div class="col-sm-10">
+							 		<input type="text" th:field="*{name}" placeholder="Enter Name" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Email : </label>
+								<div class="col-sm-10">
+							 		<input type="text" th:field="*{email}" placeholder="Enter Email" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Password : </label>
+								<div class="col-sm-10">
+							 		<input type="password" th:field="*{password}" placeholder="Enter Password" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Confirm Password : </label>
+								<div class="col-sm-10">
+							 		<input type="password" th:field="*{cnfPassword}" placeholder="Re-enter Password" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Security Question : </label>
+								<div class="col-sm-10">
+							 		<select name="questionList" th:field="*{secQuest}">
+										<option value="">Select Option</option>
+										<option th:each="question : ${questions}" th:value="${question.question}"
+											th:text="${question.id} + ' : ' + ${question.question}"></option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-2"> Answer : </label>
+								<div class="col-sm-10">
+							 		<input type="password" th:field="*{answer}" placeholder="Enter an answer" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<input type="submit" value="Register" />
+								</div>
+							</div>
+						</form>    					
+    				</div>
+    			</div>
 			</div>
-	
 		</div>
 		<!-- /.container -->
 	
