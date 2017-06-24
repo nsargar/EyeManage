@@ -1,10 +1,16 @@
 package com.app.eyemanage.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,9 +23,11 @@ import lombok.Data;
 @Component
 public class PatientDetailsPOJO {
 	
-	@Column(unique = true, nullable = false, length=10)
+	@Column(unique = true, nullable = false)
 	@Id
-	private String patientId;
+	@SequenceGenerator(name="Patient_SEQ", sequenceName="Patient_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Patient_SEQ")
+	private Integer patientId;
 	
 	@Column(unique = false, nullable = false, length=20)
 	private String firstName;
@@ -49,6 +57,12 @@ public class PatientDetailsPOJO {
 	@Column(unique = false, nullable = false)
 	@CreatedDate
 	private Date firstVisitDate;
+	
+	@Transient
+	private String searchFilter;
+	
+	@Transient
+	private String searchText;
 	
 	private static final Logger logger = Logger.getLogger(PatientDetailsPOJO.class);
 	
