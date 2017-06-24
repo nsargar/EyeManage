@@ -58,11 +58,16 @@ public class UserServiceImpl {
 	@Transactional
 	public boolean forgotPassCheck(ForgotPassword forgotUser) {
 		logger.info("forgotPassCheck method");
-		if(Utils.validatePass(forgotUser.getNewPassword(),forgotUser.getConfirmPassword()) && 
-				 (userService.updatePassword(forgotUser.getNewPassword(), forgotUser.getUserName()) > 0) ) {
-			return true;
-		}
-		else
+		try {
+			if(Utils.validatePass(forgotUser.getNewPassword(),forgotUser.getConfirmPassword()) && 
+					 (userService.updatePassword(forgotUser.getNewPassword(), forgotUser.getUserName()) > 0) ) {
+				return true;
+			}
 			return false;
+		}
+		catch (Exception e) {
+			return false;
+		}
+			
 	}
 }

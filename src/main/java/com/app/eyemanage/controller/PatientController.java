@@ -34,7 +34,7 @@ public class PatientController {
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		else {
 			return "patient";
@@ -47,7 +47,7 @@ public class PatientController {
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		else {
 			model.addAttribute("newPatient",patientDetails);
@@ -58,14 +58,21 @@ public class PatientController {
 	@RequestMapping(value="/patientCreate",method=RequestMethod.POST)
 	public String createPatient(@ModelAttribute("newPatient")PatientDetailsPOJO patient,ModelMap modelMap) {
 		logger.info("Patient Add Post");
-		//patient.setPatientId("P01");
-		patient.setFirstVisitDate(new Date());
-		if(patientService.add(patient) == true){
-			logger.info("Patient Successfully Added");
-			return "redirect:/dashboard/patient";
+		try {
+			logger.info("Patient Add Try Block");
+			patient.setFirstVisitDate(new Date());
+			if(patientService.add(patient) == true){
+				logger.info("Patient Successfully Added");
+				return "redirect:/dashboard/patient";
+			}
+			logger.info("Failed to Add.");
+			return "redirect:/dashboard/patientCreate";
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Patient Add Catch Block");
+			return "redirect:/dashboard/patientCreate";
 		}
-		logger.info("Failed to Add.");
-		return "redirect:/dashboard/patientCreate";
+		
 	}
 	
 	
@@ -75,7 +82,7 @@ public class PatientController {
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		else {
 			model.addAttribute("viewPatient",patientDetails);
@@ -99,7 +106,8 @@ public class PatientController {
 			}
 			else if (patient.getSearchFilter().equalsIgnoreCase("name")) {
 				logger.info("Searching By Name");
-				patientDetails	=	patientService.findPatientByName(patient.getSearchText());
+				patientDetails	=	patientService.findPatientByName(patient.getSearchText().toLowerCase());
+				logger.info(patientDetails.toString());
 				logger.info("Searching By Name Successful");
 			}
 			else{	// for age
@@ -114,7 +122,7 @@ public class PatientController {
 			logger.info("Searching Successfull");
 		} finally {
 			logger.info("Finally Block");
-			if( patientDetails.size() <= 1){
+			if( patientDetails.size() <= 1 && patientDetails.get(0).equals(null) ){
 				logger.info("Nothing found");
 			}
 			else
