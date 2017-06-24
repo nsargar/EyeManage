@@ -21,7 +21,7 @@ public class DashboardController {
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		else {
 			session.getAttribute("UserDetails");
@@ -37,7 +37,7 @@ public class DashboardController {
 		try {
 			session.invalidate();
 			logger.info("Successfully Logged out");
-			return "redirect:/login";
+			return "redirect:/";
 		} catch (Exception e) {
 			logger.info("Unable to Log out");
 			e.printStackTrace();
