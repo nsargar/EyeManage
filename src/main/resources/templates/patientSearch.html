@@ -17,67 +17,176 @@
 		</nav>
 		<form action="#" method="post" th:action="@{/dashboard/patientSearch}" th:object="${viewPatient}" class="form-horizontal">
 			<div class="form-group">
-				<label class="control-label col-sm-2"> Patient Id : </label>
-				<div class="col-sm-10">
-			 		<input type="text" th:field="*{patientId}" placeholder="Enter Patient Id"/>
+				<label class="control-label col-sm-2"> Search By : </label>
+				<div class="col-sm-2">
+			 		<select name="filterByList" id="searchDrop" th:field="*{searchFilter}" class="form-control">
+						<option value="" >Select a Filter</option>
+						<option th:value="id">Id</option>
+						<option th:value="name">Name</option>
+						<option th:value="age">Age</option>
+					</select>
+				</div>
+				<label class="control-label col-sm-2"> Enter a Text : </label>
+				<div class="col-sm-3">
+			 		<input type="text" class="form-control" id="searchValue" th:field="*{searchText}" placeholder="Enter a Text"/>
+				</div>
+				<div class="col-sm-3">
+					<input type="submit" value="Search" class="btn btn-default"/>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" value="Search" />
-				</div>
+			<div class="table-responsive" >
+				<table class="table table-striped" id="resultTable">
+					<thead>
+						<tr>
+							<th>Patient Id</th>
+							<th>Patient Name</th>
+							<th>Gender</th>
+							<th>Age</th>
+							<th>View</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="patient : ${patientDetails}" class="clickable-row" th:id="${patient.patientId}">
+							<td th:text="${patient.patientId}"></td>
+							<td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+							<td th:text="${patient.gender}"></td>
+							<td th:text="${patient.age}"></td>
+							<td>
+								<button type="button" class="btn btn-info" data-toggle="modal" 
+									th:attr="data-target='#viewModal' + ${patient.patientId}">View</button>
+									
+								<!-- View Modal -->
+								<div th:attr="id='viewModal' + ${patient.patientId}" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									    	<div class="modal-header">
+									        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+									        	<h4 class="modal-title">Personal Details</h4>
+									      	</div>
+									     	<div class="modal-body">
+									     		<table class="table table-striped" >
+									     			<tr><th>Patient Id</th><td th:text="${patient.patientId}"></td></tr>
+													<tr><th>First Name</th><td th:text="${patient.firstName}"></td></tr>
+													<tr><th>Last Name</th><td th:text="${patient.lastName}"></td></tr>
+													<tr><th>Gender</th><td th:text="${patient.gender}"></td></tr>
+													<tr><th>Age</th><td th:text="${patient.age}"></td></tr>
+													<tr><th>Email</th><td th:text="${patient.email}"></td></tr>
+													<tr><th>Mobile</th><td th:text="${patient.mobile}"></td></tr>
+													<tr><th>Phone</th><td th:text="${patient.phoneNumber}"></td></tr>
+													<tr><th>Registration Date</th><td th:text="${patient.firstVisitDate}"></td></tr>
+									     		</table>
+									      	</div>
+									      	<div class="modal-footer">
+									        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									      	</div>
+									    </div>
+								  	</div>
+								</div>
+							</td>
+							<td>
+								<button type="button" class="btn btn-success" data-toggle="modal" 
+								th:attr="data-target='#editModal' + ${patient.patientId}">Edit</button>
+								
+								<!-- Edit Modal -->
+								<div th:attr="id='editModal' + ${patient.patientId}" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									    	<div class="modal-header">
+									        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+									        	<h4 class="modal-title">Edit Personal Details</h4>
+									      	</div>
+									     	<div class="modal-body">
+									     		<table class="table table-striped" >
+									     			<tr>
+									     				<th>Patient Id</th>
+									     				<td>
+									     					<input th:id="${patient.patientId}" type="text" th:value="${patient.patientId}" readonly="true"/>
+									     				</td>
+									     			</tr>
+													<tr>
+														<th>First Name</th>
+														<td>
+															<input th:id="'edit'+${patient.firstName}" type="text" th:value="${patient.firstName}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Last Name</th>
+														<td>
+															<input th:id="${patient.lastName}" type="text" th:value="${patient.lastName}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Gender</th>
+														<td>
+															<input th:id="${patient.gender}" type="text" th:value="${patient.gender}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Age</th>
+														<td>
+															<input th:id="${patient.age}" type="text" th:value="${patient.age}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Email</th>
+														<td>
+															<input th:id="${patient.email}" type="text" th:value="${patient.email}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Mobile</th>
+														<td>
+															<input th:id="${patient.mobile}" type="text" th:value="${patient.mobile}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Phone</th>
+														<td>
+															<input th:id="${patient.phoneNumber}" type="text" th:value="${patient.phoneNumber}"/>
+														</td>
+													</tr>
+													<tr>
+														<th>Registration Date</th>
+														<td th:text="${patient.firstVisitDate}">
+														</td>
+													</tr>
+									     		</table>
+									      	</div>
+									      	<div class="modal-footer">
+									      		<button type="button" class="btn btn-success" data-dismiss="modal"
+									      			th:attr="onclick='document.getElementById(edit' + ${patient.firstName} + '.value);'" >
+									      			<!-- th:onclick="'editBtn(document.getElementById(\''+${patient.patientId}+'\').value);'"> -->
+									      			<!-- ,
+									      			document.getElementById('firstName').value,
+									      			document.getElementById('lastName').value,
+									      			document.getElementById('gender').value,
+									      			document.getElementById('age').value,
+									      			document.getElementById('email').value,
+									      			document.getElementById('mobile').value,
+									      			document.getElementById('phone').value);'"> -->
+									      			Submit</button>
+									        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									      	</div>
+									    </div>
+								  	</div>
+								</div>
+							</td>
+							<!-- h:onclick="'doSomething(\''+${val1}+ '\',\''+${val2}+'\',\''+${val3}+'\');'" -->
+							<td>
+								<button type="button" class="btn btn-danger" 
+									th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'">Delete</button>
+							</td>
+							<!-- <button class="btn btn-danger">Delete</button>  ${patient.patientId} -->
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<table class="table table-striped" id="resultTable">
-				<thead>
-					<tr>
-						<th>Patient Id</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Gender</th>
-						<th>Age</th>
-						<th>View</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="patient : ${patientDetails}" class="clickable-row">
-						<td th:text="${patient.patientId}"></td>
-						<td th:text="${patient.firstName}"></td>
-						<td th:text="${patient.lastName}"></td>
-						<td th:text="${patient.gender}"></td>
-						<td th:text="${patient.age}"></td>
-						<td>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewModal">View</button>
-						</td>
-						<td>
-							<button type="button" class="btn btn-danger btn-delete" value=${patient.patientId} th:id="${patient.patientId}">Delete</button>
-						</td>
-						<!-- <button class="btn btn-danger">Delete</button>  ${patient.patientId} -->
-					</tr>
-				</tbody>
-			</table>
+			<p id="msg"></p>
 		</form>
-		
-		<!-- Modal -->
-		<div id="viewModal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-			    
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			    	<div class="modal-header">
-			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-			        	<h4 class="modal-title">Patient Personal Details</h4>
-			      	</div>
-			     	<div class="modal-body">
-			        	<p>Some text.</p>
-			      	</div>
-			      	<div class="modal-footer">
-			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      	</div>
-			    </div>
-		  	</div>
-		</div>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
