@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.app.eyemanage.pojo.PatientDetailsPOJO;
 
@@ -12,8 +13,9 @@ public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integ
 	
 	boolean add(PatientDetailsPOJO patientDetails);
 	
-	@Query(value="from PatientDetailsPOJO p where (p.firstName=?1) or (p.lastName=?1)")
-	List<PatientDetailsPOJO> findPatientByName(String name);
+	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName)=:name) or (lower(p.lastName)=:name)")
+	//@Query(value="from PatientDetailsPOJO p where LOWER(p.firstName)=LOWER(:name)")
+	List<PatientDetailsPOJO> findPatientByName(@Param("name") String name);
 	
 	@Query(value="from PatientDetailsPOJO p where p.age=?1")
 	List<PatientDetailsPOJO> findPatientByAge(Integer age);

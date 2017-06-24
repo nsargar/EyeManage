@@ -27,6 +27,7 @@ public class UserController {
 	@Autowired
 	SecQuestionService passwordService;
 	
+	@SuppressWarnings("finally")
 	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index(Model model) {
 		logger.info("Index Get");
@@ -39,64 +40,63 @@ public class UserController {
 		List<SecQuestions> question		=	new ArrayList<>();
 		model.addAttribute("question",question);
 		
-		List<SecQuestions> questions	=	passwordService.findAllQues();
-		logger.info(questions);
-		model.addAttribute("questions", questions);
-		return "index";
+		try {
+			logger.info("Get Questions Try Block");
+			List<SecQuestions> questions	=	passwordService.findAllQues();
+			logger.info(questions);
+			model.addAttribute("questions", questions);
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			logger.info("Get Questions Catch Block");
+		}finally {
+			logger.info("Get Questions Finally Block");
+			return "index";
+		}
 	}
-	
-	/*@RequestMapping(value="/login" , method=RequestMethod.GET)
-	public String login(Model model) {
-		logger.info("Login Get");
-		UserLogin loginReq=new UserLogin();
-		model.addAttribute("user",loginReq);
-		return "login";
-	}*/
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public String loginForm(@ModelAttribute("user")UserLogin user, ModelMap modelMap, HttpSession session) {
 		logger.info("Login Post");
-		logger.info(user.getUserName());
-		logger.info(user.getPassword());
-		int a	=	 userService.validateLogin(user.getUserName(),user.getPassword());
-		if (a == 0) {
-			logger.info("Login Failed");
-			return "redirect:/";	// /login to / (due to merging of Login and Register on Index page)
-		}
-		else {
-			logger.info("Successfully Logged in");
-			session.setAttribute("UserDetails", user.getUserName() );
-			//logger.info(session.getAttribute("UserDetails").toString());
+		try {
+			logger.info("Try Block");
+			logger.info(user.getUserName());
+			logger.info(user.getPassword());
+			int a	=	 userService.validateLogin(user.getUserName(),user.getPassword());
+			if (a == 0) {
+				logger.info("Login Failed");
+				return "redirect:/";	// /login to / (due to merging of Login and Register on Index page)
+			}
+			else {
+				logger.info("Successfully Logged in");
+				session.setAttribute("UserDetails", user.getUserName() );
+				//logger.info(session.getAttribute("UserDetails").toString());
+				return "redirect:/dashboard/home";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Catch Block");
 			return "redirect:/dashboard/home";
 		}
 	}
 	
-	/*@RequestMapping(value="/registration", method=RequestMethod.GET)
-	public String showRegister(Model model) {
-		logger.info("Register Get");
-		UserPOJO pojo	=	new UserPOJO();
-		model.addAttribute("newUser", pojo);
-		
-		List<SecQuestions> question		=	new ArrayList<>();
-		model.addAttribute("question",question);
-		
-		List<SecQuestions> questions	=	passwordService.findAllQues();
-		logger.info(questions);
-		model.addAttribute("questions", questions);
-		return "registration";
-	}*/
-	
 	@RequestMapping(value="/registration",method=RequestMethod.POST)
 	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
 		logger.info("Register Post");
-		if(userService.add(user) == true){
-			logger.info("Registration Successful, Redirecting to Login page");
-			return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+		try {
+			if(userService.add(user) == true){
+				logger.info("Registration Successful, Redirecting to Login page");
+				//return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+			}
+			else
+				logger.info("Registration Failed, Could not add the new user");
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Registration Failed");
 		}
-		logger.info("Registration failed");
 		return "redirect:/";			// /registration to / (due to merging of Login and Register on Index page)
 	}
 	
+	@SuppressWarnings("finally")
 	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)
 	public String showForgotPassword(Model model) {
 		logger.info("ForgotPassword Get");
@@ -106,23 +106,40 @@ public class UserController {
 		List<SecQuestions> question		=	new ArrayList<>();
 		model.addAttribute("question",question);
 		
-		List<SecQuestions> questions	=	passwordService.findAllQues();
-		logger.info(questions);
-		model.addAttribute("questions", questions);
-		return "forgotPassword";
+		try {
+			logger.info("Get Questions Try Block");
+			List<SecQuestions> questions	=	passwordService.findAllQues();
+			logger.info(questions);
+			model.addAttribute("questions", questions);
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			logger.info("Get Questions Catch Block");
+		}finally {
+			logger.info("Get Questions Finally Block");
+			return "forgotPassword";
+		}
+		
 	}
 	
 	@RequestMapping(value="/forgotPassword",method=RequestMethod.POST)
 	public String forgotPassword(@ModelAttribute("forgotUser")ForgotPassword user,ModelMap modelMap) {
 		logger.info("Forgot Password Post");
-		if ( userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()) > 0 ) {
-			logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
-			if(userService.forgotPassCheck(user))
-				return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+		try {
+			logger.info("Forgot Password Try Block");
+			if ( userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()) > 0 ) {
+				logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
+				if(userService.forgotPassCheck(user)) {
+					logger.info("Password Reset Successfully");
+					return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+				}
+				else
+					return "redirect:/forgotPassword";
+			}
 			else
 				return "redirect:/forgotPassword";
-		}
-		else
+		} catch (Exception e) {
+			logger.info("Forgot Password Catch Block");
 			return "redirect:/forgotPassword";
+		}
 	}
 }

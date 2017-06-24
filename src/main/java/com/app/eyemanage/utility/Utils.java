@@ -14,10 +14,15 @@ public class Utils {
 	}
 	
 	public static boolean validateSession( HttpSession session, String attribute) {
-		if ( null == session.getAttribute(attribute))
-			return false;
-		else
+		try {
+			if ( null == session.getAttribute(attribute))
+				return false;
+			else
+				return true;
+		} catch (Exception e) {
+			// TODO: handle exception
 			return true;
+		}
 	}
 	
 }
