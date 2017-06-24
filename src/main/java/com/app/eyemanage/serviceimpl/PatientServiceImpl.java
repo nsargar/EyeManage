@@ -33,7 +33,7 @@ public class PatientServiceImpl {
 		
 		PatientDetailsPOJO patientAdd	=	patientService.save(patientDetails);
 		logger.info("Returned Object::: " + patientAdd.toString());
-		if( !patientAdd.getPatientId().equalsIgnoreCase(null)){
+		if( !patientAdd.getPatientId().equals(null)){
 			return true;
 		}
 		else {

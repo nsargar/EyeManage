@@ -2,6 +2,7 @@ package com.app.eyemanage.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class PatientController {
 	@RequestMapping(value="/patientCreate",method=RequestMethod.POST)
 	public String createPatient(@ModelAttribute("newPatient")PatientDetailsPOJO patient,ModelMap modelMap) {
 		logger.info("Patient Add Post");
-		patient.setPatientId("P01");
+		//patient.setPatientId("P01");
 		patient.setFirstVisitDate(new Date());
 		if(patientService.add(patient) == true){
 			logger.info("Patient Successfully Added");
@@ -82,35 +83,43 @@ public class PatientController {
 		}
 	}
 	
+	@SuppressWarnings("finally")
 	@RequestMapping(value="/patientSearch",method=RequestMethod.POST)
 	public String viewPatient(@ModelAttribute("viewPatient")PatientDetailsPOJO patient,ModelMap modelMap) {
 		logger.info("Patient View Post");
-		PatientDetailsPOJO patientResult				=	patientService.findOne(patient.getPatientId());
-		ArrayList<PatientDetailsPOJO> patientDetails	=	new ArrayList<>();
-		//List<PatientDetailsPOJO> patientDetails		=	patientService.findAllPatients();
-		patientDetails.add(patientResult);
-		if( !patientDetails.isEmpty()){
-			logger.info("Viewed Successfully");
-			logger.info(patientDetails.toString());
+		List<PatientDetailsPOJO> patientDetails	=	new ArrayList<>();
+		try {
+			logger.info("Try Block");
+			PatientDetailsPOJO patientResult;
+			if (patient.getSearchFilter().equalsIgnoreCase("id")) {
+				logger.info("Searching By Id");
+				patientResult	=	patientService.findOne(Integer.parseInt(patient.getSearchText()));
+				logger.info("Searching By Id Successful");
+				patientDetails.add(patientResult);
+			}
+			else if (patient.getSearchFilter().equalsIgnoreCase("name")) {
+				logger.info("Searching By Name");
+				patientDetails	=	patientService.findPatientByName(patient.getSearchText());
+				logger.info("Searching By Name Successful");
+			}
+			else{	// for age
+				logger.info("Searching By Age");
+				patientDetails	=	patientService.findPatientByAge(Integer.parseInt(patient.getSearchText()));
+				logger.info("Searching By Age Successful");
+			}
+		} catch (NullPointerException e) {
+			logger.info("Catch Block");
+			logger.info("Searching All");
+			patientDetails		=	patientService.findAllPatients();
+			logger.info("Searching Successfull");
+		} finally {
+			logger.info("Finally Block");
+			if( patientDetails.size() <= 1){
+				logger.info("Nothing found");
+			}
+			else
 			modelMap.addAttribute("patientDetails",patientDetails);
 			return "patientSearch";
 		}
-		else {
-			logger.info("Failed to View.");
-			return "redirect:/dashboard/patientSearch";
-		}
 	}
-	/*
-	@RequestMapping(value="/patientDelete",method=RequestMethod.POST)
-	public String deletePatient(@RequestBody PatientDetailsPOJO patient ) {
-		logger.info("Patient Delete Post");
-		try {
-			patientService.delete(patient.getPatientId());
-			return "success";
-		} catch (Exception e) {
-			logger.info("Could Not Delete : ", e);
-			return "failure";
-		}
-	}
-	*/
 }

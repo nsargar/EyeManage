@@ -28,18 +28,30 @@ public class UserController {
 	SecQuestionService passwordService;
 	
 	@RequestMapping(method=RequestMethod.GET , value="/")
-	public String index() {
+	public String index(Model model) {
 		logger.info("Index Get");
+		UserLogin loginReq=new UserLogin();
+		model.addAttribute("user",loginReq);
+		
+		UserPOJO pojo	=	new UserPOJO();
+		model.addAttribute("newUser", pojo);
+		
+		List<SecQuestions> question		=	new ArrayList<>();
+		model.addAttribute("question",question);
+		
+		List<SecQuestions> questions	=	passwordService.findAllQues();
+		logger.info(questions);
+		model.addAttribute("questions", questions);
 		return "index";
 	}
 	
-	@RequestMapping(value="/login" , method=RequestMethod.GET)
+	/*@RequestMapping(value="/login" , method=RequestMethod.GET)
 	public String login(Model model) {
 		logger.info("Login Get");
 		UserLogin loginReq=new UserLogin();
 		model.addAttribute("user",loginReq);
 		return "login";
-	}
+	}*/
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public String loginForm(@ModelAttribute("user")UserLogin user, ModelMap modelMap, HttpSession session) {
@@ -49,7 +61,7 @@ public class UserController {
 		int a	=	 userService.validateLogin(user.getUserName(),user.getPassword());
 		if (a == 0) {
 			logger.info("Login Failed");
-			return "redirect:/login";
+			return "redirect:/";	// /login to / (due to merging of Login and Register on Index page)
 		}
 		else {
 			logger.info("Successfully Logged in");
@@ -59,7 +71,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/registration", method=RequestMethod.GET)
+	/*@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String showRegister(Model model) {
 		logger.info("Register Get");
 		UserPOJO pojo	=	new UserPOJO();
@@ -72,17 +84,17 @@ public class UserController {
 		logger.info(questions);
 		model.addAttribute("questions", questions);
 		return "registration";
-	}
+	}*/
 	
 	@RequestMapping(value="/registration",method=RequestMethod.POST)
 	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
 		logger.info("Register Post");
 		if(userService.add(user) == true){
 			logger.info("Registration Successful, Redirecting to Login page");
-			return "redirect:/login";
+			return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
 		}
 		logger.info("Registration failed");
-		return "redirect:/registration";
+		return "redirect:/";			// /registration to / (due to merging of Login and Register on Index page)
 	}
 	
 	@RequestMapping(value="/forgotPassword" , method=RequestMethod.GET)
@@ -106,7 +118,7 @@ public class UserController {
 		if ( userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()) > 0 ) {
 			logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
 			if(userService.forgotPassCheck(user))
-				return "redirect:/login";
+				return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
 			else
 				return "redirect:/forgotPassword";
 		}
