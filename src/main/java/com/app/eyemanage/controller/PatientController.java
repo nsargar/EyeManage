@@ -110,23 +110,32 @@ public class PatientController {
 				logger.info(patientDetails.toString());
 				logger.info("Searching By Name Successful");
 			}
-			else{	// for age
+			else if(patient.getSearchFilter().equalsIgnoreCase("age")) {	// for age
 				logger.info("Searching By Age");
 				patientDetails	=	patientService.findPatientByAge(Integer.parseInt(patient.getSearchText()));
 				logger.info("Searching By Age Successful");
 			}
+			else if(patient.getSearchFilter().equalsIgnoreCase("")) {	// for all
+				logger.info("Searching All");
+				patientDetails		=	patientService.findAllPatients();
+				logger.info("Searching Successfull");
+			}
+			
 		} catch (NullPointerException e) {
 			logger.info("Catch Block");
 			logger.info("Searching All");
 			patientDetails		=	patientService.findAllPatients();
 			logger.info("Searching Successfull");
+			
 		} finally {
 			logger.info("Finally Block");
-			if( patientDetails.size() <= 1 && patientDetails.get(0).equals(null) ){
+			if(patientDetails.contains(null)) {
 				logger.info("Nothing found");
 			}
-			else
-			modelMap.addAttribute("patientDetails",patientDetails);
+			else {
+				//if( patientDetails.size() <= 1 &&  )
+				modelMap.addAttribute("patientDetails",patientDetails);
+			}
 			return "patientSearch";
 		}
 	}
