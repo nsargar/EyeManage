@@ -1,30 +1,17 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Dashboard</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			
+
+<head>
+
+    	<meta name="viewport" http-equiv="Content-Type" content="text/html,charset=UTF-8, width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.css}" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}" />
-		
 		<script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
-	</head>
-	<body>
-	<div id="wrapper">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					
-					<a class="navbar-brand" th:href="@{/}">
-					<button type="button" id="menu-toggle" class="btn btn-link"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
-					EyeManage</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li><h4 th:text="'Welcome, ' + ${userName} + ' &#124;'" ></h4></li>
-					<li><button type="submit" name="logout" class="btn btn-link"><span class="glyphicon glyphicon-off"></span>Logout</button></li>
-				</ul>
-			</div>
-		</nav>
+</head>
+
+<body>
+
+     <div id="wrapper">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -62,8 +49,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                    <br/><br/>
-                    	<h1 th:text="'Welcome to Eyemanage, ' + ${userName}" ></h1>
+                    	<button class="btn btn-default" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger"></span>Menu</button>
                     </div>
                 </div>
             </div>
@@ -71,19 +57,23 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-		
+    <!-- /#wrapper -->
+
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-	    	    
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-	    <script>
-   		    $("#menu-toggle").click(function(e) {
-    	    e.preventDefault();
-       	    $("#wrapper").toggleClass("toggled");
-    	});
-    	</script>
 	    
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 
-	</body>
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
 </html>

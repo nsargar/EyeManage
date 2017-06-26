@@ -64,7 +64,8 @@ public class UserController {
 			int a	=	 userService.validateLogin(user.getUserName(),user.getPassword());
 			if (a == 0) {
 				logger.info("Login Failed");
-				return "redirect:/";	// /login to / (due to merging of Login and Register on Index page)
+				modelMap.addAttribute("loginError", true);
+				return "redirect:/?loginError";
 			}
 			else {
 				logger.info("Successfully Logged in");
@@ -87,8 +88,10 @@ public class UserController {
 				logger.info("Registration Successful, Redirecting to Login page");
 				//return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
 			}
-			else
+			else {
 				logger.info("Registration Failed, Could not add the new user");
+				
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.info("Registration Failed");

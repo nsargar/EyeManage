@@ -34,7 +34,7 @@
 					<input type="submit" value="Search" class="btn btn-default"/>
 				</div>
 			</div>
-			<div class="table-responsive" >
+			<div class="table-responsive" th:if="${not #lists.isEmpty(patientDetails)}">
 				<table class="table table-striped" id="resultTable">
 					<thead>
 						<tr>
