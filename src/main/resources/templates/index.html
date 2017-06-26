@@ -5,7 +5,7 @@
 		<meta name="viewport" http-equiv="Content-Type" content="text/html,charset=UTF-8, width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.css}" />
 		<link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -19,92 +19,98 @@
 		<div class="container">
 			<div class="jumbotron">
 				
-				<h1>EyeManage</h1>
-				<p class="text-primary">
-					A simple to use Electronic Medical Record and Clinic Management software for Clinics.
-				    Browser based software deployed on your Local Area Network or the Cloud as per your need.
-				    We provide Accessible, On Time and Patient Centric care with managed Workflow and Reminders."
+				<h1 class="text-center">EyeManage</h1><hr/>
+				<br/>
+				<div class="row">
+				<div class="col-sm-6">
+				<p class="text-primary text-left lead">
+					<br/> A simple to use Electronic Medical Record and Clinic Management software for Clinics.
+				    <br/> Browser based software deployed on your Local Area Network or the Cloud as per your need.
+				    <br/> We provide Accessible, On Time and Patient Centric care with managed Workflow and Reminders.
 				</p>
-				
+				</div>
 				<!-- <a th:href="@{/login}" class="btn btn-primary" role="button">Login</a>
 				<a th:href="@{/registration}" class="btn btn-success" role="button">Register</a> -->
+				<div class="col-sm-6">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
 					<li><a data-toggle="tab" href="#register">Register</a></li>
 				</ul>
-				
+				<br/>
 				<div class="tab-content">
+					<br/>
     				<div id="login" class="tab-pane fade in active">
     					<form action="#" method="post" th:action="@{/login}" th:object="${user}" class="form-horizontal">
 							<div th:if="${param.loginError}" class="alert alert-danger">Invalid Username or Password</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2"> UserName : </label>
-								<div class="col-sm-10">
-							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" />
+								<label class="control-label col-sm-4"> UserName : </label>
+								<div class="col-sm-8">
+							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" class="form-control"/>
 							 	</div>
 							</div>
 							 
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Password : </label>
-								<div class="col-sm-10">
-							 		<input type="password" th:field="*{password}" placeholder="Enter Password"/>
+								<label class="control-label col-sm-4"> Password : </label>
+								<div class="col-sm-8">
+							 		<input type="password" th:field="*{password}" placeholder="Enter Password" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<input type="submit" value="Login"/>
+								<div class="col-sm-offset-4 col-sm-8">
+									<input type="submit" value="Login" class="btn btn-success"/>
 								</div>
 							</div>			
 							
 							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<a th:href="@{/forgotPassword}">Forgot Password</a>
+								<div class="col-sm-offset-4 col-sm-8">
+									<a th:href="@{/forgotPassword}">Forgot Password?</a>
 								</div>
 							</div>
 						</form>			
     				</div>
+    				
     				<div id="register" class="tab-pane fade">
 						<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal">
 							<div class="form-group">
-								<label class="control-label col-sm-2"> User Name : </label>
-								<div class="col-sm-10">
-							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" />
+								<label class="control-label col-sm-4"> UserName : </label>
+								<div class="col-sm-8">
+							 		<input type="text" th:field="*{userName}" placeholder="Enter User Name" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Name : </label>
-								<div class="col-sm-10">
-							 		<input type="text" th:field="*{name}" placeholder="Enter Name" />
+								<label class="control-label col-sm-4"> Name : </label>
+								<div class="col-sm-8">
+							 		<input type="text" th:field="*{name}" placeholder="Enter Name" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Email : </label>
-								<div class="col-sm-10">
-							 		<input type="text" th:field="*{email}" placeholder="Enter Email" />
+								<label class="control-label col-sm-4"> Email : </label>
+								<div class="col-sm-8">
+							 		<input type="text" th:field="*{email}" placeholder="Enter Email" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Password : </label>
-								<div class="col-sm-10">
-							 		<input type="password" th:field="*{password}" placeholder="Enter Password" />
+								<label class="control-label col-sm-4"> Password : </label>
+								<div class="col-sm-8">
+							 		<input type="password" th:field="*{password}" placeholder="Enter Password" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Confirm Password : </label>
-								<div class="col-sm-10">
-							 		<input type="password" th:field="*{cnfPassword}" placeholder="Re-enter Password" />
+								<label class="control-label col-sm-4"> Confirm Password : </label>
+								<div class="col-sm-8">
+							 		<input type="password" th:field="*{cnfPassword}" placeholder="Re-enter Password" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Security Question : </label>
-								<div class="col-sm-10">
-							 		<select name="questionList" th:field="*{secQuest}">
+								<label class="control-label col-sm-4"> Security Question : </label>
+								<div class="col-sm-8">
+							 		<select name="questionList" th:field="*{secQuest}" class="form-control">
 										<option value="">Select Option</option>
 										<option th:each="question : ${questions}" th:value="${question.question}"
 											th:text="${question.id} + ' : ' + ${question.question}"></option>
@@ -113,27 +119,29 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="control-label col-sm-2"> Answer : </label>
-								<div class="col-sm-10">
-							 		<input type="password" th:field="*{answer}" placeholder="Enter an answer" />
+								<label class="control-label col-sm-4"> Answer : </label>
+								<div class="col-sm-8">
+							 		<input type="password" th:field="*{answer}" placeholder="Enter an answer" class="form-control"/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<input type="submit" value="Register" />
+								<div class="col-sm-offset-4 col-sm-8">
+									<input type="submit" value="Register" class="btn btn-success"/>
 								</div>
 							</div>
 						</form>    					
     				</div>
+    			</div>
+    			</div>
     			</div>
 			</div>
 		</div>
 		<!-- /.container -->
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    
+	    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	    	    
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	    
