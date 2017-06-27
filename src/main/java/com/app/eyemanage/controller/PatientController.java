@@ -60,6 +60,7 @@ public class PatientController {
 		logger.info("Patient Add Post");
 		try {
 			logger.info("Patient Add Try Block");
+			logger.info("BirthDate : " + patient.getBirthDate());
 			patient.setFirstVisitDate(new Date());
 			if(patientService.add(patient) == true){
 				logger.info("Patient Successfully Added");

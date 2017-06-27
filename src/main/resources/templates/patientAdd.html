@@ -47,12 +47,12 @@
 			 		<input type="email" th:field="*{email}" placeholder="Enter Email" />
 				</div>
 			</div>
-			<!-- th:field="*{birthDate}"  -->
+
 			<div class="form-group">
 				    <!-- <input type="text" class="form-control"> -->
 				    <label class="control-label col-sm-2"> Date Of Birth : </label>
 				    <div class="input-group date col-sm-2">
-				    	<input  type="text" class="form-control" placeholder="Click to select date" id="birthDate"/>
+				    	<input  type="date" class="form-control" th:field="*{birthDate}" placeholder="Click to select date" id="abirthDate"/>
 				        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" id="datePicker"></span>
 				        </span>
 				    </div>
@@ -106,7 +106,7 @@
             // When the document is ready
             $(document).ready(function () {
                 $('#birthDate').datepicker({
-                    format: "dd/mm/yyyy"
+                    format: "yyyy-mm-dd"
                 });  
             
             });
