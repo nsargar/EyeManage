@@ -15,6 +15,7 @@ import com.app.eyemanage.model.UserLogin;
 import com.app.eyemanage.pojo.UserPOJO;
 import com.app.eyemanage.service.SecQuestionService;
 import com.app.eyemanage.service.UserService;
+import com.app.eyemanage.utility.Utils;
 
 @Controller
 public class UserController {
@@ -29,8 +30,14 @@ public class UserController {
 	
 	@SuppressWarnings("finally")
 	@RequestMapping(method=RequestMethod.GET , value="/")
-	public String index(Model model) {
+	public String index(Model model,  HttpSession session) {
 		logger.info("Index Get");
+		
+		if( Utils.validateSession(session, "UserDetails") == true) {
+			logger.info("Session Attribute already present");
+			logger.info("You are already logged in. Redirecting to Dashboard");
+			return "redirect:/dashboard/home";
+		}
 		UserLogin loginReq=new UserLogin();
 		model.addAttribute("user",loginReq);
 		

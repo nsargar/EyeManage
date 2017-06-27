@@ -26,11 +26,11 @@ public class DashboardController {
 		else {
 			session.getAttribute("UserDetails");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			logger.info((session.getAttribute("UserDetails")).toString());
+			logger.info("Current User : " + (session.getAttribute("UserDetails")).toString());
 			return "dashboard";
 		}
 	}
-	
+	/*
 	@RequestMapping(value="/home" , method=RequestMethod.POST)
 	public String dashboard(Model model, HttpSession session) {
 		logger.info("Dashboard Post");
@@ -42,6 +42,20 @@ public class DashboardController {
 			logger.info("Unable to Log out");
 			e.printStackTrace();
 			return "dashboard";
+		}
+	}
+	*/
+	@RequestMapping(value="/logout" , method=RequestMethod.GET)
+	public String logout(Model model, HttpSession session) {
+		logger.info("Logout Get");
+		try {
+			session.invalidate();
+			logger.info("Successfully Logged out");
+			return "redirect:/";
+		} catch (Exception e) {
+			logger.info("Unable to Log out");
+			e.printStackTrace();
+			return "redirect:/dashboard/home";
 		}
 	}
 }
