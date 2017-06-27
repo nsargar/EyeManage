@@ -1,6 +1,5 @@
 package com.app.eyemanage.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import lombok.Data;
 
@@ -44,6 +45,11 @@ public class PatientDetailsPOJO {
 	@Column(unique = false, nullable = true, length=50)
 	@Email
 	private String email;
+	
+	//@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(unique = false, nullable = false)
+	private Date birthDate;
 	
 	@Column(unique = false, nullable = false, length=1)
 	private String gender;
