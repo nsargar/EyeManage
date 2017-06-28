@@ -107,56 +107,56 @@
 									     			<tr>
 									     				<th>Patient Id</th>
 									     				<td>
-									     					<input th:id="${patient.patientId}" type="text" th:value="${patient.patientId}" readonly="true"/>
+									     					<input id="patientId_edit" type="text" th:value="${patient.patientId}" readonly="true"/>
 									     				</td>
 									     			</tr>
 													<tr>
 														<th>First Name</th>
 														<td>
-															<input th:id="'edit'+${patient.firstName}" type="text" th:value="${patient.firstName}"/>
+															<input id="patientFirstName_edit" type="text" th:value="${patient.firstName}"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Last Name</th>
 														<td>
-															<input th:id="${patient.lastName}" type="text" th:value="${patient.lastName}"/>
+															<input id="patientLastName_edit" type="text" th:value="${patient.lastName}"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Gender</th>
 														<td>
-															<input th:id="${patient.gender}" type="text" th:value="${patient.gender}"/>
+															<input id="patientGender_edit" type="text" th:value="${patient.gender}"/>
 														</td>
 													</tr>
 													
 													<tr>
 														<th>Birth Date</th>
 														<td>
-															<input th:id="${patient.birthDate}" type="text" th:value="${patient.birthDate}"/>
+															<input id="patientBirthDate_edit" type="text" th:value="${patient.birthDate}" readonly="true"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Age</th>
 														<td>
-															<input th:id="${patient.age}" type="text" th:value="${patient.age}"/>
+															<input id="patientAge_edit" type="text" th:value="${patient.age}" readonly="true"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Email</th>
 														<td>
-															<input th:id="${patient.email}" type="text" th:value="${patient.email}"/>
+															<input id="patientEmail_edit" type="text" th:value="${patient.email}"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Mobile</th>
 														<td>
-															<input th:id="${patient.mobile}" type="text" th:value="${patient.mobile}"/>
+															<input id="patientMobile_edit" type="text" th:value="${patient.mobile}"/>
 														</td>
 													</tr>
 													<tr>
 														<th>Phone</th>
 														<td>
-															<input th:id="${patient.phoneNumber}" type="text" th:value="${patient.phoneNumber}"/>
+															<input id="patientPhoneNumber_edit" type="text" th:value="${patient.phoneNumber}"/>
 														</td>
 													</tr>
 													<tr>
@@ -167,17 +167,15 @@
 									     		</table>
 									      	</div>
 									      	<div class="modal-footer">
-									      		<button type="button" class="btn btn-success" data-dismiss="modal"
-									      			th:attr="onclick='document.getElementById(edit' + ${patient.firstName} + '.value);'" >
-									      			<!-- th:onclick="'editBtn(document.getElementById(\''+${patient.patientId}+'\').value);'"> -->
-									      			<!-- ,
-									      			document.getElementById('firstName').value,
-									      			document.getElementById('lastName').value,
-									      			document.getElementById('gender').value,
-									      			document.getElementById('age').value,
-									      			document.getElementById('email').value,
-									      			document.getElementById('mobile').value,
-									      			document.getElementById('phone').value);'"> -->
+									      		<button type="button" class="btn btn-success edit_model" data-dismiss="modal"
+									      		onclick="editBtn(document.getElementById('patientId_edit').value, 
+									      				document.getElementById('patientFirstName_edit').value,
+									      				document.getElementById('patientLastName_edit').value,
+									      				document.getElementById('patientGender_edit').value,
+									      				document.getElementById('patientEmail_edit').value,
+									      				document.getElementById('patientMobile_edit').value,
+									      				document.getElementById('patientPhoneNumber_edit').value);">
+									      			<!-- Added removed code here th:attr = "data-id='edit' + ${patient.firstName}" -->
 									      			Submit</button>
 									        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									      	</div>
@@ -204,6 +202,7 @@
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+	    <script type="text/javascript" th:src="@{/js/ajaxCalls.js}"></script>
 	    
 	</body>
 </html>

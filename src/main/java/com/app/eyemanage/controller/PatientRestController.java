@@ -32,4 +32,22 @@ public class PatientRestController {
 		}
 	}
 	
+	@RequestMapping(value="/patientSearch/patientEdit",method=RequestMethod.POST)
+	public Response editPatient(@RequestBody PatientDetailsPOJO p ) {
+		logger.info("Patient Edit Post");
+		logger.info("Patient Id : " + p.getPatientId());
+		try {
+			if (1 == patientService.editPatientDetails(p.getPatientId(), p.getFirstName(), p.getLastName(),
+					p.getGender(), p.getEmail(), p.getMobile(), p.getPhoneNumber())) {
+				logger.info("Edited Successfully");
+				return new Response("Done",p);
+			}
+			else
+				return new Response("Error",p);
+		} catch (Exception e) {
+			logger.info("Could Not Edit : ", e);
+			return new Response("Error",p);
+		}
+	}
+	
 }
