@@ -54,11 +54,11 @@ public class PatientDetailsPOJO {
 	@Column(unique = false, nullable = false, length=1)
 	private String gender;
 	
-	@Column(unique = true, nullable = false, length=10)
+	@Column(unique = false, nullable = true, length=10)
 	private Long mobile;
 	
 	@Column(unique = false, nullable = true, length=15)
-	private String phoneNumber;
+	private Long phoneNumber;
 	
 	@Column(unique = false, nullable = false)
 	@CreatedDate
