@@ -1,7 +1,5 @@
 package com.app.eyemanage.service;
 
-import java.util.Map;
-
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,7 +9,7 @@ import com.app.eyemanage.pojo.UserPOJO;
 
 @Repository
 public interface UserService extends CrudRepository<UserPOJO, Integer>,LoginService,SecQuestionService{
-	boolean add(UserPOJO userDetails);
+	Integer add(UserPOJO userDetails);
 	
 	@Query(value="select count(*) from UserPOJO u where u.userName=?1")
 	Integer validateUserName(String userName);

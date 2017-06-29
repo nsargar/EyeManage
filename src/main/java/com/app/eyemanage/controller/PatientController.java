@@ -62,9 +62,11 @@ public class PatientController {
 			logger.info("Patient Add Try Block");
 			logger.info("BirthDate : " + patient.getBirthDate());
 			patient.setFirstVisitDate(new Date());
-			if(patientService.add(patient) == true){
+			String newId	=	patientService.add(patient);
+			if(null != newId){
 				logger.info("Patient Successfully Added");
-				return "redirect:/dashboard/patient";
+				modelMap.addAttribute("patientAddedSuccess", newId );
+				return "redirect:/dashboard/patient?patientAddedSuccess=" + newId;
 			}
 			logger.info("Failed to Add.");
 			return "redirect:/dashboard/patientCreate";

@@ -13,7 +13,7 @@ import com.app.eyemanage.pojo.PatientDetailsPOJO;
 @Repository
 public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integer>{
 	
-	boolean add(PatientDetailsPOJO patientDetails);
+	String add(PatientDetailsPOJO patientDetails);
 	
 	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName)=:name) or (lower(p.lastName)=:name)")
 	//@Query(value="from PatientDetailsPOJO p where LOWER(p.firstName)=LOWER(:name)")

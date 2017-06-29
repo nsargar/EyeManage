@@ -5,11 +5,6 @@ $('#resultTable').on('click', '.clickable-row', function(event) {
 	        $(this).addClass('info').siblings().removeClass('info');
 	});
 
-// To disable clickable functionality on View and Delete button press
-/*$('#resultTable .btn-danger').on('click',function(event) {
-	event.stopPropagation();
-});
-
 $('#resultTable .btn-info').on('click',function(event) {
 	event.stopPropagation();
 });*/

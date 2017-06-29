@@ -18,7 +18,6 @@ public class UserPOJO {
 	private String cnfPassword;
 	private String secQuest;
 	private String answer;
-	public String registrationError;
 	
 	private static final Logger logger = Logger.getLogger(UserPOJO.class);
 	public UserPOJO() {
@@ -99,15 +98,6 @@ public class UserPOJO {
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
-	}
-
-	@Transient
-	public String getRegistrationError() {
-		return registrationError;
-	}
-
-	public void setRegistrationError(String registrationError) {
-		this.registrationError = registrationError;
 	}
 
 	@Override
