@@ -28,17 +28,17 @@ public class PatientServiceImpl {
 	}
 	
 	@Transactional
-	boolean add(PatientDetailsPOJO patientDetails) {
+	String add(PatientDetailsPOJO patientDetails) {
 		logger.info("PatientServiceImpl , Patient ::: " + patientDetails.toString());
 		
 		PatientDetailsPOJO patientAdd	=	patientService.save(patientDetails);
 		logger.info("Returned Object::: " + patientAdd.toString());
 		if( !patientAdd.getPatientId().equals(null)){
-			return true;
+			return patientAdd.getPatientId().toString();
 		}
 		else {
 			logger.info("Patient could not be added !!!");
-			return false;
+			return null;
 		}
 	}
 }

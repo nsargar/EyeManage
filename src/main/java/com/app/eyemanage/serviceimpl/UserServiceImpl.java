@@ -1,8 +1,5 @@
 package com.app.eyemanage.serviceimpl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -35,70 +32,31 @@ public class UserServiceImpl {
 	}
 	
 	@Transactional
-	public boolean add(UserPOJO userDetails) {
+	public Integer add(UserPOJO userDetails) {
 		logger.info("User Service Impl , User ::: " + userDetails.toString());
 		if(userService.validateUserName(userDetails.getUserName()) <= 0) {
 			if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
 				UserPOJO demoUser	=	this.userService.save(userDetails);
-				logger.info("Returned Object::: " + demoUser.toString());
+				logger.info("Successfully added, Returned Object::: " + demoUser.toString());
 					if( !demoUser.getUserName().equalsIgnoreCase(null)){
-						return true;
+						return 1;	// Successfully Added
 					}
 					else {
 						logger.info("User could not be created !!!");
-						userPojo.setRegistrationError("Error in Adding");
-						return false;
+						return 2;	// Failed to Add
 					}
 			}
 			else {
 				logger.info("Passwords do not match !!!");
-				userPojo.setRegistrationError("Passwords do not match");
-				return false;
+				return 3;	// Passwords Do No Match
 			}
 		}
 		else {
 			logger.info("UserName already exists !!!");
-			userPojo.setRegistrationError("User Name already exists, please try another");
-			return false;
+			return 4;	// User Name already exists
 		}
 	}
 	
-	/*
-	@Transactional
-	public Map<String, Boolean> add(UserPOJO userDetails) {
-		Map<String, Boolean> resultMap	=	new HashMap<>();
-		logger.info("User Service Impl , User ::: " + userDetails.toString());
-		if(userService.validateUserName(userDetails.getUserName()) <= 0) {
-			if(Utils.validatePass(userDetails.getPassword(), userDetails.getCnfPassword())) {
-				UserPOJO demoUser	=	this.userService.save(userDetails);
-				logger.info("Returned Object::: " + demoUser.toString());
-					if( !demoUser.getUserName().equalsIgnoreCase(null)){
-						resultMap.put( null , true );
-						return resultMap;
-					}
-					else {
-						logger.info("User could not be created !!!");
-						userPojo.setRegistrationError("Error in Adding");
-						resultMap.put( "Error in Adding" , false );
-						return resultMap;
-					}
-			}
-			else {
-				logger.info("Passwords do not match !!!");
-				userPojo.setRegistrationError("Passwords do not match");
-				resultMap.put( "Passwords do not match" , false );
-				return resultMap;
-			}
-		}
-		else {
-			logger.info("UserName already exists !!!");
-			userPojo.setRegistrationError("User Name already exists, please try another");
-			resultMap.put( "User Name already exists, please try another" , false );
-			return resultMap;
-		}
-	}
-	
-	*/
 	@Transactional
 	public boolean forgotPassCheck(ForgotPassword forgotUser) {
 		logger.info("forgotPassCheck method");

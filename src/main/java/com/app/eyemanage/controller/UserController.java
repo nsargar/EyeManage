@@ -90,20 +90,30 @@ public class UserController {
 	@RequestMapping(value="/registration",method=RequestMethod.POST)
 	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
 		logger.info("Register Post");
+		Integer value = null;
 		try {
-			if(userService.add(user) == true){
+			if( 1 == userService.add(user) ){
 				logger.info("Registration Successful, Redirecting to Login page");
-				//return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+				value	=	1;
+			}
+			else if( 2 == userService.add(user) ) {
+				logger.info("Registration Failed, Could not add the new user");
+				value	=	2;
+			}
+			else if ( 3 == userService.add(user) ) {
+				logger.info("Registration Failed, Passwords Do Not Match");
+				value	=	3;
 			}
 			else {
-				logger.info("Registration Failed, Could not add the new user");
-				
+				logger.info("Registration Failed, Username already exists");
+				value	=	4;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			logger.info("Registration Failed");
+			logger.info("Registration Failed, Exception Occured");
+			value	=	0;
 		}
-		return "redirect:/";			// /registration to / (due to merging of Login and Register on Index page)
+		modelMap.addAttribute("signUpResult", value);
+		return "redirect:/?signUpResult=" + value.toString();
 	}
 	
 	@SuppressWarnings("finally")
