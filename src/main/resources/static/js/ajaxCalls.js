@@ -44,14 +44,26 @@ function ajaxDelPost(patientId){
 }
 
 function deleteRow(patientId){
-	$("#"+patientId).hide();
+	$("#tr"+patientId).hide();
 } 
 
 //Delete Patient AJAX Ends
 
 //Edit Patient AJAX Starts
 
+function editBtn1(patientId,w){
+	alert(patientId);
+	alert(w);
+}
+
 function editBtn(patientId,firstName, lastName, gender, email, mobile, phoneNumber){
+	alert(patientId);
+	alert(firstName);
+	alert(lastName);
+	alert(gender);
+	alert(email);
+	alert(mobile);
+	alert(phoneNumber);
 	ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumber);
 }
 
