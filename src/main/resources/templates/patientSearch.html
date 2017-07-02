@@ -97,14 +97,14 @@
 									</thead>
 									<tbody>
 										<tr th:each="patient : ${patientDetails}"
-											class="clickable-row" th:id="${patient.patientId}">
+											class="clickable-row" th:id="'tr' + ${patient.patientId}">
 											<td th:text="${patient.patientId}"></td>
 											<td
 												th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
 											<td th:text="${patient.gender}"></td>
 											<td th:text="${patient.age}"></td>
 											<td>
-												<button type="button" class="btn btn-info"
+												<button type="button" class="btn"
 													data-toggle="modal"
 													th:attr="data-target='#viewModal' + ${patient.patientId}">View</button>
 
@@ -191,49 +191,49 @@
 																<table class="table table-striped">
 																	<tr>
 																		<th>Patient Id</th>
-																		<td><input id="patientId_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId}" type="text"
 																			th:value="${patient.patientId}" readonly="true" /></td>
 																	</tr>
 																	<tr>
 																		<th>First Name</th>
-																		<td><input id="patientFirstName_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.firstName}" type="text"
 																			th:value="${patient.firstName}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Last Name</th>
-																		<td><input id="patientLastName_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.lastName}" type="text"
 																			th:value="${patient.lastName}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Gender</th>
-																		<td><input id="patientGender_edit" type="text"
+																		<td><input th:attr="id=${patient.patientId} + '_'  + ${patient.gender}" type="text"
 																			th:value="${patient.gender}" /></td>
 																	</tr>
 
 																	<tr>
 																		<th>Birth Date</th>
-																		<td><input id="patientBirthDate_edit" type="text"
-																			th:value="${#dates.format(patient.firstVisitDate,'dd-MM-yyyy')}"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.birthDate}" type="text"
+																			th:value="${#dates.format(patient.birthDate,'dd-MM-yyyy')}"
 																			readonly="true" /></td>
 																	</tr>
 																	<tr>
 																		<th>Age</th>
-																		<td><input id="patientAge_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.age}" type="text"
 																			th:value="${patient.age}" readonly="true" /></td>
 																	</tr>
 																	<tr>
 																		<th>Email</th>
-																		<td><input id="patientEmail_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.email}" type="text"
 																			th:value="${patient.email}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Mobile</th>
-																		<td><input id="patientMobile_edit" type="text"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.mobile}" type="text"
 																			th:value="${patient.mobile}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Phone</th>
-																		<td><input id="patientPhoneNumber_edit"
+																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.phoneNumber}"
 																			type="text" th:value="${patient.phoneNumber}" /></td>
 																	</tr>
 																	<tr>
@@ -247,14 +247,14 @@
 															<div class="modal-footer">
 																<button type="button" class="btn btn-success edit_model"
 																	data-dismiss="modal"
-																	onclick="editBtn(document.getElementById('patientId_edit').value, 
-									      				document.getElementById('patientFirstName_edit').value,
-									      				document.getElementById('patientLastName_edit').value,
-									      				document.getElementById('patientGender_edit').value,
-									      				document.getElementById('patientEmail_edit').value,
-									      				document.getElementById('patientMobile_edit').value,
-									      				document.getElementById('patientPhoneNumber_edit').value);">
-																	<!-- Added removed code here th:attr = "data-id='edit' + ${patient.firstName}" -->
+																	th:onclick="'editBtn(
+																	document.getElementById(\'' + ${patient.patientId} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.firstName} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.lastName} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_' + ${patient.gender} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.email} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.mobile} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.phoneNumber} + '\').value);'">
 																	Submit
 																</button>
 																<button type="button" class="btn btn-default"
@@ -264,7 +264,6 @@
 													</div>
 												</div>
 											</td>
-											<!-- h:onclick="'doSomething(\''+${val1}+ '\',\''+${val2}+'\',\''+${val3}+'\');'" -->
 											<td>
 												<button type="button" class="btn btn-danger"
 													th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'">Delete</button>
