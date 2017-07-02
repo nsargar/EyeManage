@@ -4,20 +4,60 @@
 		<title>Add a New Patient</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 			
-		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
-		<link rel="stylesheet" type="text/css" th:href="@{/css/datepicker.css}" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.css}" />
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/style.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse">
-			<div class="container">
+	<div id="wrapper" class="toggled">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/}">EyeManage</a>
+					
+					<a class="navbar-brand" th:href="@{/}">
+					<button type="button" id="menu-toggle" class="btn btn-link"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+					EyeManage</a>
 				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a type="submit" th:href="@{/dashboard/logout}" class="btn btn-link"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
+				</ul>
 			</div>
 		</nav>
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/home}"><span class="glyphicon glyphicon-dashboard"></span>   Dashboard</a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/patient}"><span class="glyphicon glyphicon-user"></span>   Patients</a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/cases}" ><span class="glyphicon glyphicon-list-alt"></span>   Cases</a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/settings}"><span class="glyphicon glyphicon-cog"></span>   Settings</a><hr/>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-info-sign"></span>   About</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-envelope"></span>   Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+           <div class="row">
+            <div class="col-lg-12">
 		<div class="page-header">
-			<h2>Add a Patient</h2>
+			<h2>Add a Patient</h2><hr/>
 		</div>
 		<form action="#" method="post" th:action="@{/dashboard/patientCreate}" th:object="${newPatient}" class="form-horizontal">
 			<div class="form-group">
@@ -93,12 +133,16 @@
 			<div class="form-group">
 				<span th:if="${patientCreateResult} != null" th:text=""></span>
 				<div class="col-sm-offset-4 col-sm-1">
-					<input type="submit" value="Add" class="input-group btn btn-default btn-block"/>
+					<input type="submit" value="Add" class="btn btn-success"/>
 				</div>
 			</div>
 		</form>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	    
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -111,8 +155,11 @@
                 $('#birt1hDate').datepicker({
                     format: "yyyy-mm-dd"
                 });  
-            
             });
+            $("#menu-toggle").click(function(e) {
+        	    e.preventDefault();
+           	    $("#wrapper").toggleClass("toggled");
+        	});
         </script>
 	    
 	</body>

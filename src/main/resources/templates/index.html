@@ -27,19 +27,7 @@
 						<br/> A simple to use Electronic Medical Record and Clinic Management software for Clinics.
 					    <br/> Browser based software deployed on your Local Area Network or the Cloud as per your need.
 					    <br/> We provide Accessible, On Time and Patient Centric care with managed Workflow and Reminders.
-					</p>
-					
-					<!-- Result Messages -->
-					<div th:if="${param.loginError}" class="alert alert-danger msg" th:text="#{login.error}"></div>
-					<th:block th:if="${param.signUpResult != null}">
-						<div th:if="${param.signUpResult[0]} == '1'" class="alert alert-success msg" th:text="#{registration.success}"></div>
-						<div th:if="${param.signUpResult[0]} == '2'" class="alert alert-danger msg" th:text="#{registration.error.couldNotAdd}"></div>
-						<div th:if="${param.signUpResult[0]} == '3'" class="alert alert-danger msg" th:text="#{registration.error.passwordDoNotMatch}"></div>
-						<div th:if="${param.signUpResult[0]} == '4'" class="alert alert-danger msg" th:text="#{registration.error.usernameExists}"></div>
-						<div th:if="${param.signUpResult[0]} == '0'" class="alert alert-danger msg" th:text="#{registration.exception}"></div>
-					</th:block>
-					<!-- Result Messages End -->
-					
+					</p>					
 				</div>
 				
 				<div class="col-sm-6">
@@ -49,7 +37,9 @@
 				</ul>
 				<br/>
 				<div class="tab-content">
-					<br/>
+					<!-- Result Messages -->
+					
+					<!-- Result Messages End -->
     				<div id="login" class="tab-pane fade in active">
     					<form action="#" method="post" th:action="@{/login}" th:object="${user}" class="form-horizontal">
 							<div class="form-group input-group col-sm-7">
@@ -64,6 +54,7 @@
 							
 							<div class="form-group input-group">
 								<input type="submit" value="Login" class="btn btn-success"/>
+								<span th:if="${param.loginError}" class="alert alert-danger msg" th:text="#{login.error}"></span>
 							</div>			
 							
 							<div class="form-group input-group">
@@ -73,6 +64,13 @@
     				</div>
     				
     				<div id="register" class="tab-pane fade">
+						<th:block th:if="${param.signUpResult != null}">
+						<div th:if="${param.signUpResult[0]} == '1'" class="alert alert-success msg" th:text="#{registration.success}"></div>
+						<div th:if="${param.signUpResult[0]} == '2'" class="alert alert-danger msg" th:text="#{registration.error.couldNotAdd}"></div>
+						<div th:if="${param.signUpResult[0]} == '3'" class="alert alert-danger msg" th:text="#{registration.error.passwordDoNotMatch}"></div>
+						<div th:if="${param.signUpResult[0]} == '4'" class="alert alert-danger msg" th:text="#{registration.error.usernameExists}"></div>
+						<div th:if="${param.signUpResult[0]} == '0'" class="alert alert-danger msg" th:text="#{registration.exception}"></div>
+						</th:block>
 						<form action="#" method="post" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal">
 							<div class="form-group">
 								<label class="control-label col-sm-4"> UserName : </label>
