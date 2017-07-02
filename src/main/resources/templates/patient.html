@@ -18,7 +18,7 @@
 		
 		<a th:href="@{/dashboard/patientCreate}">Add a Patient</a>
 		<a th:href="@{/dashboard/patientSearch}">Search a Patient</a>
-		<div th:if="${param.patientAddedSuccess != null}" class="alert alert-success " th:text="#{patient.add.success} + ' with Id - ' +  ${param.patientAddedSuccess[0]}"></div>
+		<div th:if="${param.patientCreateResult != null}" class="alert alert-success " th:text="#{patient.add.success} + ' with Id - ' +  ${param.patientCreateResult[0]}"></div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	    

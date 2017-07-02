@@ -65,15 +65,17 @@ public class PatientController {
 			String newId	=	patientService.add(patient);
 			if(null != newId){
 				logger.info("Patient Successfully Added");
-				modelMap.addAttribute("patientAddedSuccess", newId );
-				return "redirect:/dashboard/patient?patientAddedSuccess=" + newId;
+				modelMap.addAttribute("patientCreateResult", newId );
+				return "redirect:/dashboard/patient?patientCreateResult=" + newId;
 			}
 			logger.info("Failed to Add.");
-			return "redirect:/dashboard/patientCreate";
+			modelMap.addAttribute("patientCreateResult", false);
+			return "redirect:/dashboard/patientCreate?patientCreateResult";
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.info("Patient Add Catch Block");
-			return "redirect:/dashboard/patientCreate";
+			modelMap.addAttribute("patientCreateResult", false);
+			return "redirect:/dashboard/patientCreate?patientCreateResult";
 		}
 		
 	}
