@@ -92,7 +92,29 @@ public class UserController {
 		logger.info("Register Post");
 		Integer value = null;
 		try {
-			if( 1 == userService.add(user) ){
+			
+			switch (userService.add(user)) {
+			case 1:
+				logger.info("Registration Successful, Redirecting to Login page");
+				value	=	1;
+				break;
+			case 2:
+				logger.info("Registration Failed, Could not add the new user");
+				value	=	2;
+				break;
+			case 3:
+				logger.info("Registration Failed, Passwords Do Not Match");
+				value	=	3;
+				break;
+			case 4:
+				logger.info("Registration Failed, Username already exists");
+				value	=	4;
+				break;
+			default:
+				break;
+			}
+			
+			/*if( 1 == userService.add(user) ){
 				logger.info("Registration Successful, Redirecting to Login page");
 				value	=	1;
 			}
@@ -107,7 +129,7 @@ public class UserController {
 			else {
 				logger.info("Registration Failed, Username already exists");
 				value	=	4;
-			}
+			}*/
 		} catch (Exception e) {
 			logger.info("Registration Failed, Exception Occured");
 			value	=	0;

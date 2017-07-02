@@ -7,7 +7,7 @@ $('#resultTable').on('click', '.clickable-row', function(event) {
 
 $('#resultTable .btn-info').on('click',function(event) {
 	event.stopPropagation();
-});*/
+});
 
 // On change of Search Filter Drop Down 
 /*$('#searchDrop').change(function(){
@@ -15,3 +15,18 @@ $('#resultTable .btn-info').on('click',function(event) {
     $("#searchValue").attr("th:field","*{patientId}");
     alert($("#searchValue").attr("th:field"));
 });*/
+
+
+$('#birthDate').on('blur', function(event) {
+	alert('In');
+	var dob			=	$(this).val();
+	var dobYear		=	dob.substring(0,4);
+	var dobMonth	=	dob.substring(5,7);
+	var dobDay		=	dob.substring(8,10);
+	var today		=	new Date();
+	var todayYear	=	today.getFullYear();
+	var todayMonth	=	today.getMonth() + 1;
+	var todayDay	=	today.getDate();
+	
+	
+});
