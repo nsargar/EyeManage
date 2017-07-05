@@ -15,8 +15,7 @@ public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integ
 	
 	String add(PatientDetailsPOJO patientDetails);
 	
-	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName)=:name) or (lower(p.lastName)=:name)")
-	//@Query(value="from PatientDetailsPOJO p where LOWER(p.firstName)=LOWER(:name)")
+	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName) like %:name%) or (lower(p.lastName) like %:name%)")
 	List<PatientDetailsPOJO> findPatientByName(@Param("name") String name);
 	
 	@Query(value="from PatientDetailsPOJO p where p.age=?1")

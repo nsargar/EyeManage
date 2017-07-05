@@ -18,7 +18,6 @@ $('#resultTable .btn-info').on('click',function(event) {
 
 
 $('#birthDate').on('blur', function(event) {
-	alert('In');
 	var dob			=	$(this).val();
 	var dobYear		=	dob.substring(0,4);
 	var dobMonth	=	dob.substring(5,7);

@@ -57,7 +57,6 @@
 						<form action="#" method="post"
 							th:action="@{/dashboard/patientSearch}"
 							th:object="${viewPatient}" class="form-horizontal">
-							<p id="msg"></p>
 							<div class="form-group">
 								<label class="control-label col-sm-2"> Search By : </label>
 								<div class="col-sm-2">
@@ -79,6 +78,7 @@
 										</button>
 									</div>
 								</div>
+								<span class="col-sm-3" id="msg"></span>
 							</div>
 
 							<div class="table-responsive"
