@@ -94,7 +94,7 @@
 								<label class="control-label col-sm-2"> Date Of Birth : </label>
 								<div class="input-group date col-sm-3">
 									<input type="date" class="form-control" th:field="*{birthDate}"
-										placeholder="Click to select date" id="birthDate" /> <span
+										placeholder="Click to select date" id="birthDate"  /> <span
 										class="input-group-addon"><span
 										class="glyphicon glyphicon-calendar" id="datePicker"></span> </span>
 								</div>
@@ -159,7 +159,7 @@
 	<script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
-                $('#birt1hDate').datepicker({
+                $('#birthDate').datepicker({
                     format: "yyyy-mm-dd"
                 });  
             });
