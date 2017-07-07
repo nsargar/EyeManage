@@ -27,3 +27,4 @@ $('#birthDate').on('blur', function(event) {
 	var todayMonth	=	today.getMonth() + 1;
 	var todayDay	=	today.getDate();
 });
+
