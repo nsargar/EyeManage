@@ -19,7 +19,7 @@ public class PatientRestController {
 	
 	private static final Logger logger = Logger.getLogger(PatientRestController.class);
 	
-	@RequestMapping(value="/patientSearch/patientDelete",method=RequestMethod.POST)
+	@RequestMapping(value= {"/patientSearch/patient/patientDelete","/patientSearch/visit/patientDelete"},method=RequestMethod.POST)
 	public Response deletePatient(@RequestBody PatientDetailsPOJO p ) {
 		logger.info("Patient Delete Post");
 		logger.info("Patient Id : " + p.getPatientId());
@@ -32,7 +32,7 @@ public class PatientRestController {
 		}
 	}
 	
-	@RequestMapping(value="/patientSearch/patientEdit",method=RequestMethod.POST)
+	@RequestMapping(value= {"/patientSearch/patient/patientEdit", "/patientSearch/visit/patientEdit"},method=RequestMethod.POST)
 	public Response editPatient(@RequestBody PatientDetailsPOJO p ) {
 		logger.info("Patient Edit Post");
 		logger.info("Patient Id : " + p.getPatientId());

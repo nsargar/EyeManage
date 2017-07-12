@@ -10,42 +10,14 @@
 </head>
 <body>
 	<div id="wrapper" class="toggled">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/}">
-						<button type="button" id="menu-toggle" class="btn btn-link">
-							<span class="glyphicon glyphicon-menu-hamburger"></span>
-						</button> EyeManage
-					</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a type="submit" th:href="@{/dashboard/logout}"
-						class="btn btn-link"><span class="glyphicon glyphicon-off"></span>
-							Logout</a></li>
-				</ul>
-			</div>
-		</nav>
-
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand"><a href="#"> </a></li>
-				<li><a th:href="@{/dashboard/home}"><span
-						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-				<li><a th:href="@{/dashboard/patient}"><span
-						class="glyphicon glyphicon-user"></span> Patients</a></li>
-				<li><a th:href="@{/dashboard/cases}"><span
-						class="glyphicon glyphicon-list-alt"></span> Cases</a></li>
-				<li><a th:href="@{/dashboard/settings}"><span
-						class="glyphicon glyphicon-cog"></span> Settings</a>
-				<hr /></li>
-				<li><a href="#"><span class="glyphicon glyphicon-info-sign"></span>
-						About</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span>
-						Contact</a></li>
-			</ul>
-		</div>
+		
+		<!-- Navbar Fragment -->
+		<div th:replace="layout :: navbar"></div>
+		
+		<!-- Sidebar Fragment -->
+		<div th:replace="layout :: sidebar"></div>
+		
+		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
@@ -55,9 +27,8 @@
 							<hr />
 						</div>
 						<form action="#" method="post"
-							th:action="@{/dashboard/patientSearch}"
+							th:action="${getMode == 'patient'} ? @{/dashboard/patientSearch/patient} : @{/dashboard/patientSearch/visit}"
 							th:object="${viewPatient}" class="form-horizontal">
-							<p id="msg"></p>
 							<div class="form-group">
 								<label class="control-label col-sm-2"> Search By : </label>
 								<div class="col-sm-2">
@@ -79,8 +50,9 @@
 										</button>
 									</div>
 								</div>
+								<span class="col-sm-3" id="msg"></span>
 							</div>
-
+							
 							<div class="table-responsive"
 								th:if="${not #lists.isEmpty(patientDetails)}">
 								<table class="table table-striped" id="resultTable">
@@ -91,8 +63,10 @@
 											<th>Gender</th>
 											<th>Age</th>
 											<th>View</th>
-											<th>Edit</th>
-											<th>Delete</th>
+											<th th:if="${postMode == 'patient' and postMode != null}">Edit</th>
+											<th th:if="${postMode == 'patient'  and postMode != null}">Delete</th>
+											<th th:if="${postMode == 'visit' and postMode != null}">New Visit</th>
+											<th th:if="${postMode == 'visit' and postMode != null}">Previous Visits</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -172,7 +146,7 @@
 													</div>
 												</div>
 											</td>
-											<td>
+											<td th:if="${postMode == 'patient' and postMode != null}">
 												<button type="button" class="btn btn-success"
 													data-toggle="modal"
 													th:attr="data-target='#editModal' + ${patient.patientId}">Edit</button>
@@ -264,11 +238,43 @@
 													</div>
 												</div>
 											</td>
-											<td>
+											<td th:if="${postMode == 'patient' and postMode != null}">
 												<button type="button" class="btn btn-danger"
-													th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'">Delete</button>
+													data-toggle="modal"
+													th:attr="data-target='#deleteModal' + ${patient.patientId}">Delete</button>
+												<!-- Delete Confirmation Modal -->
+												<div th:attr="id='deleteModal' + ${patient.patientId}"
+													class="modal fade" role="dialog">
+													<div class="modal-dialog">
+
+														<!-- Delete Modal content-->
+														<div class="modal-content">
+															<div class="modal-body">
+																<p th:text="#{patient.delete.confirmation}"></p>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-danger"
+																th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'"
+																	data-dismiss="modal">Yes, I want to delete it</button>
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">No</button>
+															</div>
+														</div>
+
+													</div>
+												</div>
+												<!-- / Delete Confirmation Modal -->
 											</td>
 											<!-- <button class="btn btn-danger">Delete</button>  ${patient.patientId} -->
+											<td th:if="${postMode == 'visit' and postMode != null}">
+												<a type="button" class="btn btn-success" data-toggle="modal"
+													th:href="@{/dashboard/newVisit?(id=${patient.patientId})}">New Visit</a> 
+													
+											</td>
+											<td th:if="${postMode == 'visit' and postMode != null}">
+												<a type="button" class="btn btn-default"
+													th:href="@{/dashboard/visitHistory/__${patient.patientId}__}">Previous Visits</a>
+											</td>
 										</tr>
 									</tbody>
 								</table>

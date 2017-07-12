@@ -6,16 +6,6 @@ function deleteBtn(patientId){
 
 function ajaxDelPost(patientId){
 	var url	=	window.location;
-	/*firstName	: null,
-	lastName	: null,
-	age	: null,
-	address	: null,
-	email	: null,
-	gender	: null,
-	mobile	: null,
-	phoneNumber	: null,
-	firstVisitDate	: null
-	*/
 	var formData ={
 			patientId : patientId
 	}
@@ -49,21 +39,10 @@ function deleteRow(patientId){
 
 //Delete Patient AJAX Ends
 
+
 //Edit Patient AJAX Starts
 
-function editBtn1(patientId,w){
-	alert(patientId);
-	alert(w);
-}
-
 function editBtn(patientId,firstName, lastName, gender, email, mobile, phoneNumber){
-	alert(patientId);
-	alert(firstName);
-	alert(lastName);
-	alert(gender);
-	alert(email);
-	alert(mobile);
-	alert(phoneNumber);
 	ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumber);
 }
 
