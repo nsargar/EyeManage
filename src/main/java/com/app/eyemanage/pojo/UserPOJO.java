@@ -63,7 +63,6 @@ public class UserPOJO {
 	
 	@Column(length=60)
 	@Email
-	@NotEmpty
 	public String getEmail() {
 		return email;
 	}

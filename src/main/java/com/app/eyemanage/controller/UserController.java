@@ -92,7 +92,6 @@ public class UserController {
 		logger.info("Register Post");
 		Integer value = null;
 		try {
-			
 			switch (userService.add(user)) {
 			case 1:
 				logger.info("Registration Successful, Redirecting to Login page");
@@ -114,22 +113,6 @@ public class UserController {
 				break;
 			}
 			
-			/*if( 1 == userService.add(user) ){
-				logger.info("Registration Successful, Redirecting to Login page");
-				value	=	1;
-			}
-			else if( 2 == userService.add(user) ) {
-				logger.info("Registration Failed, Could not add the new user");
-				value	=	2;
-			}
-			else if ( 3 == userService.add(user) ) {
-				logger.info("Registration Failed, Passwords Do Not Match");
-				value	=	3;
-			}
-			else {
-				logger.info("Registration Failed, Username already exists");
-				value	=	4;
-			}*/
 		} catch (Exception e) {
 			logger.info("Registration Failed, Exception Occured");
 			value	=	0;
@@ -172,13 +155,14 @@ public class UserController {
 				logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
 				if(userService.forgotPassCheck(user)) {
 					logger.info("Password Reset Successfully");
-					return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+					//modelMap.addAttribute("isForgotPassSuccess", true);
+					return "redirect:/?reset="	+	"success";
 				}
 				else
-					return "redirect:/forgotPassword";
+					return "redirect:/forgotPassword?reset="	+	"failedPassword" ;
 			}
 			else
-				return "redirect:/forgotPassword";
+				return "redirect:/forgotPassword?reset="	+	"failedQues";
 		} catch (Exception e) {
 			logger.info("Forgot Password Catch Block");
 			return "redirect:/forgotPassword";
