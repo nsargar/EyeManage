@@ -29,6 +29,6 @@ public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integ
 	@Query(value="update PatientDetailsPOJO p set p.firstName=?2, p.lastName=?3, "
 			+ "p.gender=?4, p.email=?5, p.mobile=?6,  p.phoneNumber=?7 where p.patientId=?1")
 	Integer editPatientDetails(Integer patientId,String firstName, String lastName, String gender, 
-			String email, Long mobile, Long phoneNumber);
+			String email, String mobile, String phoneNumber);
 	
 }
