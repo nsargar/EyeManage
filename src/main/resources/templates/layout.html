@@ -22,10 +22,6 @@
 						</button> EyeManage
 					</a>
 				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li><h4 th:text="'Welcome, ' + ${userName} + ' &#124;'" ></h4></li>
-					<li><a type="submit" th:href="@{/dashboard/logout}" class="btn btn-link"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
-				</ul>
 			</div>
 		</nav>
 		<!-- Sidebar -->
@@ -57,63 +53,57 @@
 			</ul>
 		</div>
 	</div>
-	<div id="page-content-wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div id="contactModal" class="modal fade" role="dialog">
-						<div class="modal-dialog">
+	<!-- /#sidebar-wrapper -->
 
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Contact Us</h4>
-								</div>
-								<div class="modal-body">
-									<h2>Omkar Nikam</h2>
-									<hr />
-									<p>
-										<span class="glyphicon glyphicon-earphone"> 9665717334</span>
-									</p>
-									<p>
-										<span class="glyphicon glyphicon-envelope">
-											omkar.nikam24@gmail.com</span>
-									</p>
-									<br />
-									<h2>Pradnya Katkar</h2>
-									<hr />
-									<p>
-										<span class="glyphicon glyphicon-earphone"> 7387755720</span>
-									</p>
-									<p>
-										<span class="glyphicon glyphicon-envelope">
-											abhiruchi1493@gmail.com</span>
-									</p>
-									<br />
-									<h2>Niraj Dengale</h2>
-									<hr />
-									<p>
-										<span class="glyphicon glyphicon-earphone"> 9922346652</span>
-									</p>
-									<p>
-										<span class="glyphicon glyphicon-envelope">
-											nirajdengale@hotmail.com</span>
-									</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
+	<!-- Contact Us -->
+	<div id="contactModal" class="modal fade" role="dialog" th:fragment="contactUs">
+		<div class="modal-dialog">
 
-						</div>
-					</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Contact Us</h4>
+				</div>
+				<div class="modal-body">
+					<h3 class="contact-name">Omkar Nikam</h3>
+					<hr />
+					<p>
+						<span class="glyphicon glyphicon-earphone"> 91-9665717334</span>
+					</p>
+					<p>
+						<span class="glyphicon glyphicon-envelope">
+							omkar.nikam24@gmail.com</span>
+					</p>
+					<br />
+					<h3 class="contact-name">Pradnya Katkar</h3>
+					<hr />
+					<p>
+						<span class="glyphicon glyphicon-earphone"> 91-7387755720</span>
+					</p>
+					<p>
+						<span class="glyphicon glyphicon-envelope">
+							abhiruchi1493@gmail.com</span>
+					</p>
+					<br />
+					<h3 class="contact-name">Niraj Dengale</h3>
+					<hr />
+					<p>
+						<span class="glyphicon glyphicon-earphone"> 91-9922346652</span>
+					</p>
+					<p>
+						<span class="glyphicon glyphicon-envelope">
+							nirajdengale@hotmail.com</span>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
+
 		</div>
 	</div>
-	<!-- /#sidebar-wrapper -->
+	<!-- /Contact Us -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
@@ -128,6 +118,7 @@
 			$("#wrapper").toggleClass("toggled");
 		});
 	</script>
+
 </body>
 
 </html>

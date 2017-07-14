@@ -15,7 +15,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
-
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
@@ -53,7 +52,6 @@ public class PatientDetailsPOJO {
 	@Email
 	private String email;
 	
-	//@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(unique = false, nullable = false)
 	private Date birthDate;
@@ -73,12 +71,10 @@ public class PatientDetailsPOJO {
 	@CreatedDate
 	private Date firstVisitDate;
 	
-	
 	// Add this property when adding cases
-	/*@OneToMany( mappedBy = "patient" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "patient" , cascade = CascadeType.ALL, orphanRemoval = true )
 	@Setter(AccessLevel.NONE)
-	private final Set<VisitPOJO> visits = new HashSet<VisitPOJO>();
-	*/
+	private final Set<VisitDetailsPOJO> visits = new HashSet<VisitDetailsPOJO>();
 	
 	// Add this setter when adding cases
 		/*public Set<VisitPOJO> getVisits() {
@@ -96,5 +92,8 @@ public class PatientDetailsPOJO {
 	public PatientDetailsPOJO() {
 		logger.info("Default Constructor PatientDetails");
 	}
-
+	
+	public Set<VisitDetailsPOJO> getVisits() {
+		return  Collections.unmodifiableSet(this.visits);
+	}
 }
