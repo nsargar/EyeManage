@@ -22,6 +22,10 @@
 						</button> EyeManage
 					</a>
 				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><h4 th:text="'Welcome, ' + ${userName} + ' &#124;'" ></h4></li>
+					<li><a type="submit" th:href="@{/dashboard/logout}" class="btn btn-link"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
+				</ul>
 			</div>
 		</nav>
 		<!-- Sidebar -->
@@ -32,8 +36,15 @@
 						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 				<li><a th:href="@{/dashboard/patient}"><span
 						class="glyphicon glyphicon-user"></span> Patients</a></li>
+				
+				<th:block th:unless="${userRole} == null or ${userRole	==	'receptionist'}">
 				<li><a th:href="@{/dashboard/visit}"><span
 						class="glyphicon glyphicon-list-alt"></span> Cases</a></li>
+						
+				<li><a th:href="@{/dashboard/registration}"><span
+						class="glyphicon glyphicon-plus"></span> Register a User</a></li>
+				</th:block>
+				
 				<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 						Settings</a>
 					<hr /></li>
