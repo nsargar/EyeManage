@@ -12,7 +12,7 @@
 <script type="text/javascript" th:src="@{/js/validations.js}"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" th:href="@{/}">EyeManage</a>
@@ -22,13 +22,12 @@
 
 	<div class="container">
 		<div class="jumbotron">
-
+			<div class="clear"></div>
 			<h1 class="text-center">EyeManage</h1>
 			<hr />
-			<br />
 			<div class="row">
 				<div class="col-sm-6">
-					<p class="text-primary text-left lead">
+					<p class="text-primary text-left">
 						<br /> A simple to use Electronic Medical Record and Clinic
 						Management software for Clinics. <br /> Browser based software
 						deployed on your Local Area Network or the Cloud as per your need.
@@ -45,25 +44,9 @@
 						<div th:if=" ${param.reset[0]} == 'success'"
 						class="alert alert-success msg" th:text="#{forgotPassword.success}"></div>
 					</th:block>
-					<th:block th:if="${param.signUpResult != null}">
-						<div th:if="${param.signUpResult[0]} == '1'"
-							class="alert alert-success msg" th:text="#{registration.success}"></div>
-						<div th:if="${param.signUpResult[0]} == '2'"
-							class="alert alert-danger msg"
-							th:text="#{registration.error.couldNotAdd}"></div>
-						<div th:if="${param.signUpResult[0]} == '3'"
-							class="alert alert-danger msg"
-							th:text="#{registration.error.passwordDoNotMatch}"></div>
-						<div th:if="${param.signUpResult[0]} == '4'"
-							class="alert alert-danger msg"
-							th:text="#{registration.error.usernameExists}"></div>
-						<div th:if="${param.signUpResult[0]} == '0'"
-							class="alert alert-danger msg"
-							th:text="#{registration.exception}"></div>
-					</th:block>
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
-						<li><a data-toggle="tab" href="#register">Register</a></li>
+						<!-- <li><a data-toggle="tab" href="#register">Register</a></li> -->
 					</ul>
 					<br />
 					<div class="tab-content">
@@ -95,82 +78,6 @@
 
 								<div class="form-group input-group">
 									<a th:href="@{/forgotPassword}">Forgot Password?</a>
-								</div>
-							</form>
-						</div>
-
-						<div id="register" class="tab-pane fade">
-							<form action="#" method="post" th:action="@{/registration}"
-								th:object="${newUser}" class="form-horizontal"
-								name="registrationForm">
-								<div class="form-group">
-									<label class="control-label col-sm-4"> UserName : </label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{userName}"
-											placeholder="Enter User Name" class="form-control"
-											id="userNameTxt1" name="userNameTxt1" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Name : </label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{name}" placeholder="Enter Name"
-											class="form-control" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Email : </label>
-									<div class="col-sm-8">
-										<input type="email" th:field="*{email}"
-											placeholder="Enter Email" class="form-control" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Password : </label>
-									<div class="col-sm-8">
-										<input type="password" th:field="*{password}"
-											placeholder="Enter Password" class="form-control" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Confirm Password
-										: </label>
-									<div class="col-sm-8">
-										<input type="password" th:field="*{cnfPassword}"
-											placeholder="Re-enter Password" class="form-control" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Security
-										Question : </label>
-									<div class="col-sm-8">
-										<select name="questionList" th:field="*{secQuest}"
-											class="form-control">
-											<option value="">Select Option</option>
-											<option th:each="question : ${questions}"
-												th:value="${question.question}"
-												th:text="${question.id} + ' : ' + ${question.question}"></option>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-4"> Answer : </label>
-									<div class="col-sm-8">
-										<input type="password" th:field="*{answer}"
-											placeholder="Enter an answer" class="form-control" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="col-sm-offset-4 col-sm-8">
-										<input type="submit" value="Register" class="btn btn-success" />
-									</div>
 								</div>
 							</form>
 						</div>

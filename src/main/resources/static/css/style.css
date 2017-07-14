@@ -1,10 +1,23 @@
 body {
     overflow-x: hidden;
     background-color: #F1F1F1;
+    font-family: "Segoe UI",Helvetica,Sans-serif;
+	font-weight: 400;
+	font-size: 16px;
 }
 
 .jumbotron h1{
 	font-family: "Segoe UI",Helvetica,Sans-serif;
+}
+
+.jumbotron p{
+	font-family: "Segoe UI",Helvetica,Sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.clear{
+	padding:1em;	
 }
 
 .mybox{
@@ -37,7 +50,7 @@ h4{
 }
 
 h2{
-	color: #8484ff;
+	color: #03A9F4;
 	margin-top: 20px;
 }
 
@@ -152,7 +165,7 @@ h2{
 }
 
 .sidebar-nav li a:active {
-    color: #03A9F4;
+    color: #0080ff;
     background: #DCDCDC;
 }
 
@@ -242,10 +255,24 @@ h3{
 	text-align: center;
 }
 
-a:hover {
-	text-decoration: underline;
-	color: #fff;
+/*Media Queries*/
+@media only screen and (max-width: 768px) {
+body{
+	font-size: 14px;
 }
+
+ .col-sm-2{
+	width: 100%;
+}
+
+ .col-sm-3{
+	width: 100%;
+}
+
+}
+/*Media Queries End*/
+
+
 /*Tiles End*/
 
 /*!

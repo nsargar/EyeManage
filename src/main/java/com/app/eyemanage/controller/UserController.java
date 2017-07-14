@@ -77,6 +77,7 @@ public class UserController {
 			else {
 				logger.info("Successfully Logged in");
 				session.setAttribute("UserDetails", user.getUserName() );
+				session.setAttribute("userRole", userService.getUserRole(user.getUserName()));
 				//logger.info(session.getAttribute("UserDetails").toString());
 				return "redirect:/dashboard/home";
 			}
@@ -85,40 +86,6 @@ public class UserController {
 			logger.info("Catch Block");
 			return "redirect:/dashboard/home";
 		}
-	}
-	
-	@RequestMapping(value="/registration",method=RequestMethod.POST)
-	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
-		logger.info("Register Post");
-		Integer value = null;
-		try {
-			switch (userService.add(user)) {
-			case 1:
-				logger.info("Registration Successful, Redirecting to Login page");
-				value	=	1;
-				break;
-			case 2:
-				logger.info("Registration Failed, Could not add the new user");
-				value	=	2;
-				break;
-			case 3:
-				logger.info("Registration Failed, Passwords Do Not Match");
-				value	=	3;
-				break;
-			case 4:
-				logger.info("Registration Failed, Username already exists");
-				value	=	4;
-				break;
-			default:
-				break;
-			}
-			
-		} catch (Exception e) {
-			logger.info("Registration Failed, Exception Occured");
-			value	=	0;
-		}
-		modelMap.addAttribute("signUpResult", value);
-		return "redirect:/?signUpResult=" + value.toString();
 	}
 	
 	@SuppressWarnings("finally")
