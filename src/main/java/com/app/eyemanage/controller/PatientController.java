@@ -41,6 +41,10 @@ public class PatientController {
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			session.getAttribute("userRole");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
+			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			return "patient";
 		}
 	}
@@ -54,6 +58,10 @@ public class PatientController {
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			session.getAttribute("userRole");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
+			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			model.addAttribute("newPatient",patientDetails);
 			return "patientAdd";
 		}
@@ -95,6 +103,10 @@ public class PatientController {
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			session.getAttribute("userRole");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
+			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			model.addAttribute("viewPatient",patientDetails);
 			model.addAttribute("getMode", getMode);
 			return "patientSearch";

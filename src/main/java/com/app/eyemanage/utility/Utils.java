@@ -2,6 +2,10 @@ package com.app.eyemanage.utility;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.eyemanage.service.UserService;
+
 public class Utils {
 	
 	public Utils() {
