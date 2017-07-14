@@ -28,7 +28,6 @@ public class UserController {
 	@Autowired
 	SecQuestionService passwordService;
 	
-	@SuppressWarnings("finally")
 	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index(Model model,  HttpSession session) {
 		logger.info("Index Get");
@@ -38,27 +37,13 @@ public class UserController {
 			logger.info("You are already logged in. Redirecting to Dashboard");
 			return "redirect:/dashboard/home";
 		}
+		
 		UserLogin loginReq=new UserLogin();
 		model.addAttribute("user",loginReq);
 		
 		UserPOJO pojo	=	new UserPOJO();
 		model.addAttribute("newUser", pojo);
-		
-		List<SecQuestions> question		=	new ArrayList<>();
-		model.addAttribute("question",question);
-		
-		try {
-			logger.info("Get Questions Try Block");
-			List<SecQuestions> questions	=	passwordService.findAllQues();
-			logger.info(questions);
-			model.addAttribute("questions", questions);
-		} catch (NullPointerException e) {
-			// TODO: handle exception
-			logger.info("Get Questions Catch Block");
-		}finally {
-			logger.info("Get Questions Finally Block");
-			return "index";
-		}
+		return "index";
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
