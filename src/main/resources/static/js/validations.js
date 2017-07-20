@@ -1,19 +1,34 @@
-$(document).ready(function() {
-	$( "#loginSubmit" ).click(function() {
-		$("form[name='loginForm']").validate({
-			rules	:	{
-				userNameTxt	:	{
-					required	:	true
-				}
+$(document).ready(function() { 
+	
+	$("#regForm").validate({
+		rules:{
+			name:"required",
+			answer:"required",
+			username:"required",
+			filterByList:"required",
+			password: {
+				required: true,
+				minlength: 5
 			},
-			messages	:	{
-				userNameTxt	:	{
-					required	:	"Please enter your userName"
-				}
-			}/*,
-			submitHandler	:	function(form)	{
-				form.submit();
-			}*/
-		});
+			cpassword: {
+				required: true,
+				equalTo: "#password"
+			}
+		},
+		messages:{
+			name:{
+				required: 'Please enter your name'
+			},
+			answer:{
+				required: 'Please enter an answer'
+			},
+			username:{
+				required: 'Please enter a username'
+			},
+			password:{
+				required: 'Please enter a password'
+			}
+		}
 	});
+	
 });

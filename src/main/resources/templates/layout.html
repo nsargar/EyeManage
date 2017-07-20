@@ -33,7 +33,7 @@
 				<li><a th:href="@{/dashboard/patient}"><span
 						class="glyphicon glyphicon-user"></span> Patients</a></li>
 				
-				<th:block th:unless="${userRole} == null or ${userRole	==	'receptionist'}">
+				<th:block th:unless="${session.userRole} == null or ${session.userRole	==	'receptionist'}">
 				<li><a th:href="@{/dashboard/visit}"><span
 						class="glyphicon glyphicon-list-alt"></span> Cases</a></li>
 						

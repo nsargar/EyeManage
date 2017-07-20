@@ -255,6 +255,18 @@ h3{
 	text-align: center;
 }
 
+/*Error Messages*/
+.error {
+    color: #a94442;
+    font-weight: inherit;
+    border-color: #a94442;
+}
+
+#visitHeader {
+	margin-top: 0px;
+	padding-bottom: 0px;
+}
+
 /*Media Queries*/
 @media only screen and (max-width: 768px) {
 body{
@@ -266,6 +278,10 @@ body{
 }
 
  .col-sm-3{
+	width: 100%;
+}
+
+ .col-sm-4{
 	width: 100%;
 }
 
