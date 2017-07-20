@@ -42,9 +42,7 @@ public class PatientController {
 		}
 		else {
 			session.getAttribute("UserDetails");
-			session.getAttribute("userRole");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			return "patient";
 		}
 	}
@@ -59,9 +57,7 @@ public class PatientController {
 		}
 		else {
 			session.getAttribute("UserDetails");
-			session.getAttribute("userRole");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			model.addAttribute("newPatient",patientDetails);
 			return "patientAdd";
 		}
@@ -94,9 +90,9 @@ public class PatientController {
 	
 	
 	@RequestMapping(value="/patientSearch" , method=RequestMethod.GET)
-	public String viewPatient(Model model, HttpSession session, @RequestParam("mode")String getMode) {
+	public String viewPatient(Model model, HttpSession session) {
 		logger.info("Patient View Get");
-		logger.info("Get Mode : " + getMode);
+		//logger.info("Get Mode : " + getMode);
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
@@ -104,21 +100,18 @@ public class PatientController {
 		}
 		else {
 			session.getAttribute("UserDetails");
-			session.getAttribute("userRole");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			model.addAttribute("viewPatient",patientDetails);
-			model.addAttribute("getMode", getMode);
+			//model.addAttribute("getMode", getMode);
 			return "patientSearch";
 		}
 	}
 	
 	@SuppressWarnings("finally")
-	@RequestMapping(value= {"/patientSearch/{getMode}", "/patientSearch"},method=RequestMethod.POST)
-	public String viewPatient(@ModelAttribute("viewPatient")PatientDetailsPOJO patient,
-			@PathVariable("getMode") String postMode, ModelMap modelMap) {
+	@RequestMapping(value= {"/patientSearch"},method=RequestMethod.POST)
+	public String viewPatient(@ModelAttribute("viewPatient")PatientDetailsPOJO patient, ModelMap modelMap) {
 		logger.info("Patient View Post");
-		logger.info("Post Mode : " + postMode);
+		//logger.info("Post Mode : " + postMode);
 		List<PatientDetailsPOJO> patientDetails	=	new ArrayList<>();
 		try {
 			logger.info("Try Block");
@@ -160,7 +153,7 @@ public class PatientController {
 			else {
 				//if( patientDetails.size() <= 1 &&  )
 				modelMap.addAttribute("patientDetails",patientDetails);
-				modelMap.addAttribute("postMode", postMode);
+				//modelMap.addAttribute("postMode", postMode);
 			}
 			return "patientSearch";
 		}

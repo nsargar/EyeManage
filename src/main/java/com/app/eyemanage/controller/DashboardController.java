@@ -44,9 +44,7 @@ public class DashboardController {
 		}
 		else {
 			session.getAttribute("UserDetails");
-			session.getAttribute("userRole");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			logger.info("Current User : " + (session.getAttribute("UserDetails")).toString());
 			return "dashboard";
 		}
@@ -91,9 +89,7 @@ public class DashboardController {
 		}
 		else if (session.getAttribute("userRole") != "receptionist") {
 			session.getAttribute("UserDetails");
-			session.getAttribute("userRole");
 			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
-			model.addAttribute("userRole", session.getAttribute("userRole").toString());
 			
 			model.addAttribute("newUser", pojo);
 			List<SecQuestions> question		=	new ArrayList<>();

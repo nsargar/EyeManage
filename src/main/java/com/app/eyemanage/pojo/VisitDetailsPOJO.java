@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -107,13 +110,16 @@ public class VisitDetailsPOJO {
 	
 	// Discharge Summary Details
 	
-	@Column(unique = false, nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(unique = false, nullable = true)
 	private Date admissionDate;
 	
-	@Column(unique = false, nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(unique = false, nullable = true)
 	private Date surgeryDate;
 	
-	@Column(unique = false, nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(unique = false, nullable = true)
 	private Date dischargeDate;
 	
 	@Column(unique = false, nullable = true, length=200)
@@ -137,13 +143,18 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true)
 	private Float fees;
 	
-	@OneToMany( mappedBy = "visit" , cascade = CascadeType.ALL, orphanRemoval = true )
-	@Setter(AccessLevel.NONE)
-	private final Set<DrugDetailsPOJO> drugs = new HashSet<DrugDetailsPOJO>();
+	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER, orphanRemoval = true )
+	@JoinColumn( name = "visitId", referencedColumnName = "visitId")
+	private Set<DrugDetailsPOJO> drugs = new HashSet<DrugDetailsPOJO>();
+
+	/*public void setDrugs(Set<DrugDetailsPOJO> drugs) {
+		this.drugs = drugs;
+	}*/
 
 	// Getter for Drugs
-	public Set<DrugDetailsPOJO> getDrugs() {
+	/*public Set<DrugDetailsPOJO> getDrugs() {
 		return  Collections.unmodifiableSet(this.drugs);
 	}
-
+	*/
+	
 }

@@ -14,6 +14,9 @@
 		<!-- Navbar Fragment -->
 		<div th:replace="layout :: navbar"></div>
 		
+		<!-- Contact Us Fragment -->
+		<div th:replace="layout :: contactUs"></div>
+		
 		<!-- Sidebar Fragment -->
 		<div th:replace="layout :: sidebar"></div>
 		
@@ -27,7 +30,7 @@
 							<hr />
 						</div>
 						<form action="#" method="post"
-							th:action="${getMode == 'patient'} ? @{/dashboard/patientSearch/patient} : @{/dashboard/patientSearch/visit}"
+							th:action="@{/dashboard/patientSearch}"
 							th:object="${viewPatient}" class="form-horizontal">
 							<div class="form-group">
 								<label class="control-label col-sm-2"> Search By : </label>
@@ -63,10 +66,9 @@
 											<th>Gender</th>
 											<th>Age</th>
 											<th>View</th>
-											<th th:if="${postMode == 'patient' and postMode != null}">Edit</th>
-											<th th:if="${postMode == 'patient'  and postMode != null}">Delete</th>
-											<th th:if="${postMode == 'visit' and postMode != null}">New Visit</th>
-											<th th:if="${postMode == 'visit' and postMode != null}">Previous Visits</th>
+											<th>Edit</th>
+											<th>Delete</th>
+											<th th:if="${session.userRole} != 'receptionist'">New Visit</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -146,7 +148,7 @@
 													</div>
 												</div>
 											</td>
-											<td th:if="${postMode == 'patient' and postMode != null}">
+											<td>
 												<button type="button" class="btn btn-success"
 													data-toggle="modal"
 													th:attr="data-target='#editModal' + ${patient.patientId}">Edit</button>
@@ -238,7 +240,7 @@
 													</div>
 												</div>
 											</td>
-											<td th:if="${postMode == 'patient' and postMode != null}">
+											<td>
 												<button type="button" class="btn btn-danger"
 													data-toggle="modal"
 													th:attr="data-target='#deleteModal' + ${patient.patientId}">Delete</button>
@@ -266,14 +268,9 @@
 												<!-- / Delete Confirmation Modal -->
 											</td>
 											<!-- <button class="btn btn-danger">Delete</button>  ${patient.patientId} -->
-											<td th:if="${postMode == 'visit' and postMode != null}">
-												<a type="button" class="btn btn-success" data-toggle="modal"
-													th:href="@{/dashboard/newVisit?(id=${patient.patientId})}">New Visit</a> 
-													
-											</td>
-											<td th:if="${postMode == 'visit' and postMode != null}">
-												<a type="button" class="btn btn-default"
-													th:href="@{/dashboard/visitHistory/__${patient.patientId}__}">Previous Visits</a>
+											<td th:if="${session.userRole} != 'receptionist'">
+												<a type="button" class="btn btn-primary" data-toggle="modal"
+													th:href="@{/dashboard/newVisit/__${patient.patientId}__}">New Visit</a> 
 											</td>
 										</tr>
 									</tbody>
