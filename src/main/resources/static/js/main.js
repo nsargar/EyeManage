@@ -42,20 +42,15 @@ $("#addDrugBtn").click(function () {
 	});
 });
 
-$("#show").click(function () {
-	var arr	=	[];
-	var size	=	$('#drugTable tr').length;
-	//alert("Size : " + size);
-	for ( var i = 1 ; i < size ; i++ ){
-		//alert("Iteration No : " + (i));
-		arr.push({
-			drugType		:	document.getElementById('drugType_'+i).value,
-			drugName		:	document.getElementById('drugName_'+i).value,
-			quantity		:	document.getElementById('quantity_'+i).value,
-			frequency		:	document.getElementById('frequency_'+i).value,
-			duration		:	document.getElementById('duration_'+i).value,
-			durationType	:	document.getElementById('durationType_'+i).value
-		});
+$("#visitSearchDrop").on('change', function(event) {
+	if ( $("#visitSearchDrop").val() == "date" ){
+		$("#nameTextDiv").hide();
+		$("#dateFromDiv").show();
+		$("#dateToDiv").show();
 	}
-	alert(JSON.stringify(arr));
+	else{
+		$("#nameTextDiv").show();
+		$("#dateFromDiv").hide();
+		$("#dateToDiv").hide();
+	}
 });

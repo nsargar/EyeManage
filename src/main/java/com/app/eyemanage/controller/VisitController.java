@@ -139,7 +139,11 @@ public class VisitController {
 		List<DrugDetailsPOJO> drugs	=	new ArrayList<>();
 		try {
 			logger.info("Try");
-			visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
+			if( visit.getSearchFilter().equalsIgnoreCase("date")) {
+				visits	=	visitService.findVisitByDate(visit.getSearchDateFrom(), visit.getSearchDateTo());
+			}else {
+				visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
+			}
 			drugs	=	visit.getDrugs();
 			logger.info("List : " + visits.toString());
 			logger.info("Try end");
