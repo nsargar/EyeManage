@@ -1,12 +1,17 @@
 package com.app.eyemanage.controller;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +53,7 @@ public class VisitController {
 	PatientService patientService;
 
 	@RequestMapping(value="/visit" , method=RequestMethod.GET)
-	public ModelAndView patient(Model model, HttpSession session) {
+	public ModelAndView patient( Model model, HttpSession session) {
 		logger.info("Visit Home Get");
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
@@ -81,14 +86,12 @@ public class VisitController {
 		}
 	}
 
-	/*public ModelAndView addVisit( @ModelAttribute("newVisit") VisitDetailsPOJO visit,
-	@ModelAttribute("drugsList") ArrayList<DrugDetailsPOJO> drugs, 
-	@PathVariable("id")String id, ModelMap modelMap ) {*/
-	
 	@RequestMapping(value = "/newVisit/{id}", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) 
-	public Response addVisit( @PathVariable("id")String id, @RequestBody VisitDetailsPOJO v){	
+	public ResponseEntity<Response> addVisit(HttpServletRequest request, @PathVariable("id")String id, @RequestBody VisitDetailsPOJO v){	
 		logger.info("New Visit Post");
+		String redirectUrl	=	Utils.getURL(request.getScheme(), request.getServerName(), 
+								Integer.toString(request.getServerPort()) , request.getContextPath(), "dashboard/visit");
 		
 		try {
 			logger.info("New Visit Try");
@@ -100,16 +103,62 @@ public class VisitController {
 				visit	=	visitService.addVisit(v);
 				if( null != visit ) {
 					logger.info("Visit Successfully Created");
-					return new Response("Done","s");
+					return new ResponseEntity<Response>(new Response("Done", redirectUrl), HttpStatus.OK);
 				}
 				logger.info("Visit could not be added");
-				return new Response("Error","f");
+				return new ResponseEntity<Response>(new Response("Error", "f"), HttpStatus.OK);
 			}
-			return new Response("Error","f");
+			return new ResponseEntity<Response>(new Response("Error", "f"), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("New Visit Catch : " + e);
-			return new Response("Error","f");
+			return new ResponseEntity<Response>(new Response("Error", "f"), HttpStatus.OK);
 		}
-		
 	}
+	
+	
+	@RequestMapping(value="/visitSearch" , method=RequestMethod.GET)
+	public ModelAndView visitSearch(Model model, HttpSession session) {
+		logger.info("Visit Search Get");
+		if( Utils.validateSession(session, "UserDetails") == false) {
+			logger.info("Session Attribute is Null");
+			logger.info("You are not logged in. Redirecting to Login Page");
+			return new ModelAndView("redirect:/");
+		}
+		else {
+			
+			model.addAttribute("visitPojo", visit);
+			return new ModelAndView("visitSearch");
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	@RequestMapping(value="/visitSearch" , method=RequestMethod.POST)
+	public ModelAndView visitSearchResult( @ModelAttribute("visitPojo")VisitDetailsPOJO visit, Model model, HttpSession session) {
+		logger.info("Visit Search Post");
+		List<VisitDetailsPOJO> visits	=	new ArrayList<>();
+		List<DrugDetailsPOJO> drugs	=	new ArrayList<>();
+		try {
+			logger.info("Try");
+			visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
+			drugs	=	visit.getDrugs();
+			logger.info("List : " + visits.toString());
+			logger.info("Try end");
+		} catch (Exception e) {
+			logger.info("catch : " + e);
+		}
+		finally {
+			logger.info("Finally Block");
+			if(visits.contains(null)) {
+				logger.info("Nothing found");
+			}
+			else {
+				//if( patientDetails.size() <= 1 &&  )
+				model.addAttribute("visitList", visits);
+				model.addAttribute("drugList", drugs);
+			}
+			return new ModelAndView("visitSearch");
+		}
+	}
+	
+	
 }

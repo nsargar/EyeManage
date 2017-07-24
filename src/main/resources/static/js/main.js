@@ -33,9 +33,9 @@ $("#addDrugBtn").click(function () {
 				'<td colspan="2"><input type="text" class="form-control" name="duration" id="duration_' + (size) + '"/></td>' + 
 				'<td colspan="2"><select name="durationType" class="form-control" id="durationType_' + (size) + '">' +
 				'<option value="">Select</option>' +
-				'<option value="1">Days</option>' +
-				'<option value="2">Weeks</option>' +
-				'<option value="3">Months</option>' +
+				'<option value="days">Days</option>' +
+				'<option value="weeks">Weeks</option>' +
+				'<option value="months">Months</option>' +
 				'</select></td>' +
 		'</tr>');
 		jQuery("#drugTable").append(newRow);

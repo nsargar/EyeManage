@@ -1,8 +1,10 @@
 package com.app.eyemanage.pojo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -145,7 +147,7 @@ public class VisitDetailsPOJO {
 	
 	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER, orphanRemoval = true )
 	@JoinColumn( name = "visitId", referencedColumnName = "visitId")
-	private Set<DrugDetailsPOJO> drugs = new HashSet<DrugDetailsPOJO>();
+	private List<DrugDetailsPOJO> drugs = new ArrayList<DrugDetailsPOJO>();
 
 	/*public void setDrugs(Set<DrugDetailsPOJO> drugs) {
 		this.drugs = drugs;
@@ -156,5 +158,11 @@ public class VisitDetailsPOJO {
 		return  Collections.unmodifiableSet(this.drugs);
 	}
 	*/
+	
+	@Transient
+	private String searchText;
+	
+	@Transient
+	private String searchFilter;
 	
 }

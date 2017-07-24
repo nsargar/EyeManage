@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Patient</title>
+<title>Visit - EyeManage</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
@@ -27,7 +27,6 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<br /> <br />
-
 						<div class="container dynamicTile">
 							<div class="row ">
 								<div class="col-sm-2 col-xs-4">
@@ -78,42 +77,41 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div th:if="${param.visitCreateResult != null}"
+		</div>
+	</div>
+	<!-- <div th:if="${param.visitCreateResult != null}"
 			class="alert alert-success col-sm-6 "
 			th:text="#{visit.create.success} + ' with Id - ' +  ${param.visitCreateResult[0]}"></div> -->
-		</div>
-		<!-- /#page-content-wrapper -->
-	</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	<script>
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("toggled");
-		});
-		$(document).ready(function() {
-			$(".tile").height($("#tile1").width());
-			$(".carousel").height($("#tile1").width());
-			$(".item").height($("#tile1").width());
-
-			$(window).resize(function() {
-				if (this.resizeTO)
-					clearTimeout(this.resizeTO);
-				this.resizeTO = setTimeout(function() {
-					$(this).trigger('resizeEnd');
-				}, 10);
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
 			});
-
-			$(window).bind('resizeEnd', function() {
+			$(document).ready(function() {
 				$(".tile").height($("#tile1").width());
 				$(".carousel").height($("#tile1").width());
 				$(".item").height($("#tile1").width());
-			});
 
-		});
-	</script>
+				$(window).resize(function() {
+					if (this.resizeTO)
+						clearTimeout(this.resizeTO);
+					this.resizeTO = setTimeout(function() {
+						$(this).trigger('resizeEnd');
+					}, 10);
+				});
+
+				$(window).bind('resizeEnd', function() {
+					$(".tile").height($("#tile1").width());
+					$(".carousel").height($("#tile1").width());
+					$(".item").height($("#tile1").width());
+				});
+
+			});
+		</script>
 </body>
 </html>
