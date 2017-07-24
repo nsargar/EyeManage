@@ -87,7 +87,6 @@ function ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumb
 
 $("#addVisitBtn").on('click', function(event) {
 	var url	=	window.location;
-	alert(window.location.host);
 	var drugData	=	[];
 	var size	=	$('#drugTable tr').length;
 	for ( var i = 1 ; i < size ; i++ ){
@@ -133,8 +132,6 @@ $("#addVisitBtn").on('click', function(event) {
 			fees 					: $('#fees').val(),
 			drugs					: drugData
 	}
-	alert(JSON.stringify(visitData));
-	
 	
 	$.ajax({
 	    type : "POST",
@@ -143,17 +140,15 @@ $("#addVisitBtn").on('click', function(event) {
         data : JSON.stringify(visitData),
         dataType : 'json',
         success : function(result) {
-        	alert("Success");
             if( result.status == "Done"){
-            	//window.location.href = "http://localhost:8087/eyemanage/dashboard/visit";
+            	window.location.href = result.data;
             	$("#msg").html("<strong>" + "Visit Added Successfully!</strong>");
             }else{
             	$("#msg").html("<strong>" + "Something Went wrong</strong>");
             }
-            console.log(data.responseText);
+            console.log("Whole Result : " + JSON.stringify(result));
         },
         error : function(e) {
-        	alert("Failure");
             console.log("ERROR: ", e);
         }
     });

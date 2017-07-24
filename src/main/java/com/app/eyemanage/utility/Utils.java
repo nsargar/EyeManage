@@ -29,4 +29,9 @@ public class Utils {
 		}
 	}
 	
+	public static String getURL( String scheme, String serverName, String serverPort, String contextPath, String newUri ) {
+		String newURL	=	scheme + "://" + serverName + ":" + serverPort + contextPath + "/" + newUri;
+		return newURL;
+	}
+	
 }
