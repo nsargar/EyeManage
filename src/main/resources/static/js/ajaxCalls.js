@@ -155,3 +155,27 @@ $("#addVisitBtn").on('click', function(event) {
 });
 
 //Add Visit AJAX Ends
+
+//Print Report AJAX Starts
+
+
+function printReport(visitId){
+	var url	=	window.location + "/print/" + visitId;
+	alert("In , id : " + visitId);
+	alert(url);
+	
+	$.ajax({
+	    type : "POST",
+        contentType : "application/pdf",
+        url : url,
+        success : function(result) {
+            alert("Result : " + result);
+        	console.log(result);
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        }
+    });
+}
+
+//Print Report AJAX Ends

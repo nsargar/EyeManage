@@ -54,8 +54,8 @@
 								</div>
 								<div class="col-sm-3" id="dateFromDiv">
 									<input type="date" class="form-control"
-										th:field="*{searchDateFrom}"
-										placeholder="Select From Date" th:id="searchDateFrom" />
+										th:field="*{searchDateFrom}" placeholder="Select From Date"
+										th:id="searchDateFrom" />
 								</div>
 								<div class="col-sm-3 input-group" id="dateToDiv">
 									<input type="date" class="form-control"
@@ -315,12 +315,14 @@
 																			<p class="control-label col-sm-2">Date of
 																				Admission</p>
 																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
+																				<p th:if="${visit.admissionDate != null}"
+																					class="control-label textCenter"
 																					th:text="${#dates.format(visit.admissionDate,'dd-MMM-yyyy')}"></p>
 																			</div>
 																			<p class="control-label col-sm-2">Date of Surgery</p>
 																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
+																				<p th:if="${visit.surgeryDate != null}"
+																					class="control-label textCenter"
 																					th:text="${#dates.format(visit.surgeryDate,'dd-MMM-yyyy')}"></p>
 																			</div>
 																		</div>
@@ -328,7 +330,8 @@
 																			<p class="control-label col-sm-2">Date of
 																				Discharge</p>
 																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
+																				<p th:if="${visit.dischargeDate != null}"
+																					class="control-label textCenter"
 																					th:text="${#dates.format(visit.dischargeDate,'dd-MMM-yyyy')}"></p>
 																			</div>
 																			<p class="control-label col-sm-2">Diagnosis</p>
@@ -388,6 +391,13 @@
 													</div>
 												</div>
 											</td>
+											<td>
+												<a type="button" class="btn btn-primary"
+													th:href="@{'/dashboard/print/CaseReport_' + ${visit.visitId} + '.pdf'}"
+													target="_blank" th:id="'printVisit_' + ${visit.visitId}" >
+													<i class="glyphicon glyphicon-print"></i>
+												</a>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -406,23 +416,23 @@
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<script type="text/javascript" th:src="@{/js/ajaxCalls.js}"></script>
 	<script>
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
 		$(document).ready(function() {
-			if( $("#visitSearchDrop").val() != "date" ){
+			if ($("#visitSearchDrop").val() != "date") {
 				$("#dateFromDiv").hide();
 				$("#dateToDiv").hide();
 				$("#nameTextDiv").show();
-			}
-			else{
+			} else {
 				$("#dateFromDiv").show();
 				$("#dateToDiv").show();
 				$("#nameTextDiv").hide();
 			}
-			
+
 			$('#searchDateFrom').datepicker({
 				format : "dd-M-yy"
 			});
