@@ -10,16 +10,16 @@
 </head>
 <body>
 	<div id="wrapper" class="toggled">
-		
+
 		<!-- Navbar Fragment -->
 		<div th:replace="layout :: navbar"></div>
-		
+
 		<!-- Contact Us Fragment -->
 		<div th:replace="layout :: contactUs"></div>
-		
+
 		<!-- Sidebar Fragment -->
 		<div th:replace="layout :: sidebar"></div>
-		
+
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
@@ -55,7 +55,7 @@
 								</div>
 								<span class="col-sm-3" id="msg"></span>
 							</div>
-							
+
 							<div class="table-responsive"
 								th:if="${not #lists.isEmpty(patientDetails)}">
 								<table class="table table-striped" id="resultTable">
@@ -65,10 +65,10 @@
 											<th>Patient Name</th>
 											<th>Gender</th>
 											<th>Age</th>
-											<th>View</th>
+											<!-- <th>View</th>
 											<th>Edit</th>
 											<th>Delete</th>
-											<th th:if="${session.userRole} != 'receptionist'">New Visit</th>
+											<th th:if="${session.userRole} != 'receptionist'">New Visit</th> -->
 										</tr>
 									</thead>
 									<tbody>
@@ -80,10 +80,11 @@
 											<td th:text="${patient.gender}"></td>
 											<td th:text="${patient.age}"></td>
 											<td>
-												<button type="button" class="btn"
-													data-toggle="modal"
-													th:attr="data-target='#viewModal' + ${patient.patientId}">View</button>
-
+												<button type="button" class="btn" data-toggle="modal"
+													th:attr="data-target='#viewModal' + ${patient.patientId}" >
+													<i class="glyphicon glyphicon-list"></i>
+												</button> 
+												
 												<!-- View Modal -->
 												<div th:attr="id='viewModal' + ${patient.patientId}"
 													class="modal fade" role="dialog">
@@ -151,9 +152,9 @@
 											<td>
 												<button type="button" class="btn btn-success"
 													data-toggle="modal"
-													th:attr="data-target='#editModal' + ${patient.patientId}">Edit</button>
-
-												<!-- Edit Modal -->
+													th:attr="data-target='#editModal' + ${patient.patientId}" >
+													<i class="glyphicon glyphicon-edit"></i>
+												</button> <!-- Edit Modal -->
 												<div th:attr="id='editModal' + ${patient.patientId}"
 													class="modal fade" role="dialog">
 													<div class="modal-dialog">
@@ -168,54 +169,53 @@
 																	<tr>
 																		<th>Patient Id</th>
 																		<td><input th:attr="id= ${patient.patientId}" type="text"
-																			th:value="${patient.patientId}" readonly="true" /></td>
+																			th:value="${patient.patientId}" readonly="true" class="form-control"/></td>
 																	</tr>
 																	<tr>
 																		<th>First Name</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.firstName}" type="text"
-																			th:value="${patient.firstName}" /></td>
+																			class="form-control" th:value="${patient.firstName}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Last Name</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.lastName}" type="text"
-																			th:value="${patient.lastName}" /></td>
+																			class="form-control" th:value="${patient.lastName}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Gender</th>
 																		<td><input th:attr="id=${patient.patientId} + '_'  + ${patient.gender}" type="text"
-																			th:value="${patient.gender}" /></td>
+																			class="form-control" th:value="${patient.gender}" /></td>
 																	</tr>
 
 																	<tr>
 																		<th>Birth Date</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.birthDate}" type="text"
-																			th:value="${#dates.format(patient.birthDate,'dd-MM-yyyy')}"
+																			class="form-control" th:value="${#dates.format(patient.birthDate,'dd-MM-yyyy')}"
 																			readonly="true" /></td>
 																	</tr>
 																	<tr>
 																		<th>Age</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.age}" type="text"
-																			th:value="${patient.age}" readonly="true" /></td>
+																			class="form-control" th:value="${patient.age}" readonly="true" /></td>
 																	</tr>
 																	<tr>
 																		<th>Email</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.email}" type="text"
-																			th:value="${patient.email}" /></td>
+																			class="form-control" th:value="${patient.email}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Mobile</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.mobile}" type="text"
-																			th:value="${patient.mobile}" /></td>
+																			class="form-control" th:value="${patient.mobile}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Phone</th>
 																		<td><input th:attr="id= ${patient.patientId} + '_' + ${patient.phoneNumber}"
-																			type="text" th:value="${patient.phoneNumber}" /></td>
+																			class="form-control" type="text" th:value="${patient.phoneNumber}" /></td>
 																	</tr>
 																	<tr>
 																		<th>Registration Date</th>
-																		<td
-																			th:text="${#dates.format(patient.firstVisitDate,'dd-MM-yyyy')}">
+																		<td th:text="${#dates.format(patient.firstVisitDate,'dd-MM-yyyy')}">
 																		</td>
 																	</tr>
 																</table>
@@ -231,8 +231,7 @@
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.email} + '\').value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.mobile} + '\').value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.phoneNumber} + '\').value);'">
-																	Submit
-																</button>
+																	Submit</button>
 																<button type="button" class="btn btn-default"
 																	data-dismiss="modal">Close</button>
 															</div>
@@ -243,8 +242,9 @@
 											<td>
 												<button type="button" class="btn btn-danger"
 													data-toggle="modal"
-													th:attr="data-target='#deleteModal' + ${patient.patientId}">Delete</button>
-												<!-- Delete Confirmation Modal -->
+													th:attr="data-target='#deleteModal' + ${patient.patientId}" >
+													<i class="glyphicon glyphicon-trash"></i>
+												</button> <!-- Delete Confirmation Modal -->
 												<div th:attr="id='deleteModal' + ${patient.patientId}"
 													class="modal fade" role="dialog">
 													<div class="modal-dialog">
@@ -256,7 +256,7 @@
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-danger"
-																th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'"
+																	th:onclick="'deleteBtn(\'' + ${patient.patientId} + '\');'"
 																	data-dismiss="modal">Yes, I want to delete it</button>
 																<button type="button" class="btn btn-default"
 																	data-dismiss="modal">No</button>
@@ -264,14 +264,12 @@
 														</div>
 
 													</div>
-												</div>
-												<!-- / Delete Confirmation Modal -->
+												</div> <!-- / Delete Confirmation Modal -->
 											</td>
 											<!-- <button class="btn btn-danger">Delete</button>  ${patient.patientId} -->
-											<td th:if="${session.userRole} != 'receptionist'">
-												<a type="button" class="btn btn-primary" data-toggle="modal"
-													th:href="@{/dashboard/newVisit/__${patient.patientId}__}">New Visit</a> 
-											</td>
+											<td th:if="${session.userRole} != 'receptionist'"><a
+												type="button" class="btn btn-primary" data-toggle="modal"
+												th:href="@{/dashboard/newVisit/__${patient.patientId}__}">New Visit</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -291,11 +289,11 @@
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
 	<script type="text/javascript" th:src="@{/js/ajaxCalls.js}"></script>
 	<script>
-            // When the document is ready
-            $("#menu-toggle").click(function(e) {
-        	    e.preventDefault();
-           	    $("#wrapper").toggleClass("toggled");
-        	});
-        </script>
+		// When the document is ready
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
 </body>
 </html>

@@ -139,8 +139,12 @@ public class VisitController {
 		List<DrugDetailsPOJO> drugs	=	new ArrayList<>();
 		try {
 			logger.info("Try");
-			visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
-			drugs	=	visit.getDrugs();
+			if( visit.getSearchFilter().equalsIgnoreCase("date")) {
+				visits	=	visitService.findVisitByDate(visit.getSearchDateFrom(), visit.getSearchDateTo());
+			}else {
+				visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
+			}
+			//drugs	=	visit.getDrugs();
 			logger.info("List : " + visits.toString());
 			logger.info("Try end");
 		} catch (Exception e) {
@@ -154,7 +158,7 @@ public class VisitController {
 			else {
 				//if( patientDetails.size() <= 1 &&  )
 				model.addAttribute("visitList", visits);
-				model.addAttribute("drugList", drugs);
+				//model.addAttribute("drugList", drugs);
 			}
 			return new ModelAndView("visitSearch");
 		}

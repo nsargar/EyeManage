@@ -165,4 +165,10 @@ public class VisitDetailsPOJO {
 	@Transient
 	private String searchFilter;
 	
+	@Transient
+	private String searchDateFrom;
+	
+	@Transient
+	private String searchDateTo;
+	
 }

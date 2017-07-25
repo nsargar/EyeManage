@@ -49,6 +49,8 @@
 									<li id="l4"><a data-toggle="tab" href="#ascan">A-Scan Report</a></li>
 									<li id="l5"><a data-toggle="tab" href="#discharge">Discharge
 											Summary</a></li>
+									<li><button type="button" class="btn btn-info"
+													th:id="addVisitBtn">Submit</button></li>
 								</ul>
 
 								<div class="tab-content">
@@ -134,14 +136,14 @@
 									<div id="findings" class="tab-pane fade">
 										<div class="form-group">
 											<p class="control-label col-sm-2">Anterior Segment
-												Finding :</p>
+												Findings</p>
 											<div class="col-sm-3">
 												<textarea rows="4" draggable="false"
 													placeholder="Add Anterior Segment Findings" class="form-control"
 													th:field="*{anteriorSeg}" th:id="anteriorSeg"></textarea>
 											</div>
 											<p class="control-label col-sm-2">Posterior Segment
-												Finding :</p>
+												Findings</p>
 											<div class="col-sm-3">
 												<textarea rows="4" draggable="false"
 													placeholder="Add Posterior Segment Findings" class="form-control"
@@ -186,14 +188,9 @@
 												</table>
 											</div>
 											<div class="form-group">
-												<div class="col-sm-offset-10 col-sm-2">
-													<button type="button" class="btn btn-default"
+												<div class="col-sm-2">
+													<button type="button" class="btn btn-success"
 														th:id="addDrugBtn">Add New Drug</button>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-sm-offset-10 col-sm-2">
-													<button type="button" class="btn btn-default" th:id="show">Show</button>
 												</div>
 											</div>
 										</div>
@@ -251,20 +248,22 @@
 										</div>
 									</div>
 									<div id="discharge" class="tab-pane fade">
+										<div class="panel panel-default">										
+  												<div class="panel-heading">Patient Details</div>																								
 										<div class="form-group">
-											<label class="control-label col-sm-2">Patient Details</label>
-										</div>
-										<div class="form-group">
+											<div class="panel-body">
 											<p class="control-label col-sm-2"
 												th:text="'Patient Id : ' + ${patient.patientId}"
 												th:field="*{patient.patientId}"
 												th:value="${patient.patientId}" th:id="patientId"></p>
-											<p class="control-label col-sm-6"
+											<p class="control-label col-sm-5" style="text-align: left;"
 												th:text="'Name : ' + ${patient.firstName} + ' '  + ${patient.lastName}"></p>
-											<p class="control-label col-sm-2"
+											<p class="control-label col-sm-2" style="text-align: left;"
 												th:text="'Age : ' + ${patient.age}"></p>
-											<p class="control-label col-sm-2"
+											<p class="control-label col-sm-2" style="text-align: left;"
 												th:text="'Gender : ' + ${patient.gender}"></p>
+											</div>
+										</div>
 										</div>
 										<div class="form-group">
 											<p class="control-label col-sm-2">Date of Admission</p>
@@ -336,10 +335,6 @@
 											<div class="col-sm-2">
 												<input type="text" maxlength="6" class="form-control"
 													th:field="*{fees}" placeholder="Enter Fees" th:id="fees" />
-											</div>
-											<div class="col-sm-2">
-												<button type="button" class="btn btn-success"
-													th:id="addVisitBtn">Submit</button>
 											</div>
 										</div>
 									</div>
