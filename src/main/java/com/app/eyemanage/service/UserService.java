@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.*;
 import com.app.eyemanage.model.ForgotPassword;
 import com.app.eyemanage.pojo.UserPOJO;
-import com.app.eyemanage.utility.Utils;
 
 @Repository
 public interface UserService extends CrudRepository<UserPOJO, Integer>,LoginService,SecQuestionService{

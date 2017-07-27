@@ -49,7 +49,44 @@ public class VisitServiceImpl {
 			visitDetails.setIolPower(0.00F);
 		if ( null == visitDetails.getFollowUp())
 			visitDetails.setFollowUp(0);
-		if ( null == visitDetails.getFees())
-			visitDetails.setFees(0.00F);
+		
+	}
+	
+	void clearForm(VisitDetailsPOJO visitDetails) {
+		logger.info("Clearing Form");
+		visitDetails.setSphDistRight(null);
+		visitDetails.setSphDistLeft(null);
+		visitDetails.setCylDistRight(null);
+		visitDetails.setCylDistLeft(null);
+		visitDetails.setAxisDistRight(null);
+		visitDetails.setAxisDistLeft(null);
+		visitDetails.setVaDistRight(null);
+		visitDetails.setVaDistLeft(null);
+		visitDetails.setSphNearRight(null);
+		visitDetails.setSphNearLeft(null);
+		visitDetails.setCylNearRight(null);
+		visitDetails.setCylNearLeft(null);
+		visitDetails.setAxisNearRight(null);
+		visitDetails.setAxisNearLeft(null);
+		visitDetails.setVaNearRight(null);
+		visitDetails.setVaNearLeft(null);
+		visitDetails.setRemarks(null);
+		visitDetails.setAnteriorSeg(null);
+		visitDetails.setPosteriorSeg(null);
+		visitDetails.setIop(null);
+		visitDetails.setKeraK1(null);
+		visitDetails.setKeraK2(null);
+		visitDetails.setAxialLength(null);
+		visitDetails.setIolPower(null);
+		visitDetails.setSurgicalPlan(null);
+		visitDetails.setAdmissionDate(null);
+		visitDetails.setSurgeryDate(null);
+		visitDetails.setDischargeDate(null);
+		visitDetails.setDiagnosis(null);
+		visitDetails.setSurgicalProc(null);
+		visitDetails.setInvestigations(null);
+		visitDetails.setAnaesthetist(null);
+		visitDetails.setSurgeon(null);
+		visitDetails.setFollowUp(null);
 	}
 }

@@ -155,23 +155,10 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=3 )
 	private Integer followUp;
 	
-	@Column(unique = false, nullable = true)
-	private Float fees;
-	
 	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER, orphanRemoval = true )
 	@JoinColumn( name = "visitId", referencedColumnName = "visitId")
 	private List<DrugDetailsPOJO> drugs = new ArrayList<DrugDetailsPOJO>();
 
-	/*public void setDrugs(Set<DrugDetailsPOJO> drugs) {
-		this.drugs = drugs;
-	}*/
-
-	// Getter for Drugs
-	/*public Set<DrugDetailsPOJO> getDrugs() {
-		return  Collections.unmodifiableSet(this.drugs);
-	}
-	*/
-	
 	@Transient
 	private String searchText;
 	

@@ -2,7 +2,6 @@ package com.app.eyemanage.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,21 +48,7 @@ public class DashboardController {
 			return "dashboard";
 		}
 	}
-	/*
-	@RequestMapping(value="/home" , method=RequestMethod.POST)
-	public String dashboard(Model model, HttpSession session) {
-		logger.info("Dashboard Post");
-		try {
-			session.invalidate();
-			logger.info("Successfully Logged out");
-			return "redirect:/";
-		} catch (Exception e) {
-			logger.info("Unable to Log out");
-			e.printStackTrace();
-			return "dashboard";
-		}
-	}
-	*/
+
 	@RequestMapping(value="/logout" , method=RequestMethod.GET)
 	public String logout(Model model, HttpSession session) {
 		logger.info("Logout Get");

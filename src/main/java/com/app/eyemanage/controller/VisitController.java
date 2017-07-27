@@ -69,6 +69,7 @@ public class VisitController {
 			return new ModelAndView("redirect:/");
 		}
 		else {
+			visitService.clearForm(visit);
 			List<DrugDetailsPOJO> drugsList	=	new ArrayList<>();
 			patient	=	patientService.findOne(Integer.parseInt(id));
 			model.addAttribute("patient", patient);
@@ -128,7 +129,6 @@ public class VisitController {
 	public ModelAndView visitSearchResult( @ModelAttribute("visitPojo")VisitDetailsPOJO visit, Model model, HttpSession session) {
 		logger.info("Visit Search Post");
 		List<VisitDetailsPOJO> visits	=	new ArrayList<>();
-		List<DrugDetailsPOJO> drugs	=	new ArrayList<>();
 		try {
 			logger.info("Try");
 			if( visit.getSearchFilter().equalsIgnoreCase("date")) {
@@ -136,7 +136,6 @@ public class VisitController {
 			}else {
 				visits	=	visitService.findVisitByName(visit.getSearchText().toLowerCase());
 			}
-			//drugs	=	visit.getDrugs();
 			logger.info("List : " + visits.toString());
 			logger.info("Try end");
 		} catch (Exception e) {
@@ -148,9 +147,7 @@ public class VisitController {
 				logger.info("Nothing found");
 			}
 			else {
-				//if( patientDetails.size() <= 1 &&  )
 				model.addAttribute("visitList", visits);
-				//model.addAttribute("drugList", drugs);
 			}
 			return new ModelAndView("visitSearch");
 		}

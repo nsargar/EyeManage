@@ -1,6 +1,5 @@
 package com.app.eyemanage.service;
 
-import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +17,6 @@ public interface VisitService extends CrudRepository<VisitDetailsPOJO, Integer>{
 	@Query(value="from VisitDetailsPOJO v where v.visitDate between to_date(:fromDate) and to_date(:toDate) + (86399/86400)"
 			+ "order by v.visitId desc")
 	List<VisitDetailsPOJO> findVisitByDate(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
+	
+	void clearForm(VisitDetailsPOJO visitDetails);
 }

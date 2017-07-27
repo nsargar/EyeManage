@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,14 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Pattern;
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Setter;
 
 //@Data
@@ -61,8 +58,6 @@ public class PatientDetailsPOJO {
 	private String gender;
 	
 	@Column(unique = false, nullable = true, length=10)
-	//@RegEx /[2-9]{2}\d{8}/
-	//@Pattern(regexp="/[1-9]{1}\\d{9}/", message="Wrong pattern")
 	private String mobile;
 	
 	@Column(unique = false, nullable = true, length=15)
