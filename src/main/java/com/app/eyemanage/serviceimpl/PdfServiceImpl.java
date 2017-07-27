@@ -125,6 +125,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("age", visit.getPatient().getAge().toString());
 			stamper.getAcroFields().setField("gender", visit.getPatient().getGender());
 			stamper.getAcroFields().setField("address", visit.getPatient().getAddress());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			if( null != visit.getDrugs()) {
 				int rowNo	=	4;
 				if( visit.getDrugs().size() < rowNo )
@@ -191,6 +192,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("nearAxisLeft", visit.getAxisNearLeft().toString());
 			stamper.getAcroFields().setField("nearVaRight", visit.getVaNearRight());
 			stamper.getAcroFields().setField("nearVaLeft", visit.getVaNearLeft());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			stamper.close();
 			pdfReader.close(); 
 
@@ -230,7 +232,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("k2", visit.getKeraK2().toString());
 			stamper.getAcroFields().setField("axialLength", visit.getAxialLength().toString());
 			stamper.getAcroFields().setField("iolPower", visit.getIolPower().toString());
-			stamper.getAcroFields().setField("surgicalPlan", visit.getSurgicalPlan());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			stamper.close();
 			pdfReader.close(); 
 
