@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-
+<link rel="shortcut icon" th:href="@{/img/em_fav.png}" type="image/x-icon" />
 <script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
 </head>
 <body>
@@ -271,34 +271,38 @@
 																	<!-- A-Scan Tab -->
 																	<div th:id="'ascan_' + ${visit.visitId}"
 																		class="tab-pane fade">
-																		<div class="form-group">
-																			<label class="control-label col-sm-2">Keratometry</label>
-																		</div>
-																		<div class="form-group">
-																			<p class="control-label col-sm-2">K1</p>
-																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
-																					th:text="${visit.keraK1}"></p>
+																		<div class="panel panel-default">
+																			<div class="panel-heading">Keratometry</div>
+																			<div class="form-group">
+																				<div class="panel-body">
+																					<p class="control-label col-sm-2">K1</p>
+																					<div class="col-sm-3">
+																						<p class="control-label textCenter"
+																							th:text="${visit.keraK1}"></p>
+																					</div>
+																					<p class="control-label col-sm-2">K2</p>
+																					<div class="col-sm-3">
+																						<p class="control-label textCenter"
+																							th:text="${visit.keraK2}"></p>
+																					</div>
+																				</div>
 																			</div>
-																			<p class="control-label col-sm-2">K2</p>
-																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
-																					th:text="${visit.keraK2}"></p>
-																			</div>
 																		</div>
-																		<div class="form-group">
-																			<label class="control-label col-sm-2">Axis</label>
-																		</div>
-																		<div class="form-group">
-																			<p class="control-label col-sm-2">Axial Length</p>
-																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
-																					th:text="${visit.axialLength}"></p>
-																			</div>
-																			<p class="control-label col-sm-2">IOL Power</p>
-																			<div class="col-sm-3">
-																				<p class="control-label textCenter"
-																					th:text="${visit.iolPower}"></p>
+																		<div class="panel panel-default">
+																			<div class="panel-heading">Axis</div>
+																			<div class="form-group">
+																				<div class="panel-body">
+																					<p class="control-label col-sm-2">Axial Length</p>
+																					<div class="col-sm-3">
+																						<p class="control-label textCenter"
+																							th:text="${visit.axialLength}"></p>
+																					</div>
+																					<p class="control-label col-sm-2">IOL Power</p>
+																					<div class="col-sm-3">
+																						<p class="control-label textCenter"
+																							th:text="${visit.iolPower}"></p>
+																					</div>
+																				</div>
 																			</div>
 																		</div>
 																		<div class="form-group">

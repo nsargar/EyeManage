@@ -6,6 +6,10 @@ body {
 	font-size: 16px;
 }
 
+.table-responsive{
+	overflow-x: hidden;
+}
+
 .jumbotron h1{
 	font-family: "Segoe UI",Helvetica,Sans-serif;
 }
@@ -249,6 +253,10 @@ h2{
     font-family: Segoe UI;
 }
 
+.jumbotron .img-responsive{
+	margin: 0 auto;
+}
+
 .img-responsive{
     padding: 0px 35px;
 }
@@ -284,6 +292,10 @@ body{
 	font-size: 14px;
 }
 
+.table-responsive{
+	overflow-x: scroll;
+}
+
  .col-sm-2{
 	width: 100%;
 }
@@ -304,15 +316,20 @@ body{
     margin-bottom: 10px;
 }
 
-#tile1{
-	max-height: 290px;
+.tile{
+	max-height: 150px;
+	max-width: 150px;
 }
 
-#tile2{
-	max-height: 290px;
+.carousel{
+	max-height: 150px;
+	max-width: 150px;
 }
 
-
+.item{
+	max-height: 150px;
+	max-width: 150px;
+}
 }
 
 

@@ -71,6 +71,45 @@ function addVisitDetails(){
 	});
 }
 
+function clearForm(){
+	alert("Clear");
+	$('#addVisit sphDistRight').val("");   
+	$('#addVisit sphDistLeft').val("");    
+	$('#addVisit cylDistRight').val("");    
+	$('#addVisit cylDistLeft').val("");
+	$('#addVisit axisDistRight').val("");       
+	$('#addVisit axisDistLeft').val("");
+	$('#addVisit vaDistRight').val("");       
+	$('#addVisit vaDistLeft').val("");          
+	$('#addVisit sphNearRight').val("");    
+	$('#addVisit sphNearLeft').val(""); 
+	$('#addVisit cylNearRight').val("");    
+	$('#addVisit cylNearLeft').val("");
+	$('#addVisit axisNearRight').val("");       
+	$('#addVisit axisNearLeft').val("");
+	$('#addVisit vaNearRight').val("");       
+	$('#addVisit vaNearLeft').val("");
+	$('#addVisit remarks').val("");         
+	$('#addVisit anteriorSeg').val("");     
+	$('#addVisit posteriorSeg').val("");    
+	$('#addVisit iop').val("");             
+	$('#addVisit keraK1').val("");          
+	$('#addVisit keraK2').val("");          
+	$('#addVisit axialLength').val("");     
+	$('#addVisit iolPower').val("");        
+	$('#addVisit surgicalPlan').val("");    
+	$('#addVisit admissionDate').val("");   
+	$('#addVisit surgeryDate').val("");     
+	$('#addVisit dischargeDate').val("");   
+	$('#addVisit diagnosis').val("");       
+	$('#addVisit surgicalProc').val("");    
+	$('#addVisit investigations').val("");  
+	$('#addVisit anaesthetist').val("");    
+	$('#addVisit surgeon').val("");         
+	$('#addVisit followUp').val("");        
+	alert("End Clear");
+}
+
 $(document).ready(function() { 
 
 	$("#regForm").validate({

@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-
+<link rel="shortcut icon" th:href="@{/img/em_fav.png}" type="image/x-icon" />
 <script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
 </head>
 <body>
@@ -43,12 +43,11 @@
 												<div class="item active">
 													<h3>
 														<a th:href="@{/dashboard/patientSearch}"
-															class="tilecaption">Add a Visit</a>
+															class="tilecaption" th:id="addVisitLink">Add a Visit</a>
 													</h3>
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div class="col-sm-2 col-xs-4">
@@ -83,10 +82,13 @@
 			class="alert alert-success col-sm-6 "
 			th:text="#{visit.create.success} + ' with Id - ' +  ${param.visitCreateResult[0]}"></div> -->
 
-	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-
+	
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/validations.js}"></script>
+	
 	<script>
 			$("#menu-toggle").click(function(e) {
 				e.preventDefault();
