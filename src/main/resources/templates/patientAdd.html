@@ -29,7 +29,7 @@
 							<h2>Add a Patient</h2>
 							<hr />
 						</div>
-						<form action="#" method="post"
+						<form action="#" method="post" id="patientForm" data-toggle="validator"
 							th:action="@{/dashboard/patientCreate}" th:object="${newPatient}"
 							class="form-horizontal">
 							<div class="form-group">
@@ -128,6 +128,8 @@
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/validations.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>

@@ -1,11 +1,8 @@
 package com.app.eyemanage.pojo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,15 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 
 @Data
 @Entity
+//@EntityListeners(VisitServiceImpl.class)
 @Table(name="VisitDetails")
 @Component
 public class VisitDetailsPOJO {
@@ -56,28 +51,46 @@ public class VisitDetailsPOJO {
 	private String sphDistRight;
 	
 	@Column(unique = false, nullable = true, length=10)
+	private String cylDistLeft;
+	
+	@Column(unique = false, nullable = true, length=10)
+	private String cylDistRight;
+	
+	@Column(unique = false, nullable = true, length=3)
+	private Integer axisDistLeft;
+	
+	@Column(unique = false, nullable = true, length=3)
+	private Integer axisDistRight;
+	
+	@Column(unique = false, nullable = true, length=10)
+	private String vaDistLeft;
+	
+	@Column(unique = false, nullable = true, length=10)
+	private String vaDistRight;
+	
+	@Column(unique = false, nullable = true, length=10)
 	private String sphNearLeft;
 	
 	@Column(unique = false, nullable = true, length=10)
 	private String sphNearRight;
-
-	@Column(unique = false, nullable = true, length=10)
-	private String cylLeft;
 	
 	@Column(unique = false, nullable = true, length=10)
-	private String cylRight;
+	private String cylNearLeft;
+	
+	@Column(unique = false, nullable = true, length=10)
+	private String cylNearRight;
 	
 	@Column(unique = false, nullable = true, length=3)
-	private Integer axisLeft;
+	private Integer axisNearLeft;
 	
 	@Column(unique = false, nullable = true, length=3)
-	private Integer axisRight;
+	private Integer axisNearRight;
 	
 	@Column(unique = false, nullable = true, length=10)
-	private String vaLeft;
+	private String vaNearLeft;
 	
 	@Column(unique = false, nullable = true, length=10)
-	private String vaRight;
+	private String vaNearRight;
 	
 	@Column(unique = false, nullable = true, length=100)
 	private String remarks;
@@ -87,7 +100,7 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=100)
 	private String anteriorSeg;
 	
-	@Column(unique = false, nullable = true, length=100)
+	@Column(unique = false, nullable = true, length=100 )
 	private String posteriorSeg;
 	
 	@Column(unique = false, nullable = true)
@@ -139,7 +152,7 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=200)
 	private String investigations;
 	
-	@Column(unique = false, nullable = true, length=3)
+	@Column(unique = false, nullable = true, length=3 )
 	private Integer followUp;
 	
 	@Column(unique = false, nullable = true)

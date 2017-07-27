@@ -29,28 +29,28 @@
 						<div class="col-lg-12">
 							<div class="page-header" id="visitHeader">
 								<h2>Add a Visit</h2>
-								<hr />
-
 							</div>
+							<hr />
 						</div>
 						<div class="col-lg-12">
 							<span class="col-sm-3" id="msg"></span>
 						</div>
 						<div class="col-lg-12">
-							<form action="#" method="post" th:action="@{/dashboard/newVisit}"
-								th:object="${newVisit}" class="form-horizontal">
+							<form action="#" method="post" th:object="${newVisit}"
+								id="addVisit" data-toggle="validator" class="form-horizontal">
 
 								<ul class="nav nav-tabs">
-									<li class="active" id="l1"><a data-toggle="tab" href="#glass">Glass
-											Prescription</a></li>
+									<li class="active" id="l1"><a data-toggle="tab"
+										href="#glass">Glass Prescription</a></li>
 									<li id="l2"><a data-toggle="tab" href="#findings">Findings</a></li>
 									<li id="l3"><a data-toggle="tab" href="#drug">Drug
 											Prescription</a></li>
-									<li id="l4"><a data-toggle="tab" href="#ascan">A-Scan Report</a></li>
+									<li id="l4"><a data-toggle="tab" href="#ascan">A-Scan
+											Report</a></li>
 									<li id="l5"><a data-toggle="tab" href="#discharge">Discharge
 											Summary</a></li>
-									<li><button type="button" class="btn btn-info"
-													th:id="addVisitBtn">Submit</button></li>
+									<li id="l6"><button type="submit"
+											class="btn btn-success col-sm-offset-7" th:id="addVisitBtn">Submit</button></li>
 								</ul>
 
 								<div class="tab-content">
@@ -82,40 +82,52 @@
 																th:id="sphDistRight" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="10" class="form-control"
-																th:field="*{cylRight}" th:id="cylRight" /></td>
+																th:field="*{cylDistRight}" th:id="cylDistRight" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="3" class="form-control"
-																th:field="*{axisRight}" th:id="axisRight" /></td>
+																th:field="*{axisDistRight}" th:id="axisDistRight" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="10" class="form-control"
-																th:field="*{vaRight}" th:id="vaRight" /></td>
+																th:field="*{vaDistRight}" th:id="vaDistRight" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="10" class="form-control"
 																th:field="*{sphDistLeft}" th:id="sphDistLeft" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="10" class="form-control"
-																th:field="*{cylLeft}" th:id="cylLeft" /></td>
+																th:field="*{cylDistLeft}" th:id="cylDistLeft" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
 																maxlength="3" class="form-control"
-																th:field="*{axisLeft}" th:id="axisLeft" /></td>
+																th:field="*{axisDistLeft}" th:id="axisDistLeft" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
-																maxlength="10" class="form-control" th:field="*{vaLeft}"
-																th:id="vaLeft" /></td>
+																maxlength="10" class="form-control" th:field="*{vaDistLeft}"
+																th:id="vaDistLeft" /></td>
 														</tr>
 														<tr>
 															<th colspan="2" rowspan="1">Near</th>
 															<td colspan="1"><input type="text" maxlength="10"
 																class="form-control" th:field="*{sphNearRight}"
 																th:id="sphNearRight" /></td>
-															<td colspan="1"></td>
-															<td colspan="1"></td>
-															<td colspan="1"></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="10" class="form-control"
+																th:field="*{cylNearRight}" th:id="cylNearRight" /></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="3" class="form-control"
+																th:field="*{axisNearRight}" th:id="axisNearRight" /></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="10" class="form-control"
+																th:field="*{vaNearRight}" th:id="vaNearRight" /></td>
 															<td colspan="1"><input type="text" maxlength="10"
 																class="form-control" th:field="*{sphNearLeft}"
 																th:id="sphNearLeft" /></td>
-															<td colspan="1"></td>
-															<td colspan="1"></td>
-															<td colspan="1"></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="10" class="form-control"
+																th:field="*{cylNearLeft}" th:id="cylNearLeft" /></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="3" class="form-control"
+																th:field="*{axisNearLeft}" th:id="axisNearLeft" /></td>
+															<td colspan="1" rowspan="1"><input type="text"
+																maxlength="10" class="form-control" th:field="*{vaNearLeft}"
+																th:id="vaNearLeft" /></td>
 														</tr>
 													</thead>
 												</table>
@@ -128,9 +140,6 @@
 													placeholder="Add Remarks" th:field="*{remarks}"
 													th:id="remarks"></textarea>
 											</div>
-											<span class="col-sm-3"> <a type="button"
-												data-toggle="tab" href="#findings" class="btn btn-success">Next</a>
-											</span>
 										</div>
 									</div>
 									<div id="findings" class="tab-pane fade">
@@ -139,15 +148,17 @@
 												Findings</p>
 											<div class="col-sm-3">
 												<textarea rows="4" draggable="false"
-													placeholder="Add Anterior Segment Findings" class="form-control"
-													th:field="*{anteriorSeg}" th:id="anteriorSeg"></textarea>
+													placeholder="Add Anterior Segment Findings"
+													class="form-control" th:field="*{anteriorSeg}"
+													th:id="anteriorSeg"></textarea>
 											</div>
 											<p class="control-label col-sm-2">Posterior Segment
 												Findings</p>
 											<div class="col-sm-3">
 												<textarea rows="4" draggable="false"
-													placeholder="Add Posterior Segment Findings" class="form-control"
-													th:field="*{posteriorSeg}" th:id="posteriorSeg"></textarea>
+													placeholder="Add Posterior Segment Findings"
+													class="form-control" th:field="*{posteriorSeg}"
+													th:id="posteriorSeg"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
@@ -155,10 +166,6 @@
 											<div class="col-sm-3">
 												<input type="text" maxlength="3" class="form-control"
 													th:field="*{iop}" th:id="iop" placeholder="Enter a Value" />
-											</div>
-											<div class="col-sm-offset-4 col-sm-1">
-												<a type="button" data-toggle="tab" href="#drug"
-													class="btn btn-success">Next</a>
 											</div>
 										</div>
 									</div>
@@ -194,42 +201,40 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-11 col-sm-1">
-												<a type="button" data-toggle="tab" href="#ascan"
-													class="btn btn-success">Next</a>
-											</div>
-										</div>
 									</div>
 									<div id="ascan" class="tab-pane fade">
-										<div class="form-group">
-											<label class="control-label col-sm-2">Keratometry</label>
-										</div>
-										<div class="form-group">
-											<p class="control-label col-sm-2">K1</p>
-											<div class="col-sm-3">
-												<input type="text" maxlength="10" class="form-control"
-													th:field="*{keraK1}" th:id="keraK1" />
+										<div class="panel panel-default">
+											<div class="panel-heading">Keratometry</div>
+											<div class="form-group">
+												<div class="panel-body">
+													<p class="control-label col-sm-2">K1</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="10" class="form-control"
+															th:field="*{keraK1}" th:id="keraK1" />
+													</div>
+													<p class="control-label col-sm-2">K2</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="10" class="form-control"
+															th:field="*{keraK2}" th:id="keraK2" />
+													</div>
+												</div>
 											</div>
-											<p class="control-label col-sm-2">K2</p>
-											<div class="col-sm-3">
-												<input type="text" maxlength="10" class="form-control"
-													th:field="*{keraK2}" th:id="keraK2" />
-											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-sm-2">Axis</label>
-										</div>
-										<div class="form-group">
-											<p class="control-label col-sm-2">Axial Length</p>
-											<div class="col-sm-3">
-												<input type="text" maxlength="10" class="form-control"
-													th:field="*{axialLength}" th:id="axialLength" />
-											</div>
-											<p class="control-label col-sm-2">IOL Power</p>
-											<div class="col-sm-3">
-												<input type="text" maxlength="10" class="form-control"
-													th:field="*{iolPower}" th:id="iolPower" />
+										<div class="panel panel-default">
+											<div class="panel-heading">Axis</div>
+											<div class="form-group">
+												<div class="panel-body">
+													<p class="control-label col-sm-2">Axial Length</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="10" class="form-control"
+															th:field="*{axialLength}" th:id="axialLength" />
+													</div>
+													<p class="control-label col-sm-2">IOL Power</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="10" class="form-control"
+															th:field="*{iolPower}" th:id="iolPower" />
+													</div>
+												</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -240,30 +245,24 @@
 													th:id="surgicalPlan"></textarea>
 											</div>
 										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-3">
-												<a type="button" data-toggle="tab" href="#discharge"
-													class="btn btn-success">Next</a>
-											</div>
-										</div>
 									</div>
 									<div id="discharge" class="tab-pane fade">
-										<div class="panel panel-default">										
-  												<div class="panel-heading">Patient Details</div>																								
-										<div class="form-group">
-											<div class="panel-body">
-											<p class="control-label col-sm-2"
-												th:text="'Patient Id : ' + ${patient.patientId}"
-												th:field="*{patient.patientId}"
-												th:value="${patient.patientId}" th:id="patientId"></p>
-											<p class="control-label col-sm-5" style="text-align: left;"
-												th:text="'Name : ' + ${patient.firstName} + ' '  + ${patient.lastName}"></p>
-											<p class="control-label col-sm-2" style="text-align: left;"
-												th:text="'Age : ' + ${patient.age}"></p>
-											<p class="control-label col-sm-2" style="text-align: left;"
-												th:text="'Gender : ' + ${patient.gender}"></p>
+										<div class="panel panel-default">
+											<div class="panel-heading">Patient Details</div>
+											<div class="form-group">
+												<div class="panel-body">
+													<p class="control-label col-sm-2"
+														th:text="'Patient Id : ' + ${patient.patientId}"
+														th:field="*{patient.patientId}"
+														th:value="${patient.patientId}" th:id="patientId"></p>
+													<p class="control-label col-sm-5" style="text-align: left;"
+														th:text="'Name : ' + ${patient.firstName} + ' '  + ${patient.lastName}"></p>
+													<p class="control-label col-sm-2" style="text-align: left;"
+														th:text="'Age : ' + ${patient.age}"></p>
+													<p class="control-label col-sm-2" style="text-align: left;"
+														th:text="'Gender : ' + ${patient.gender}"></p>
+												</div>
 											</div>
-										</div>
 										</div>
 										<div class="form-group">
 											<p class="control-label col-sm-2">Date of Admission</p>
@@ -331,11 +330,6 @@
 											</div>
 											<p th:text="'days'" class="control-label col-sm-1"
 												style="text-align: left"></p>
-											<p class="control-label col-sm-offset-1 col-sm-2">Fees</p>
-											<div class="col-sm-2">
-												<input type="text" maxlength="6" class="form-control"
-													th:field="*{fees}" placeholder="Enter Fees" th:id="fees" />
-											</div>
 										</div>
 									</div>
 								</div>
@@ -352,6 +346,8 @@
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/validations.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>

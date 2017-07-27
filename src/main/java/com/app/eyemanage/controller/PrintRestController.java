@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.app.eyemanage.pojo.VisitDetailsPOJO;
+import com.app.eyemanage.service.PdfService;
 import com.app.eyemanage.service.VisitService;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfReader;
@@ -29,50 +30,52 @@ public class PrintRestController {
 	@Autowired
 	VisitService visitService;
 
-	@RequestMapping(value= "/print/CaseReport_{id}.pdf")
+	@Autowired
+	PdfService pdfService;
+
+	@RequestMapping(value= "/print/DischargeSummary_{id}.pdf")
 	public String printDetails(@PathVariable("id")String id, HttpServletResponse response) {
-		logger.info("In Print Post");
-
-		// Set Paths
-		String dir			=	System.getProperty("user.dir");
-		final String home	=	System.getProperty("user.home") + "\\AppData\\Local\\EyeManage";
-		File directory		=	new File(String.valueOf(home));
-		if( !directory.exists() ){
-			directory.mkdir();
-		}
-		String templatePDF	=	dir + "\\MyTemplate.pdf";
-		String generatedPDF	=	home + "\\caseReport.pdf";
-
-
-		PdfStamper stamper;
-		PdfReader pdfReader;
+		logger.info("In Print DischargeSummary Post");
+		visit	=	visitService.findOne(Integer.parseInt(id));
 		try {
-			// Get Report Details
-			visit	=	visitService.findOne(Integer.parseInt(id));
+			pdfService.dischargeSummary(visit, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-			// Write contents to PDF
-			pdfReader	=	new PdfReader( templatePDF );
-			logger.info("Temp file : " + pdfReader);
-			FileOutputStream fileOS	=	new FileOutputStream( generatedPDF );
-			stamper	=	new PdfStamper(pdfReader, fileOS);
-			stamper.setFormFlattening(true);
-			stamper.getAcroFields().setField("FirstName", visit.getPatient().getFirstName());
-			logger.info("After writing");
-			stamper.close();
-			pdfReader.close(); 
+	@RequestMapping(value= "/print/Ascan_{id}.pdf")
+	public String printAscan(@PathVariable("id")String id, HttpServletResponse response) {
+		logger.info("In Print Post");
+		visit	=	visitService.findOne(Integer.parseInt(id));
+		try {
+			pdfService.aScanReport(visit, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-			// Show PDF in a browser
-			logger.info("Dir : " + dir);
-			logger.info("Home : " + home);
-			File file	=	new File( generatedPDF );
-			InputStream inputStream = new FileInputStream(file);
-			IOUtils.copy( inputStream, response.getOutputStream() );
-			response.setContentType("application/pdf");
-			response.setHeader("content-disposition", "inline");
-			response.flushBuffer();
-			logger.info("Try End");
+	@RequestMapping(value= "/print/DrugPrescription_{id}.pdf")
+	public String printDrug(@PathVariable("id")String id, HttpServletResponse response) {
+		logger.info("In Print Post");
+		visit	=	visitService.findOne(Integer.parseInt(id));
+		try {
+			pdfService.drugPrescription(visit, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-		} catch ( IOException | DocumentException e ) {
+	@RequestMapping(value= "/print/GlassPrescription_{id}.pdf")
+	public String printGlass(@PathVariable("id")String id, HttpServletResponse response) {
+		logger.info("In Print Post");
+		visit	=	visitService.findOne(Integer.parseInt(id));
+		try {
+			pdfService.glassPrescription(visit, response);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return null;

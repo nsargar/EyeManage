@@ -6,7 +6,6 @@
 	<groupId>com.eyemanage</groupId>
 	<artifactId>EyeManage</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
 
 	<name>EyeManage</name>
 	<description>EyeManage Application</description>
@@ -91,4 +90,5 @@
 		<finalName>eyemanage</finalName>
 	</build>
 
+	<packaging>war</packaging>
 </project>
