@@ -85,7 +85,8 @@ function ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumb
 
 //Add Visit AJAX Starts
 
-$("#addVisitBtn").on('click', function(event) {
+//$("#addVisitBtn").on('click', function(event) {
+/*function addVisitDetails1(){
 	var url	=	window.location;
 	var drugData	=	[];
 	var size	=	$('#drugTable tr').length;
@@ -141,6 +142,7 @@ $("#addVisitBtn").on('click', function(event) {
         dataType : 'json',
         success : function(result) {
             if( result.status == "Done"){
+            	//clearForm();
             	window.location.href = result.data;
             	$("#msg").html("<strong>" + "Visit Added Successfully!</strong>");
             }else{
@@ -152,7 +154,41 @@ $("#addVisitBtn").on('click', function(event) {
             console.log("ERROR: ", e);
         }
     });
-});
+}*/
+//});
+
+/*function clearForm(){
+	alert("In");
+	$('#sphDistRight').val("");    
+	$('#cylRight').val("");    
+	$('#axisRight').val("");       
+	$('#vaRight').val("");       
+	$('#sphDistLeft').val("");     
+	$('#cylLeft').val("");         
+	$('#axisLeft').val("");        
+	$('#vaLeft').val("");          
+	$('#sphNearRight').val("");    
+	$('#sphNearLeft').val("");     
+	$('#remarks').val("");         
+	$('#anteriorSeg').val("");     
+	$('#posteriorSeg').val("");    
+	$('#iop').val("");             
+	$('#keraK1').val("");          
+	$('#keraK2').val("");          
+	$('#axialLength').val("");     
+	$('#iolPower').val("");        
+	$('#surgicalPlan').val("");    
+	$('#admissionDate').val("");   
+	$('#surgeryDate').val("");     
+	$('#dischargeDate').val("");   
+	$('#diagnosis').val("");       
+	$('#surgicalProc').val("");    
+	$('#investigations').val("");  
+	$('#anaesthetist').val("");    
+	$('#surgeon').val("");         
+	$('#followUp').val("");        
+	$('#fees').val("");         
+}*/
 
 //Add Visit AJAX Ends
 

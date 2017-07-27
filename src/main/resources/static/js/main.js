@@ -6,8 +6,8 @@ $("#addDrugBtn").click(function () {
 		var newRow = jQuery('<tr>' + 
 				'<td><select name="drugType" class="form-control" id="drugType_' + (size) + '">' +
 				'<option value="">Select</option>' +
-				'<option value="1">Tablet</option>' +
-				'<option value="2">Drops</option>' +
+				'<option value="Tablet">Tablet</option>' +
+				'<option value="Drop">Drops</option>' +
 				'</select></td>' +
 				'<td><input type="text" class="form-control" name="drugName" id="drugName_' + (size) + '"/></td>' +
 				'<td><input type="text" class="form-control" name="quantity" id="quantity_' + (size) + '"/></td>' +

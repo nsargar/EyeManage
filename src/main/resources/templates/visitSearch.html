@@ -78,7 +78,6 @@
 											<th>Patient Id</th>
 											<th>Patient Name</th>
 											<th>Visit Date</th>
-											<th>Fees</th>
 											<th>Follow Up</th>
 											<th colspan="1"></th>
 										</tr>
@@ -91,7 +90,6 @@
 											<td
 												th:text="${visit.patient.firstName} + ' ' + ${visit.patient.lastName}"></td>
 											<td th:text="${#dates.format(visit.visitDate,'dd-MMM-yyyy')}"></td>
-											<td th:text="${visit.fees}"></td>
 											<td th:text="${visit.followUp}"></td>
 											<td>
 												<button type="button" class="btn" data-toggle="modal"
@@ -161,30 +159,37 @@
 																							<th colspan="2" rowspan="1">Dist.</th>
 																							<td colspan="1" th:text="${visit.sphDistRight}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.cylRight}"></td>
+																								th:text="${visit.cylDistRight}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.axisRight}"></td>
+																								th:text="${visit.axisDistRight}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.vaRight}"></td>
+																								th:text="${visit.vaDistRight}"></td>
 																							<td colspan="1" rowspan="1"
 																								th:text="${visit.sphDistLeft}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.cylLeft}"></td>
+																								th:text="${visit.cylDistLeft}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.axisLeft}"></td>
+																								th:text="${visit.axisDistLeft}"></td>
 																							<td colspan="1" rowspan="1"
-																								th:text="${visit.vaLeft}"></td>
+																								th:text="${visit.vaDistLeft}"></td>
 																						</tr>
 																						<tr>
 																							<th colspan="2" rowspan="1">Near</th>
 																							<td colspan="1" th:text="${visit.sphNearRight}"></td>
-																							<td colspan="1"></td>
-																							<td colspan="1"></td>
-																							<td colspan="1"></td>
-																							<td colspan="1" th:text="${visit.sphNearLeft}"></td>
-																							<td colspan="1"></td>
-																							<td colspan="1"></td>
-																							<td colspan="1"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.cylNearRight}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.axisNearRight}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.vaNearRight}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.sphNearLeft}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.cylNearLeft}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.axisNearLeft}"></td>
+																							<td colspan="1" rowspan="1"
+																								th:text="${visit.vaNearLeft}"></td>
 																						</tr>
 																					</thead>
 																				</table>
@@ -371,17 +376,12 @@
 																			<p class="control-label col-sm-2 textCenter"
 																				th:text="${visit.followUp} + ' days'"
 																				style="text-align: left"></p>
-																			<p class="control-label col-sm-offset-1 col-sm-2">Fees</p>
-																			<div class="col-sm-2 textCenter">
-																				<p class="control-label" th:text="${visit.fees}"></p>
-																			</div>
 																		</div>
 																	</div>
 
 																	<!-- Discharge Tab Ends -->
 																</div>
 															</div>
-
 
 															<div class="modal-footer">
 																<button type="button" class="btn btn-default"
@@ -392,11 +392,35 @@
 												</div>
 											</td>
 											<td>
-												<a type="button" class="btn btn-primary"
-													th:href="@{'/dashboard/print/CaseReport_' + ${visit.visitId} + '.pdf'}"
-													target="_blank" th:id="'printVisit_' + ${visit.visitId}" >
-													<i class="glyphicon glyphicon-print"></i>
-												</a>
+												<div class="dropdown">
+													<button type="button"
+														class="btn btn-primary dropdown-toggle"
+														data-toggle="dropdown">
+														<i class="glyphicon glyphicon-print"></i> Print <span
+															class="caret"></span>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li><a
+															th:href="@{'/dashboard/print/DischargeSummary_' + ${visit.visitId} + '.pdf'}"
+															target="_blank"
+															th:id="'printDischarge_' + ${visit.visitId}">Discharge
+														</a></li>
+														<li><a
+															th:href="@{'/dashboard/print/Ascan_' + ${visit.visitId} + '.pdf'}"
+															target="_blank" th:id="'printAscan_' + ${visit.visitId}">A-Scan
+																Report </a></li>
+														<li><a
+															th:href="@{'/dashboard/print/DrugPrescription_' + ${visit.visitId} + '.pdf'}"
+															target="_blank"
+															th:id="'printDrugPrescription_' + ${visit.visitId}">Drug
+														</a></li>
+														<li><a
+															th:href="@{'/dashboard/print/GlassPrescription_' + ${visit.visitId} + '.pdf'}"
+															target="_blank"
+															th:id="'printGlassPrescription_' + ${visit.visitId}">Glass
+														</a></li>
+													</ul>
+												</div>
 											</td>
 										</tr>
 									</tbody>

@@ -11,9 +11,11 @@ public interface VisitService extends CrudRepository<VisitDetailsPOJO, Integer>{
 	
 	VisitDetailsPOJO addVisit(VisitDetailsPOJO visitDetails);
 	
-	@Query(value="from VisitDetailsPOJO v where (lower(v.patient.firstName) like %:name%) or (lower(v.patient.lastName) like %:name%)")
+	@Query(value="from VisitDetailsPOJO v where (lower(v.patient.firstName) like %:name%) or (lower(v.patient.lastName) like %:name%) "
+			+ "order by v.visitId desc")
 	List<VisitDetailsPOJO> findVisitByName(@Param("name") String name);
 	
-	@Query(value="from VisitDetailsPOJO v where v.visitDate between to_date(:fromDate) and to_date(:toDate) + (86399/86400)")
+	@Query(value="from VisitDetailsPOJO v where v.visitDate between to_date(:fromDate) and to_date(:toDate) + (86399/86400)"
+			+ "order by v.visitId desc")
 	List<VisitDetailsPOJO> findVisitByDate(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
 }
