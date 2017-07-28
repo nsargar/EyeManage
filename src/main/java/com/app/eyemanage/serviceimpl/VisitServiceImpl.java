@@ -37,8 +37,10 @@ public class VisitServiceImpl {
 			visitDetails.setAxisNearLeft(0);
 		if ( null == visitDetails.getAxisNearRight())
 			visitDetails.setAxisNearRight(0);
-		if ( null == visitDetails.getIop())
-			visitDetails.setIop(0);
+		if ( null == visitDetails.getIopRight())
+			visitDetails.setIopRight(0);
+		if ( null == visitDetails.getIopLeft())
+			visitDetails.setIopLeft(0);
 		if ( null == visitDetails.getKeraK1())
 			visitDetails.setKeraK1(0.00F);
 		if ( null == visitDetails.getKeraK2())
@@ -73,7 +75,8 @@ public class VisitServiceImpl {
 		visitDetails.setRemarks(null);
 		visitDetails.setAnteriorSeg(null);
 		visitDetails.setPosteriorSeg(null);
-		visitDetails.setIop(null);
+		visitDetails.setIopLeft(null);
+		visitDetails.setIopRight(null);
 		visitDetails.setKeraK1(null);
 		visitDetails.setKeraK2(null);
 		visitDetails.setAxialLength(null);

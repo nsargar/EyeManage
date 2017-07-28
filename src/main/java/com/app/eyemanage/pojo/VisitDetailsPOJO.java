@@ -104,7 +104,10 @@ public class VisitDetailsPOJO {
 	private String posteriorSeg;
 	
 	@Column(unique = false, nullable = true)
-	private Integer iop;
+	private Integer iopRight;
+	
+	@Column(unique = false, nullable = true)
+	private Integer iopLeft;
 	
 	// A-Scan Details
 	
