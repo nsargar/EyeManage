@@ -32,7 +32,8 @@ function addVisitDetails(){
 			remarks 				: $('#remarks').val(),
 			anteriorSeg 			: $('#anteriorSeg').val(),
 			posteriorSeg 			: $('#posteriorSeg').val(),
-			iop 					: $('#iop').val(),
+			iopRight 				: $('#iopRight').val(),
+			iopLeft 				: $('#iopLeft').val(),
 			keraK1 					: $('#keraK1').val(),
 			keraK2 					: $('#keraK2').val(),
 			axialLength 			: $('#axialLength').val(),
@@ -69,45 +70,6 @@ function addVisitDetails(){
 			console.log("ERROR: ", e);
 		}
 	});
-}
-
-function clearForm(){
-	alert("Clear");
-	$('#addVisit sphDistRight').val("");   
-	$('#addVisit sphDistLeft').val("");    
-	$('#addVisit cylDistRight').val("");    
-	$('#addVisit cylDistLeft').val("");
-	$('#addVisit axisDistRight').val("");       
-	$('#addVisit axisDistLeft').val("");
-	$('#addVisit vaDistRight').val("");       
-	$('#addVisit vaDistLeft').val("");          
-	$('#addVisit sphNearRight').val("");    
-	$('#addVisit sphNearLeft').val(""); 
-	$('#addVisit cylNearRight').val("");    
-	$('#addVisit cylNearLeft').val("");
-	$('#addVisit axisNearRight').val("");       
-	$('#addVisit axisNearLeft').val("");
-	$('#addVisit vaNearRight').val("");       
-	$('#addVisit vaNearLeft').val("");
-	$('#addVisit remarks').val("");         
-	$('#addVisit anteriorSeg').val("");     
-	$('#addVisit posteriorSeg').val("");    
-	$('#addVisit iop').val("");             
-	$('#addVisit keraK1').val("");          
-	$('#addVisit keraK2').val("");          
-	$('#addVisit axialLength').val("");     
-	$('#addVisit iolPower').val("");        
-	$('#addVisit surgicalPlan').val("");    
-	$('#addVisit admissionDate').val("");   
-	$('#addVisit surgeryDate').val("");     
-	$('#addVisit dischargeDate').val("");   
-	$('#addVisit diagnosis').val("");       
-	$('#addVisit surgicalProc').val("");    
-	$('#addVisit investigations').val("");  
-	$('#addVisit anaesthetist').val("");    
-	$('#addVisit surgeon').val("");         
-	$('#addVisit followUp').val("");        
-	alert("End Clear");
 }
 
 $(document).ready(function() { 
@@ -194,7 +156,7 @@ $(document).ready(function() {
 			followUp:{
 				number: true,
 				rangelength:[1,3]
-			}
+			},
 		},
 		messages:{
 			axisDistRight:{

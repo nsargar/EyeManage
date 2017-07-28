@@ -51,7 +51,7 @@ public class PatientDetailsPOJO {
 	private String email;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(unique = false, nullable = false)
+	@Column(unique = false, nullable = true)
 	private Date birthDate;
 	
 	@Column(unique = false, nullable = false, length=1)

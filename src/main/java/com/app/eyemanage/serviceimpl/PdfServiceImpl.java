@@ -30,28 +30,28 @@ public class PdfServiceImpl implements PdfService{
 
 	@Autowired
 	VisitService visitService;
-	
+
 	@Value("${pdfTemplate.path}")
 	String templatePath;
-	
+
 	@Value("${pdfGenerated.path}")
 	String generatedPath;
-	
+
 	@Override
 	public String dischargeSummary( VisitDetailsPOJO visit, HttpServletResponse response) {
-		
+
 		File templateDirectory	=	new File(String.valueOf(templatePath));
 		if( !templateDirectory.exists() ){
 			logger.info("Creating a folder template");
 			templateDirectory.mkdir();
 		}
-		
+
 		File generatedDirectory	=	new File(String.valueOf(generatedPath));
 		if( !generatedDirectory.exists() ){
 			logger.info("Creating a folder generated");
 			generatedDirectory.mkdir();
 		}
-		
+
 		String templatePDF	=	templatePath + "dischargeTemplate.pdf";
 		String generatedPDF	=	generatedPath + "DischargeSummary.pdf";
 		PdfStamper stamper;
@@ -76,19 +76,40 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("anaesthetist", visit.getAnaesthetist());
 			stamper.getAcroFields().setField("investigations", visit.getInvestigations());
 			stamper.getAcroFields().setField("followUp", Integer.toString(visit.getFollowUp()));
-			
+
 			if( null != visit.getDrugs()) {
 				int rowNo	=	4;
 				if( visit.getDrugs().size() < rowNo )
 					rowNo	=	visit.getDrugs().size();
 				for ( int i = 1; i <= rowNo ; i++) {
 					stamper.getAcroFields().setField("srNo" + i, String.valueOf(i));
-					stamper.getAcroFields().setField("drugType" + i, visit.getDrugs().get(i-1).getDrugType());
-					stamper.getAcroFields().setField("drugName" + i, visit.getDrugs().get(i-1).getDrugName());
-					stamper.getAcroFields().setField("quantity" + i, visit.getDrugs().get(i-1).getQuantity().toString());
-					stamper.getAcroFields().setField("frequency" + i, visit.getDrugs().get(i-1).getFrequency().toString() + " times" );
-					stamper.getAcroFields().setField("duration" + i, visit.getDrugs().get(i-1).getDuration().toString() 
-							+ " " + visit.getDrugs().get(i-1).getDurationType());
+					if ( null != visit.getDrugs().get(i-1).getDrugType() )
+						stamper.getAcroFields().setField("drugType" + i, visit.getDrugs().get(i-1).getDrugType());
+					else
+						stamper.getAcroFields().setField("drugType" + i, "-");
+
+					if ( null != visit.getDrugs().get(i-1).getDrugName() )
+						stamper.getAcroFields().setField("drugName" + i, visit.getDrugs().get(i-1).getDrugName());
+					else
+						stamper.getAcroFields().setField("drugName" + i, "-");
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getQuantity()) ) || 
+							(!String.valueOf(visit.getDrugs().get(i-1).getQuantity()).equalsIgnoreCase("null")))
+						stamper.getAcroFields().setField("quantity" + i, String.valueOf(visit.getDrugs().get(i-1).getQuantity()));
+					else
+						stamper.getAcroFields().setField("quantity" + i, "-");
+
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getFrequency()) ) ||
+							!String.valueOf(visit.getDrugs().get(i-1).getFrequency()).equalsIgnoreCase("null"))
+						stamper.getAcroFields().setField("frequency" + i, String.valueOf(visit.getDrugs().get(i-1).getFrequency()) );
+					else
+						stamper.getAcroFields().setField("frequency" + i, "-");
+
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getDuration()) ) ||
+							!String.valueOf(visit.getDrugs().get(i-1).getDuration()).equalsIgnoreCase("null"))
+						stamper.getAcroFields().setField("duration" + i, String.valueOf(visit.getDrugs().get(i-1).getDuration())
+								+ " " + visit.getDrugs().get(i-1).getDurationType());
+					else
+						stamper.getAcroFields().setField("duration" + i, "-");
 				}
 			}
 			stamper.close();
@@ -125,19 +146,42 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("age", visit.getPatient().getAge().toString());
 			stamper.getAcroFields().setField("gender", visit.getPatient().getGender());
 			stamper.getAcroFields().setField("address", visit.getPatient().getAddress());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			if( null != visit.getDrugs()) {
 				int rowNo	=	4;
 				if( visit.getDrugs().size() < rowNo )
 					rowNo	=	visit.getDrugs().size();
-					
+
 				for ( int i = 1; i <= rowNo ; i++) {
 					stamper.getAcroFields().setField("srNo" + i, String.valueOf(i));
-					stamper.getAcroFields().setField("drugType" + i, visit.getDrugs().get(i-1).getDrugType());
-					stamper.getAcroFields().setField("drugName" + i, visit.getDrugs().get(i-1).getDrugName());
-					stamper.getAcroFields().setField("quantity" + i, visit.getDrugs().get(i-1).getQuantity().toString());
-					stamper.getAcroFields().setField("frequency" + i, visit.getDrugs().get(i-1).getFrequency().toString() + " times" );
-					stamper.getAcroFields().setField("duration" + i, visit.getDrugs().get(i-1).getDuration().toString() 
-							+ " " + visit.getDrugs().get(i-1).getDurationType());
+					if ( null != visit.getDrugs().get(i-1).getDrugType() )
+						stamper.getAcroFields().setField("drugType" + i, visit.getDrugs().get(i-1).getDrugType());
+					else
+						stamper.getAcroFields().setField("drugType" + i, "-");
+
+					if ( null != visit.getDrugs().get(i-1).getDrugName() )
+						stamper.getAcroFields().setField("drugName" + i, visit.getDrugs().get(i-1).getDrugName());
+					else
+						stamper.getAcroFields().setField("drugName" + i, "-");
+
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getQuantity()) ) || 
+							!String.valueOf(visit.getDrugs().get(i-1).getQuantity()).equalsIgnoreCase("null"))
+						stamper.getAcroFields().setField("quantity" + i, String.valueOf(visit.getDrugs().get(i-1).getQuantity()));
+					else
+						stamper.getAcroFields().setField("quantity" + i, "-");
+
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getFrequency()) ) ||
+							!String.valueOf(visit.getDrugs().get(i-1).getFrequency()).equalsIgnoreCase("null"))
+						stamper.getAcroFields().setField("frequency" + i, String.valueOf(visit.getDrugs().get(i-1).getFrequency()) );
+					else
+						stamper.getAcroFields().setField("frequency" + i, "-");
+
+					if (( null != String.valueOf(visit.getDrugs().get(i-1).getDuration()) ) ||
+							!String.valueOf(visit.getDrugs().get(i-1).getDuration()).equalsIgnoreCase("null"))
+						stamper.getAcroFields().setField("duration" + i, String.valueOf(visit.getDrugs().get(i-1).getDuration())
+								+ " " + visit.getDrugs().get(i-1).getDurationType());
+					else
+						stamper.getAcroFields().setField("duration" + i, "-");
 				}
 			}
 			stamper.close();
@@ -191,6 +235,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("nearAxisLeft", visit.getAxisNearLeft().toString());
 			stamper.getAcroFields().setField("nearVaRight", visit.getVaNearRight());
 			stamper.getAcroFields().setField("nearVaLeft", visit.getVaNearLeft());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			stamper.close();
 			pdfReader.close(); 
 
@@ -230,7 +275,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("k2", visit.getKeraK2().toString());
 			stamper.getAcroFields().setField("axialLength", visit.getAxialLength().toString());
 			stamper.getAcroFields().setField("iolPower", visit.getIolPower().toString());
-			stamper.getAcroFields().setField("surgicalPlan", visit.getSurgicalPlan());
+			stamper.getAcroFields().setField("visitDate", Utils.formatDate(visit.getVisitDate()));
 			stamper.close();
 			pdfReader.close(); 
 
