@@ -6,7 +6,8 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-<link rel="shortcut icon" th:href="@{/img/em_fav.png}" type="image/x-icon" />
+<link rel="shortcut icon" th:href="@{/img/em_fav.png}"
+	type="image/x-icon" />
 <script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
 </head>
 <body>
@@ -99,8 +100,8 @@
 																maxlength="3" class="form-control"
 																th:field="*{axisDistLeft}" th:id="axisDistLeft" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
-																maxlength="10" class="form-control" th:field="*{vaDistLeft}"
-																th:id="vaDistLeft" /></td>
+																maxlength="10" class="form-control"
+																th:field="*{vaDistLeft}" th:id="vaDistLeft" /></td>
 														</tr>
 														<tr>
 															<th colspan="2" rowspan="1">Near</th>
@@ -126,8 +127,8 @@
 																maxlength="3" class="form-control"
 																th:field="*{axisNearLeft}" th:id="axisNearLeft" /></td>
 															<td colspan="1" rowspan="1"><input type="text"
-																maxlength="10" class="form-control" th:field="*{vaNearLeft}"
-																th:id="vaNearLeft" /></td>
+																maxlength="10" class="form-control"
+																th:field="*{vaNearLeft}" th:id="vaNearLeft" /></td>
 														</tr>
 													</thead>
 												</table>
@@ -165,12 +166,22 @@
 											<p class="control-label col-sm-2">IOP Left:</p>
 											<div class="col-sm-3">
 												<input type="text" maxlength="3" class="form-control"
-													th:field="*{iopLeft}" th:id="iopLeft" placeholder="Enter a Value" />
+													th:field="*{iopLeft}" th:id="iopLeft"
+													placeholder="Enter a Value" />
 											</div>
 											<p class="control-label col-sm-2">IOP Right:</p>
 											<div class="col-sm-3">
 												<input type="text" maxlength="3" class="form-control"
-													th:field="*{iopRight}" th:id="iopRight" placeholder="Enter a Value" />
+													th:field="*{iopRight}" th:id="iopRight"
+													placeholder="Enter a Value" />
+											</div>
+										</div>
+										<div class="form-group">
+											<p class="control-label col-sm-2">Complaints:</p>
+											<div class="col-sm-8">
+												<textarea rows="2" draggable="false"
+													placeholder="Add Complaints" class="form-control"
+													th:field="*{complaints}" th:id="complaints"></textarea>
 											</div>
 										</div>
 									</div>
@@ -215,12 +226,14 @@
 													<p class="control-label col-sm-2">K1</p>
 													<div class="col-sm-3">
 														<input type="text" maxlength="10" class="form-control"
-															th:field="*{keraK1}" th:id="keraK1" />
+															placeholder="Enter a value" th:field="*{keraK1}"
+															th:id="keraK1" />
 													</div>
 													<p class="control-label col-sm-2">K2</p>
 													<div class="col-sm-3">
 														<input type="text" maxlength="10" class="form-control"
-															th:field="*{keraK2}" th:id="keraK2" />
+															placeholder="Enter a value" th:field="*{keraK2}"
+															th:id="keraK2" />
 													</div>
 												</div>
 											</div>
@@ -232,12 +245,14 @@
 													<p class="control-label col-sm-2">Axial Length</p>
 													<div class="col-sm-3">
 														<input type="text" maxlength="10" class="form-control"
-															th:field="*{axialLength}" th:id="axialLength" />
+															placeholder="Enter a value" th:field="*{axialLength}"
+															th:id="axialLength" />
 													</div>
 													<p class="control-label col-sm-2">IOL Power</p>
 													<div class="col-sm-3">
 														<input type="text" maxlength="10" class="form-control"
-															th:field="*{iolPower}" th:id="iolPower" />
+															placeholder="Enter a value" th:field="*{iolPower}"
+															th:id="iolPower" />
 													</div>
 												</div>
 											</div>

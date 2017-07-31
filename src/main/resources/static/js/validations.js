@@ -1,3 +1,4 @@
+//Add Visit AJAX Call
 function addVisitDetails(){
 	var url	=	window.location;
 	var drugData	=	[];
@@ -34,6 +35,7 @@ function addVisitDetails(){
 			posteriorSeg 			: $('#posteriorSeg').val(),
 			iopRight 				: $('#iopRight').val(),
 			iopLeft 				: $('#iopLeft').val(),
+			complaints				: $('#complaints').val(),
 			keraK1 					: $('#keraK1').val(),
 			keraK2 					: $('#keraK2').val(),
 			axialLength 			: $('#axialLength').val(),
@@ -72,41 +74,43 @@ function addVisitDetails(){
 	});
 }
 
+
+//Validation Starts
 $(document).ready(function() { 
 
 	$("#regForm").validate({
-		rules:{
-			name:"required",
-			answer:"required",
-			userName:"required",
-			role:"required",
-			secQuest:"required",
-			password: {
-				required: true,
-				minlength: 5
+		rules	:	{
+			name	:	"required",
+			answer	:	"required",
+			userName	:	"required",
+			role	:	"required",
+			secQuest	:	"required",
+			password	:	{
+				required	:	true,
+				minlength	:	5
 			},
-			cnfPassword: {
-				required: true,
-				equalTo: "#password"
+			cnfPassword	:	{
+				required	:	true,
+				equalTo	:	"#password"
 			}
 		},
-		messages:{
-			name:{
-				required: "Please enter your name"
+		messages	:	{
+			name	:	{
+				required	:	"Please enter your name"
 			},
-			answer:{
-				required: "Please enter an answer"
+			answer	:	{
+				required	:	"Please enter an answer"
 			},
-			userName:{
-				required: "Please enter a username"
+			userName	:	{
+				required	:	"Please enter a username"
 			},
-			password:{
-				required: "Please enter a password",
-				minlength: "Your password must be at least 5 characters long"
+			password	:	{
+				required	:	"Please enter a password",
+				minlength	:	"Your password must be at least 5 characters long"
 			},
-			cpassword:{
-				required: "Please enter a password",
-				equalTo: "Please enter the same password as above"
+			cpassword	:	{
+				required	:	"Please enter a password",
+				equalTo	:	"Please enter the same password as above"
 			}
 		}
 	});
@@ -115,82 +119,150 @@ $(document).ready(function() {
 		return this.optional(element) || /^[a-z]+$/i.test(value);
 	}, "Letters only please"); 
 
+
+	//Date Validation
+	var dateCheck = function( date1, date2 ) {
+		if ( !isNaN(Date.parse(date1)) && !isNaN(Date.parse(date2)) ){
+			var dateOne = new Date(date1),
+			dateTwo = new Date(date2);
+
+			// Check Year
+			if ( dateTwo.getFullYear() >= dateOne.getFullYear()){
+				// Check Month
+				if ( dateTwo.getMonth() >= dateOne.getMonth() ){
+					// Check Date
+					if ( dateTwo.getDate() >= dateOne.getDate()){
+						return true;
+					}
+					else
+						return false;
+				}
+				else
+					return false;
+			}
+			else
+				return false;
+		}
+		else {
+			return true;
+		}
+	};
+
+	jQuery.validator.addMethod("dateCheck1", function(value, element) {
+		return dateCheck( $('#admissionDate').val(), $('#surgeryDate').val() );
+	}, "Admission Date must be earlier than Surgery Date");
+	
+	jQuery.validator.addMethod("dateCheck2", function(value, element) {
+		return dateCheck( $('#admissionDate').val(), $('#surgeryDate').val() );
+	}, "Surgery Date must be later than Admission Date");
+	
+	jQuery.validator.addMethod("dateCheck3", function(value, element) {
+		return dateCheck( $('#admissionDate').val(), $('#dischargeDate').val() );
+	}, "Admission Date must be earlier than Discharge Date");
+	
+	jQuery.validator.addMethod("dateCheck4", function(value, element) {
+		return dateCheck( $('#admissionDate').val(), $('#dischargeDate').val() );
+	}, "Discharge Date must be later than Admission Date");
+	
+	jQuery.validator.addMethod("dateCheck5", function(value, element) {
+		return dateCheck( $('#surgeryDate').val(), $('#dischargeDate').val() );
+	}, "Surgery Date must be earlier than Discharge Date");
+	
+	jQuery.validator.addMethod("dateCheck6", function(value, element) {
+		return dateCheck( $('#surgeryDate').val(), $('#dischargeDate').val() );
+	}, "Discharge Date must be later than Surgery Date");
+
 	$("#addVisit").validate({
-		rules:{
-			axisDistRight:{
-				range: [1, 180],
-				digits: true
+		rules	:	{
+			axisDistRight	:	{
+				range	:	[1, 180],
+				digits	:	true
 			},
-			axisDistLeft:{
-				range: [1, 180],
-				digits: true
+			axisDistLeft	:	{
+				range	:	[1, 180],
+				digits	:	true
 			},
-			axisNearRight:{
-				range: [1, 180],
-				digits: true
+			axisNearRight	:	{
+				range	:	[1, 180],
+				digits	:	true
 			},
-			axisNearLeft:{
-				range: [1, 180],
-				digits: true
+			axisNearLeft	:	{
+				range	:	[1, 180],
+				digits	:	true
 			},
-			iop:{
-				digits: true,
-				rangelength: [1, 3]
+			iop	:	{
+				digits	:	true,
+				rangelength	:	[1, 3]
 			},
-			keraK1:{
-				number: true,
-				rangelength: [1, 6]
+			keraK1	:	{
+				number	:	true,
+				rangelength	:	[1, 6]
 			},
-			keraK2:{
-				number: true,
-				rangelength: [1, 6]
+			keraK2	:	{
+				number	:	true,
+				rangelength	:	[1, 6]
 			},
-			axialLength:{
-				number: true,
-				rangelength: [1, 6]
+			axialLength	:	{
+				number	:	true,
+				rangelength	:	[1, 6]
 			},
-			iolPower:{
-				number: true,
-				rangelength: [1, 6]
+			iolPower	:	{
+				number	:	true,
+				rangelength	:	[1, 6]
 			},
-			followUp:{
-				number: true,
-				rangelength:[1,3]
+			followUp	:	{
+				number	:	true,
+				rangelength	:	[1,3]
 			},
+			admissionDate	:	{
+				dateCheck1	:	true,
+				dateCheck3	:	true
+			},
+			surgeryDate	:	{
+				dateCheck2	:	true,
+				dateCheck5	:	true
+			},
+			dischargeDate	:	{
+				dateCheck4	:	true,
+				dateCheck6	:	true
+			}, 
 		},
-		messages:{
-			axisDistRight:{
-				range: "Please enter a value between 1 to 180"
+		messages	:	{
+			axisDistRight	:	{
+				range	:	"Please enter a value between 1 to 180"
 			},
-			axisDistLeft:{
-				range: "Please enter a value between 1 to 180"
+			axisDistLeft	:	{
+				range	:	"Please enter a value between 1 to 180"
 			},
-			axisNearRight:{
-				range: "Please enter a value between 1 to 180"
+			axisNearRight	:	{
+				range	:	"Please enter a value between 1 to 180"
 			},
-			axisNearLeft:{
-				range: "Please enter a value between 1 to 180"
+			axisNearLeft	:	{
+				range	:	"Please enter a value between 1 to 180"
 			}
 		},
-		submitHandler: function () {
+		submitHandler	:	function () {
 			addVisitDetails();
 		}
 	});
 
 	$("#patientForm").validate({
-		rules:{
-			firstName:{
-				required: true,
-				lettersonly: true
+		rules	:	{
+			firstName	:	{
+				required	:	true,
+				lettersonly	:	true
 			},
-			lastName:{
-				required: true,
-				lettersonly: true
+			lastName	:	{
+				required	:	true,
+				lettersonly	:	true
 			},
-			email:{
-				email:true
+			address	:	{
+				required	:	true
 			},
-			gender:"required"
+			email	:	{
+				email	:	true
+			},
+			gender	:	"required"
 		}
 	});
 

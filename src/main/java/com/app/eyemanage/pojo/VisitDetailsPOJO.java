@@ -92,15 +92,15 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=10)
 	private String vaNearRight;
 	
-	@Column(unique = false, nullable = true, length=100)
+	@Column(unique = false, nullable = true, length=200)
 	private String remarks;
 	
 	// Findings Details
 	
-	@Column(unique = false, nullable = true, length=100)
+	@Column(unique = false, nullable = true, length=200)
 	private String anteriorSeg;
 	
-	@Column(unique = false, nullable = true, length=100 )
+	@Column(unique = false, nullable = true, length=200 )
 	private String posteriorSeg;
 	
 	@Column(unique = false, nullable = true)
@@ -108,6 +108,9 @@ public class VisitDetailsPOJO {
 	
 	@Column(unique = false, nullable = true)
 	private Integer iopLeft;
+	
+	@Column(unique = false, nullable = true, length=200)
+	private String complaints;
 	
 	// A-Scan Details
 	

@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -117,6 +118,8 @@
 																		<th>Birth Date</th>
 																		<td th:if="${patient.birthDate != null}"
 																			th:text="${#dates.format(patient.birthDate,'dd-MMM-yyyy')}"></td>
+																		<td th:if="${patient.birthDate == null}"
+																			th:text="'Not Available'"></td>
 																	</tr>
 																	<tr>
 																		<th>Age</th>
@@ -196,11 +199,15 @@
 
 																	<tr>
 																		<th>Birth Date</th>
-																		<td><input th:if="${patient.birthDate != null}"
+																		<!-- <td><input th:if="${patient.birthDate != null}"
 																			th:attr="id= ${patient.patientId} + '_' + ${patient.birthDate}"
 																			type="text" class="form-control"
 																			th:value="${#dates.format(patient.birthDate,'dd-MM-yyyy')}"
-																			readonly="true" /></td>
+																			readonly="true" /></td> -->
+																		<td th:if="${patient.birthDate != null}"
+																			th:text="${#dates.format(patient.birthDate,'dd-MMM-yyyy')}"></td>
+																		<td th:if="${patient.birthDate == null}"
+																			th:text="'Not Available'"></td>
 																	</tr>
 																	<tr>
 																		<th>Age</th>
@@ -230,12 +237,12 @@
 																			class="form-control" type="text"
 																			th:value="${patient.phoneNumber}" /></td>
 																	</tr>
-																	<tr>
+																	<!-- <tr>
 																		<th>Registration Date</th>
 																		<td
 																			th:text="${#dates.format(patient.firstVisitDate,'dd-MM-yyyy')}">
 																		</td>
-																	</tr>
+																	</tr> -->
 																</table>
 															</div>
 															<div class="modal-footer">

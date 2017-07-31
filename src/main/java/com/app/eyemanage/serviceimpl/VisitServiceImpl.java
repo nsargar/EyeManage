@@ -77,6 +77,7 @@ public class VisitServiceImpl {
 		visitDetails.setPosteriorSeg(null);
 		visitDetails.setIopLeft(null);
 		visitDetails.setIopRight(null);
+		visitDetails.setComplaints(null);
 		visitDetails.setKeraK1(null);
 		visitDetails.setKeraK2(null);
 		visitDetails.setAxialLength(null);
