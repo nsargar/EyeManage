@@ -6,7 +6,8 @@
 	content="text/html,charset=UTF-8, width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-<link rel="shortcut icon" th:href="@{/img/em_fav.png}" type="image/x-icon" />
+<link rel="shortcut icon" th:href="@{/img/em_fav.png}"
+	type="image/x-icon" />
 <!-- <script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script> -->
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
@@ -16,15 +17,29 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
 				<a class="navbar-brand" th:href="@{/}">EyeManage</a>
 			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#login">LOGIN</a></li>
+					<li><a href="#features">FEATURES</a></li>
+				</ul>
+			</div>
+
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container" id="login">
 		<div class="jumbotron">
 			<div class="clear"></div>
-			<img th:src="@{/img/em_tr.png}" alt="EyeManage"  class="img-responsive"/>
+			<img th:src="@{/img/em_tr.png}" alt="EyeManage"
+				class="img-responsive" />
 			<hr />
 			<div class="row">
 				<div class="col-sm-6">
@@ -43,7 +58,8 @@
 				<div class="col-sm-6">
 					<th:block th:if="${param.reset != null}">
 						<div th:if=" ${param.reset[0]} == 'success'"
-						class="alert alert-success msg" th:text="#{forgotPassword.success}"></div>
+							class="alert alert-success msg"
+							th:text="#{forgotPassword.success}"></div>
 					</th:block>
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
@@ -72,9 +88,9 @@
 								</div>
 
 								<div class="form-group input-group">
-									<input id="loginSubmit" type="submit" value="Login" class="btn btn-success" /> <span
-										th:if="${param.loginError}" class="alert alert-danger msg"
-										th:text="#{login.error}"></span>
+									<input id="loginSubmit" type="submit" value="Login"
+										class="btn btn-success" /> <span th:if="${param.loginError}"
+										class="alert alert-danger msg" th:text="#{login.error}"></span>
 								</div>
 
 								<div class="form-group input-group">
@@ -87,11 +103,94 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="features" class="container feature-text">
+		<!-- Marketing -->
+		<!-- START THE FEATURETTES -->
+		
+		<h2>FEATURES</h2>
+		<br></br>
+		<br></br>
+		
+		<div class="row featurette slideanim">
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-file feature-logo"></span>
+				<h2 class="featurette-heading">Go Paperless</h2>
+				<p class="lead">It's time to get rid of paper stacks on your
+					desk. Everything gets stored here.</p>
+			</div>
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-leaf feature-logo"></span>
+				<h2 class="featurette-heading">Simple Yet Powerful</h2>
+				<p class="lead">Beautifully designed. Simple to use with a clean
+					user interface.</p>
+			</div>
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-search feature-logo"></span>
+				<h2 class="featurette-heading">Easy Search</h2>
+				<p class="lead">Comprehensive Search. No need to scroll down
+					huge lists of records. Just type in and you get what you desire.</p>
+			</div>
+
+		</div>
+
+		<div class="row featurette slideanim">
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-user feature-logo"></span>
+				<h2 class="featurette-heading">Role Management</h2>
+				<p class="lead">Are you a Doctor or a receptionist? You access
+					only what's really required.</p>
+			</div>
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-edit feature-logo"></span>
+				<h2 class="featurette-heading">Patient Management</h2>
+				<p class="lead">Saving patient details have gotten easier. Easy
+					edits and deletes.</p>
+			</div>
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-check feature-logo"></span>
+				<h2 class="featurette-heading">Case Management</h2>
+				<p class="lead">A clean workflow that makes it simple to manage
+					your cases. Quick case creation lets you focus more on your
+					Appointments.</p>
+			</div>
+
+		</div>
+
+		<div class="row featurette slideanim">
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-header feature-logo"></span>
+				<h2 class="featurette-heading">History Maintenance</h2>
+				<p class="lead">You no longer need to worry about the past. Want
+					to peep into past records? Don't worry, we have got you covered.</p>
+			</div>
+
+			<div class="col-md-4 feature-text">
+				<span class="glyphicon glyphicon-list-alt feature-logo"></span>
+				<h2 class="featurette-heading">Report Generation</h2>
+				<p class="lead">Tired of writing? No problem, Reports are just a
+					click away. Automatic Report Generation saves you a lot of time.</p>
+			</div>
+
+		</div>
+
+		<!-- /END THE FEATURETTES -->
+
+		<!-- FOOTER -->
+		<footer>
+			<p class="pull-right">
+				<a href="#">Back to top</a>
+			</p>
+		</footer>
+	</div>
 	<!-- /.container -->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!-- <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script> -->
-	
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 

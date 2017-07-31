@@ -104,5 +104,4 @@
 		<finalName>eyemanage</finalName>
 	</build>
 
-	<packaging>war</packaging>
 </project>
