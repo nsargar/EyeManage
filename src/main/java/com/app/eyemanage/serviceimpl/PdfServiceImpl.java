@@ -19,6 +19,7 @@ import com.app.eyemanage.utility.Utils;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
+import com.itextpdf.typography.*;
 
 @Service
 @EntityScan(basePackages = {"com.app.eyemanage"})
@@ -36,6 +37,9 @@ public class PdfServiceImpl implements PdfService{
 
 	@Value("${pdfGenerated.path}")
 	String generatedPath;
+	
+	//String text	=	"\\ue0\\ua4\\ua6\\ue0\\ua4\\ubf\\ue0\\ua4\\ub5\\ue0\\ua4\\ub8";	
+	//String text	=	"\u0926\u093f\u0935\u0938";
 
 	@Override
 	public String dischargeSummary( VisitDetailsPOJO visit, HttpServletResponse response) {
@@ -56,7 +60,7 @@ public class PdfServiceImpl implements PdfService{
 		String generatedPDF	=	generatedPath + "DischargeSummary.pdf";
 		PdfStamper stamper;
 		PdfReader pdfReader;
-
+		
 		try {
 			pdfReader	=	new PdfReader( templatePDF );
 			FileOutputStream fileOS	=	new FileOutputStream( generatedPDF );
@@ -76,7 +80,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("anaesthetist", visit.getAnaesthetist());
 			stamper.getAcroFields().setField("investigations", visit.getInvestigations());
 			stamper.getAcroFields().setField("followUp", Integer.toString(visit.getFollowUp()));
-
+			
 			if( null != visit.getDrugs()) {
 				int rowNo	=	4;
 				if( visit.getDrugs().size() < rowNo )
@@ -103,7 +107,7 @@ public class PdfServiceImpl implements PdfService{
 						stamper.getAcroFields().setField("frequency" + i, String.valueOf(visit.getDrugs().get(i-1).getFrequency()) );
 					else
 						stamper.getAcroFields().setField("frequency" + i, "-");
-
+					
 					if (( null != String.valueOf(visit.getDrugs().get(i-1).getDuration()) ) ||
 							!String.valueOf(visit.getDrugs().get(i-1).getDuration()).equalsIgnoreCase("null"))
 						stamper.getAcroFields().setField("duration" + i, String.valueOf(visit.getDrugs().get(i-1).getDuration())
