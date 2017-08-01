@@ -61,7 +61,7 @@ function addVisitDetails(){
 		success : function(result) {
 			if( result.status == "Done"){
 				//clearForm();
-				window.location.href = result.data;
+				window.location.href = result.data + '?result=1';
 				$("#msg").html("<strong>" + "Visit Added Successfully!</strong>");
 			}else{
 				$("#msg").html("<strong>" + "Something Went wrong</strong>");

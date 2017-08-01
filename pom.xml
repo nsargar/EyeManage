@@ -17,6 +17,14 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
+	<repositories>
+		<repository>
+			<id>itext</id>
+			<name>iText Repository - releases</name>
+			<url>https://repo.itextsupport.com/releases</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -90,6 +98,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- pdfCalligraph -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>typography</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 
 	</dependencies>

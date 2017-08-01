@@ -38,11 +38,11 @@
 	<div class="container" id="login">
 		<div class="jumbotron">
 			<div class="clear"></div>
-			<img th:src="@{/img/em_tr.png}" alt="EyeManage"
-				class="img-responsive" />
-			<hr />
 			<div class="row">
 				<div class="col-sm-6">
+					<img th:src="@{/img/em_tr.png}" alt="EyeManage"
+						class="img-responsive" />
+					<hr />
 					<p class="text-primary text-left">
 						<br /> A simple to use Electronic Medical Record and Clinic
 						Management software for Clinics. <br /> Browser based software
@@ -51,67 +51,60 @@
 						with managed Workflow.
 					</p>
 				</div>
-				<!-- ${isForgotPassSuccess != null} && -->
-				<!-- <div>
-					
-				</div> -->
+
+				<!-- Login Main Div -->
 				<div class="col-sm-6">
 					<th:block th:if="${param.reset != null}">
 						<div th:if=" ${param.reset[0]} == 'success'"
 							class="alert alert-success msg"
 							th:text="#{forgotPassword.success}"></div>
 					</th:block>
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
-						<!-- <li><a data-toggle="tab" href="#register">Register</a></li> -->
-					</ul>
-					<br />
-					<div class="tab-content">
-						<!-- Result Messages -->
+					<!-- Result Messages -->
 
-						<!-- Result Messages End -->
-						<div id="login" class="tab-pane fade in active">
-							<form action="#" method="post" th:action="@{/login}"
-								th:object="${user}" class="form-horizontal" name="loginForm">
-								<div class="form-group input-group col-sm-7">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input type="text"
-										th:field="*{userName}" placeholder="Enter User Name"
-										class="form-control" name="userNameTxt" id="userNameTxt" />
-								</div>
+					<!-- Result Messages End -->
+					<div id="login" class="col-sm-11 col-sm-offset-1">
+						<h3 id="login-header" class="text-left">Login</h3>
+						<hr />
+						<form action="#" method="post" th:action="@{/login}"
+							th:object="${user}" class="form-horizontal" name="loginForm">
+							<div class="form-group input-group col-sm-12" id="login-input">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user"></i></span> <input type="text"
+									th:field="*{userName}" placeholder="Enter User Name"
+									class="form-control" name="userNameTxt" id="userNameTxt" />
+							</div>
 
-								<div class="form-group input-group col-sm-7">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-lock"></i></span> <input type="password"
-										th:field="*{password}" placeholder="Enter Password"
-										class="form-control" />
-								</div>
+							<div class="form-group input-group col-sm-12" id="login-input">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input type="password"
+									th:field="*{password}" placeholder="Enter Password"
+									class="form-control" />
+							</div>
 
-								<div class="form-group input-group">
-									<input id="loginSubmit" type="submit" value="Login"
-										class="btn btn-success" /> <span th:if="${param.loginError}"
-										class="alert alert-danger msg" th:text="#{login.error}"></span>
-								</div>
+							<div class="form-group input-group" id="login-input">
+								<input id="loginSubmit" type="submit" value="Login"
+									class="btn btn-success" /> <span th:if="${param.loginError}"
+									class="alert alert-danger msg" th:text="#{login.error}"></span>
+							</div>
 
-								<div class="form-group input-group">
-									<a th:href="@{/forgotPassword}">Forgot Password?</a>
-								</div>
-							</form>
-						</div>
+							<div class="form-group input-group" id="login-input">
+								<a th:href="@{/forgotPassword}">Forgot Password?</a>
+							</div>
+						</form>
 					</div>
 				</div>
+				<!-- /Login Main Div -->
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="features" class="container feature-text">
 		<!-- Marketing -->
 		<!-- START THE FEATURETTES -->
-		
+
 		<h2>FEATURES</h2>
-		<br></br>
-		<br></br>
-		
+		<br></br> <br></br>
+
 		<div class="row featurette slideanim">
 			<div class="col-md-4 feature-text">
 				<span class="glyphicon glyphicon-file feature-logo"></span>
