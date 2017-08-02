@@ -1,7 +1,7 @@
 # EyeManage
 EyeManage - An EMR Management Tool
 
-What is it? 
+What is it?
   A simple to use Electronic Medical Record and Clinic Management software for Eye Clinics.
   Browser based software deployed on user's Local Area Network.
   It provides Accessible, On Time and Patient Centric care with managed Workflow.
