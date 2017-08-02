@@ -432,30 +432,46 @@
 																<h4 class="modal-title">Print Reports</h4>
 															</div>
 															<div class="modal-body">
-																<a class="btn btn-primary"
-																	th:href="@{'/dashboard/print/DischargeSummary_' + ${visit.visitId} + '.pdf'}"
-																	target="_blank"
-																	th:id="'printDischarge_' + ${visit.visitId}"> <i
-																	class="glyphicon glyphicon-print"></i> Discharge
-																	Summary
-																</a> <a class="btn btn-primary"
-																	th:href="@{'/dashboard/print/Ascan_' + ${visit.visitId} + '.pdf'}"
-																	target="_blank"
-																	th:id="'printAscan_' + ${visit.visitId}"> <i
-																	class="glyphicon glyphicon-print"></i> A-Scan Report
-																</a> <br /> <br /> <a class="btn btn-primary"
-																	th:href="@{'/dashboard/print/DrugPrescription_' + ${visit.visitId} + '.pdf'}"
-																	target="_blank"
-																	th:id="'printDrugPrescription_' + ${visit.visitId}">
-																	<i class="glyphicon glyphicon-print"></i> Drug
-																	Prescription
-																</a> <a class="btn btn-primary"
-																	th:href="@{'/dashboard/print/GlassPrescription_' + ${visit.visitId} + '.pdf'}"
-																	target="_blank"
-																	th:id="'printGlassPrescription_' + ${visit.visitId}">
-																	<i class="glyphicon glyphicon-print"></i> Glass
-																	Prescription
-																</a>
+																<div class="row">
+																	<div class="col-sm-4 col-sm-offset-1">
+																		<a class="btn btn-primary"
+																			th:href="@{'/dashboard/print/DischargeSummary_' + ${visit.visitId} + '.pdf'}"
+																			target="_blank"
+																			th:id="'printDischarge_' + ${visit.visitId}"> <i
+																			class="glyphicon glyphicon-print"></i> Discharge
+																			Summary
+																		</a>
+																	</div>
+																	<div class="col-sm-4 col-sm-offset-1">
+																		<a class="btn btn-primary"
+																			th:href="@{'/dashboard/print/Ascan_' + ${visit.visitId} + '.pdf'}"
+																			target="_blank"
+																			th:id="'printAscan_' + ${visit.visitId}"> <i
+																			class="glyphicon glyphicon-print"></i> A-Scan Report
+																		</a>
+																	</div>
+																</div>
+																<br/>
+																<div class="row">
+																	<div class="col-sm-4 col-sm-offset-1">
+																		<a class="btn btn-primary"
+																			th:href="@{'/dashboard/print/DrugPrescription_' + ${visit.visitId} + '.pdf'}"
+																			target="_blank"
+																			th:id="'printDrugPrescription_' + ${visit.visitId}">
+																			<i class="glyphicon glyphicon-print"></i> Drug
+																			Prescription
+																		</a>
+																	</div>
+																	<div class="col-sm-4 col-sm-offset-1">
+																		<a class="btn btn-primary"
+																			th:href="@{'/dashboard/print/GlassPrescription_' + ${visit.visitId} + '.pdf'}"
+																			target="_blank"
+																			th:id="'printGlassPrescription_' + ${visit.visitId}">
+																			<i class="glyphicon glyphicon-print"></i> Glass
+																			Prescription
+																		</a>
+																	</div>
+																</div>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-default"
