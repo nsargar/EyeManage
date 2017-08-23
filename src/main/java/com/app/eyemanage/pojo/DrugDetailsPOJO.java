@@ -28,11 +28,11 @@ public class DrugDetailsPOJO {
 	@Column(unique = false, nullable = true, length=50)
 	private String drugName;
 	
-	@Column(unique = false, nullable = true, length=3)
-	private Integer quantity;
+	@Column(unique = false, nullable = true, length=20)
+	private String quantity;
 	
-	@Column(unique = false, nullable = true, length=2)
-	private Integer frequency;
+	@Column(unique = false, nullable = true, length=20)
+	private String frequency;
 	
 	@Column(unique = false, nullable = true, length=3)
 	private Integer duration;
