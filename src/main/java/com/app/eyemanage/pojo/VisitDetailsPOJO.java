@@ -161,6 +161,124 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=3 )
 	private Integer followUp;
 	
+	
+	//Additional Fields
+	
+	/**
+	 * @author omini007
+	 * @category Basic fields for a clinic
+	 * @since 2017-11-14
+	 */
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String visionWithoutGlassRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String visionWithoutGlassLeft;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String visionWithGlassRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String visionWithGlassLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String lensRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String lensLeft;                        
+	                                                
+	@Column(unique = false, nullable = true, length=30)
+	private String corneaRight;                     
+	                                                
+	@Column(unique = false, nullable = true, length=30)
+	private String corneaLeft;                      
+	                                                
+	@Column(unique = false, nullable = true, length=30)
+	private String pupilRight;                      
+	                                                
+	@Column(unique = false, nullable = true, length=30)
+	private String pupilLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String irisRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String irisLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String antChamberRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String antChamberLeft;
+	
+	@Column(unique = false, nullable = true, length=50)
+	private String fundusRight;
+	
+	@Column(unique = false, nullable = true, length=50)
+	private String fundusLeft;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String swellingRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String swellingLeft;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String rednessRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String rednessLeft;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String conjRednessRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String conjRednessLeft;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String conjTearRight;
+	
+	@Column(unique = false, nullable = true, length=5)
+	private String conjTearLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String ocularSurgeryRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String ocularSurgeryLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String sacRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String sacLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String cornialUlcerRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String cornialUlcerLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String urine;
+	
+	@Column(unique = false, nullable = true)
+	private Float bloodPressureVal1;
+	
+	@Column(unique = false, nullable = true)
+	private Float bloodPressureVal2;
+	        
+	@Column(unique = false, nullable = true)
+	private Float bloodSugarFasting;
+	
+	@Column(unique = false, nullable = true)
+	private Float bloodSugarPp;
+	
+	/**
+	 * END
+	 */
+	
 	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER, orphanRemoval = true )
 	@JoinColumn( name = "visitId", referencedColumnName = "visitId")
 	private List<DrugDetailsPOJO> drugs = new ArrayList<DrugDetailsPOJO>();
