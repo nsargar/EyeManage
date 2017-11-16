@@ -43,14 +43,16 @@
 								<ul class="nav nav-tabs">
 									<li class="active" id="l1"><a data-toggle="tab"
 										href="#glass">Glass Prescription</a></li>
-									<li id="l2"><a data-toggle="tab" href="#findings">Findings</a></li>
-									<li id="l3"><a data-toggle="tab" href="#drug">Drug
+									<li id="l2"><a data-toggle="tab" href="#other">Other
+											Details</a></li>
+									<li id="l3"><a data-toggle="tab" href="#findings">Findings</a></li>
+									<li id="l4"><a data-toggle="tab" href="#drug">Drug
 											Prescription</a></li>
-									<li id="l4"><a data-toggle="tab" href="#ascan">A-Scan
+									<li id="l5"><a data-toggle="tab" href="#ascan">A-Scan
 											Report</a></li>
-									<li id="l5"><a data-toggle="tab" href="#discharge">Discharge
+									<li id="l6"><a data-toggle="tab" href="#discharge">Discharge
 											Summary</a></li>
-									<li id="l6"><button type="submit"
+									<li id="l7"><button type="submit"
 											class="btn btn-success col-sm-offset-7" th:id="addVisitBtn">Submit</button></li>
 								</ul>
 
@@ -132,17 +134,317 @@
 														</tr>
 													</thead>
 												</table>
+
+
 											</div>
 										</div>
 										<div class="form-group">
-											<p class="control-label col-sm-2">Remarks :</p>
+											<label id="left-right"
+												class="text-center col-sm-offset-4 col-sm-3">Right</label> <label
+												id="left-right" class="text-center  col-sm-3">Left</label>
+										</div>
+										<div class="form-group">
+											<p class="text-left col-sm-offset-1 col-sm-3">Vision
+												Without Glass</p>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{visionWithoutGlassRight}"
+													th:id="visionWithoutGlassRight" placeholder="Enter a Value" />
+											</div>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{visionWithoutGlassLeft}"
+													th:id="visionWithoutGlassLeft" placeholder="Enter a Value" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<p class="text-left col-sm-offset-1 col-sm-3">Vision With
+												Glass</p>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{visionWithGlassRight}"
+													th:id="visionWithGlassRight" placeholder="Enter a Value" />
+											</div>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{visionWithGlassLeft}"
+													th:id="visionWithGlassLeft" placeholder="Enter a Value" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<p class="text-left col-sm-offset-1 col-sm-3">Lens</p>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{lensRight}" th:id="lensRight"
+													placeholder="Enter a Value" />
+											</div>
+											<div class="col-sm-3">
+												<input type="text" maxlength="3" class="form-control"
+													th:field="*{lensLeft}" th:id="lensLeft"
+													placeholder="Enter a Value" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<p class="text-left col-sm-offset-1 col-sm-3">Remarks :</p>
 											<div class="col-sm-6">
-												<textarea rows="2" class="form-control" draggable="false"
+												<textarea rows="3" class="form-control" draggable="false"
 													placeholder="Add Remarks" th:field="*{remarks}"
 													th:id="remarks"></textarea>
 											</div>
 										</div>
 									</div>
+
+									<!-- Other Details Tab -->
+									<div id="other" class="tab-pane fade">
+										<div class="form-group">
+											<label id="left-right"
+												class="text-center col-sm-offset-4 col-sm-3">Right</label> <label
+												id="left-right" class="text-center  col-sm-3">Left</label>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">Basic Details</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Cornea</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="10" class="form-control"
+															th:field="*{corneaRight}" th:id="corneaRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{corneaLeft}" th:id="corneaLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Pupil</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Iris</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{irisRight}" th:id="irisRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{irisLeft}" th:id="irisLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Anterior
+														Chamber</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Fundus</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Ocular Surgery</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Corneal Ulcer</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Sac</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilRight}" th:id="pupilRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{pupilLeft}" th:id="pupilLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">Lid Details</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Swelling</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingRight}" th:id="swellingRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingLeft}" th:id="swellingLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Redness</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingRight}" th:id="swellingRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingLeft}" th:id="swellingLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">Conjunctiva Details</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival Redness</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingRight}" th:id="swellingRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingLeft}" th:id="swellingLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival Tear</p>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingRight}" th:id="swellingRight"
+															placeholder="Enter a Value" />
+													</div>
+													<div class="col-sm-3">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{swellingLeft}" th:id="swellingLeft"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">General Details</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<!-- <p class="text-left col-sm-offset-1 col-sm-3">Blood
+														Pressure</p> -->
+													<p class="control-label col-sm-2">Blood Pressure</p>
+													<div class="col-sm-1">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
+													</div>
+													<p th:text="'/'" class="control-label col-sm-1"
+														style="text-align: center; width: 1px"></p>
+													<div class="col-sm-1">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{bloodPressureVal2}" th:id="bloodPressureVal2" />
+													</div>
+													<p th:text="'mmHg'" class="control-label col-sm-1"
+														style="text-align: left"></p>
+
+													<p class="control-label col-sm-2">Urine</p>
+													<div class="col-sm-3">
+														<input type="text" class="form-control"
+															th:field="*{urine}" th:id="urine"
+															placeholder="Enter a Value" />
+													</div>
+												</div>
+
+
+												<div class="form-group">
+													<p class="control-label col-sm-2">Blood Sugar (Fasting)</p>
+													<div class="col-sm-1">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
+													</div>
+													<p class="control-label col-sm-1"
+														style="text-align: center; width: 3px">(PP)</p>
+													<div class="col-sm-1">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{bloodPressureVal2}" th:id="bloodPressureVal2" />
+													</div>
+													<!-- <p class="control-label col-sm-offset-2 col-sm-2">Blood Sugar (PP)</p>
+													<div class="col-sm-1">
+														<input type="text" maxlength="3" class="form-control"
+															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
+													</div> -->
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+									<!-- Findings Tab -->
 									<div id="findings" class="tab-pane fade">
 										<div class="form-group">
 											<p class="control-label col-sm-2">Anterior Segment
