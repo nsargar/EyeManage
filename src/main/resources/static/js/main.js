@@ -44,3 +44,60 @@ $("#visitSearchDrop").on('change', function(event) {
 		$("#dateToDiv").hide();
 	}
 });
+
+
+/*
+ * Function to show/hide text box on change of the following Drop Downs:
+ * 1. Vision Without Glass
+ * 2. Vision With Glass
+ * 3. Lens
+ * 4. Cornea
+ * 5. Pupil
+ * 6. Iris
+ * 7. Anterior Chamber
+ */
+function toggleTextBox( listRightId, listLeftId, rowId, cellRightId, cellLeftId ){
+	alert("In");
+	if ( $("#" + listRightId ).val() == "other" || $("#" + listLeftId ).val() == "other" ){
+		// Show Row
+		alert("Show");
+		if ( $("#" + listRightId ).val() == "other" && $("#" + listLeftId ).val() == "other" ){
+			// Show both cells
+			$("#" + cellRightId ).removeClass("hidden");
+			$("#" + cellLeftId ).removeClass("col-sm-offset-3");
+			$("#" + cellLeftId ).removeClass("hidden");
+		}
+		else if( $("#" + listRightId ).val() == "other" ){
+			// Show right cell and hide left cell
+			$("#" + cellRightId ).removeClass("hidden");
+			$("#" + cellLeftId ).removeClass("col-sm-offset-3");
+			$("#" + cellLeftId ).addClass("hidden");
+		}
+		else if( $("#" + listLeftId ).val() == "other" ){
+			// Show left cell and hide right cell
+			$("#" + cellRightId ).addClass("hidden");
+			$("#" + cellLeftId ).addClass("col-sm-offset-3");
+			$("#" + cellLeftId ).removeClass("hidden");
+		}
+		$("#" + rowId ).removeClass("hidden");
+	}
+	else{
+		// Hide Row
+		alert("Hide");
+		$("#" + rowId ).addClass("hidden");
+	}
+	
+	
+}
+
+// Toggle Text Box for Vision Without Glass Right
+$("#visionWithoutGlassRight").on('change', function(event) {
+	toggleTextBox( 'visionWithoutGlassRight', 'visionWithoutGlassLeft', 'visionWithoutGlassRow', 
+			'visionWithoutGlassRightCell', 'visionWithoutGlassLeftCell');
+});
+
+//Toggle Text Box for Vision Without Glass Left
+$("#visionWithoutGlassLeft").on('change', function(event) {
+	toggleTextBox( 'visionWithoutGlassRight', 'visionWithoutGlassLeft', 'visionWithoutGlassRow', 
+			'visionWithoutGlassRightCell', 'visionWithoutGlassLeftCell');
+});

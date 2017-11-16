@@ -173,8 +173,14 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=5)
 	private String visionWithoutGlassRight;
 	
+	@Column(unique = false, nullable = true, length=20)
+	private String visionWOGlassRightDesc;
+	
 	@Column(unique = false, nullable = true, length=5)
 	private String visionWithoutGlassLeft;
+	
+	@Column(unique = false, nullable = true, length=20)
+	private String visionWOGlassLeftDesc;
 	
 	@Column(unique = false, nullable = true, length=5)
 	private String visionWithGlassRight;
@@ -249,16 +255,7 @@ public class VisitDetailsPOJO {
 	private String ocularSurgeryLeft;
 	
 	@Column(unique = false, nullable = true, length=30)
-	private String sacRight;
-	
-	@Column(unique = false, nullable = true, length=30)
-	private String sacLeft;
-	
-	@Column(unique = false, nullable = true, length=30)
-	private String cornialUlcerRight;
-	
-	@Column(unique = false, nullable = true, length=30)
-	private String cornialUlcerLeft;
+	private String sacPBl;
 	
 	@Column(unique = false, nullable = true, length=30)
 	private String urine;
