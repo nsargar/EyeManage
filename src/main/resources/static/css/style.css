@@ -328,6 +328,18 @@ h3 {
 	text-align: center;
 }
 
+/* Width of Submit Button in Visit Add */
+#l7{
+	width : 15px;
+}
+
+/* Text Box in Visit Add */
+.hidden{
+	display: none;
+}
+
+
+
 /*Media Queries*/
 @media only screen and (max-width: 768px) {
 	body {
