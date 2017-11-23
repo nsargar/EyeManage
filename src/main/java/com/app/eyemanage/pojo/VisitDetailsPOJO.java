@@ -185,38 +185,74 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=5)
 	private String visionWithGlassRight;
 	
+	@Column(unique = false, nullable = true, length=20)
+	private String visionWGlassRightDesc;
+	
 	@Column(unique = false, nullable = true, length=5)
 	private String visionWithGlassLeft;
+	
+	@Column(unique = false, nullable = true, length=20)
+	private String visionWGlassLeftDesc;
 	
 	@Column(unique = false, nullable = true, length=30)
 	private String lensRight;
 	
 	@Column(unique = false, nullable = true, length=30)
-	private String lensLeft;                        
+	private String lensRightDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String lensLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String lensLeftDesc;
 	                                                
 	@Column(unique = false, nullable = true, length=30)
-	private String corneaRight;                     
+	private String corneaRight;  
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String corneaRightDesc;
 	                                                
 	@Column(unique = false, nullable = true, length=30)
 	private String corneaLeft;                      
-	                                                
+	
 	@Column(unique = false, nullable = true, length=30)
-	private String pupilRight;                      
+	private String corneaLeftDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String pupilRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String pupilRightDesc;
 	                                                
 	@Column(unique = false, nullable = true, length=30)
 	private String pupilLeft;
 	
 	@Column(unique = false, nullable = true, length=30)
+	private String pupilLeftDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
 	private String irisRight;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String irisRightDesc;
 	
 	@Column(unique = false, nullable = true, length=30)
 	private String irisLeft;
 	
 	@Column(unique = false, nullable = true, length=30)
+	private String irisLeftDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
 	private String antChamberRight;
 	
 	@Column(unique = false, nullable = true, length=30)
+	private String antChamberRightDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
 	private String antChamberLeft;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String antChamberLeftDesc;
 	
 	@Column(unique = false, nullable = true, length=50)
 	private String fundusRight;

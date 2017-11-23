@@ -183,12 +183,14 @@
 											<div class="col-sm-4"></div>
 											<div class="col-sm-3 hidden" id="visionWithoutGlassRightCell">
 												<input type="text" maxlength="20" class="form-control"
-													th:field="*{visionWOGlassRightDesc}" th:id="visionWOGlassRightDesc"
+													th:field="*{visionWOGlassRightDesc}"
+													th:id="visionWOGlassRightDesc"
 													placeholder="Add Details for Right Eye" />
 											</div>
 											<div class="col-sm-3 hidden" id="visionWithoutGlassLeftCell">
 												<input type="text" maxlength="20" class="form-control"
-													th:field="*{visionWOGlassLeftDesc}" th:id="visionWOGlassLeftDesc"
+													th:field="*{visionWOGlassLeftDesc}"
+													th:id="visionWOGlassLeftDesc"
 													placeholder="Add Details for Left Eye" />
 											</div>
 										</div>
@@ -228,6 +230,23 @@
 												</select>
 											</div>
 										</div>
+
+										<div class="form-group hidden" id="visionWithGlassRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="visionWithGlassRightCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWGlassRightDesc}"
+													th:id="visionWGlassRightDesc"
+													placeholder="Add Details for Right Eye" />
+											</div>
+											<div class="col-sm-3 hidden" id="visionWithGlassLeftCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWGlassLeftDesc}"
+													th:id="visionWGlassLeftDesc"
+													placeholder="Add Details for Left Eye" />
+											</div>
+										</div>
+
 										<div class="form-group">
 											<p class="text-left col-sm-offset-1 col-sm-3">Lens</p>
 											<div class="col-sm-3">
@@ -254,6 +273,21 @@
 												</select>
 											</div>
 										</div>
+
+										<div class="form-group hidden" id="lensRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="lensRightCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{lensRightDesc}" th:id="lensRightDesc"
+													placeholder="Add Details for Right Eye" />
+											</div>
+											<div class="col-sm-3 hidden" id="lensLeftCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{lensLeftDesc}" th:id="lensLeftDesc"
+													placeholder="Add Details for Left Eye" />
+											</div>
+										</div>
+
 
 										<div class="form-group">
 											<p class="text-left col-sm-offset-1 col-sm-3">Remarks :</p>
@@ -309,6 +343,21 @@
 														</div>
 													</div>
 
+													<div class="form-group hidden" id="corneaRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="corneaRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{corneaRightDesc}" th:id="corneaRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="corneaLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{corneaLeftDesc}" th:id="corneaLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
+													</div>
+
+
 													<div class="form-group">
 														<p class="text-left col-sm-offset-1 col-sm-3">Pupil</p>
 														<div class="col-sm-3">
@@ -332,6 +381,20 @@
 															</select>
 														</div>
 													</div>
+													
+													<div class="form-group hidden" id="pupilRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="pupilRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{pupilRightDesc}" th:id="pupilRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="pupilLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{pupilLeftDesc}" th:id="pupilLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
+													</div>
 
 													<div class="form-group">
 														<p class="text-left col-sm-offset-1 col-sm-3">Iris</p>
@@ -352,6 +415,20 @@
 																<option th:value="constricted">Constricted</option>
 																<option th:value="other">Other</option>
 															</select>
+														</div>
+													</div>
+													
+													<div class="form-group hidden" id="irisRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="irisRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{irisRightDesc}" th:id="irisRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="irisLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{irisLeftDesc}" th:id="irisLeftDesc"
+																placeholder="Add Details for Left Eye" />
 														</div>
 													</div>
 
@@ -377,6 +454,20 @@
 																<option th:value="shallow">Shallow</option>
 																<option th:value="other">Other</option>
 															</select>
+														</div>
+													</div>
+													
+													<div class="form-group hidden" id="anteriorRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="anteriorRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{antChamberRightDesc}" th:id="antChamberRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="anteriorLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{antChamberLeftDesc}" th:id="antChamberLeftDesc"
+																placeholder="Add Details for Left Eye" />
 														</div>
 													</div>
 

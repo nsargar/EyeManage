@@ -57,10 +57,8 @@ $("#visitSearchDrop").on('change', function(event) {
  * 7. Anterior Chamber
  */
 function toggleTextBox( listRightId, listLeftId, rowId, cellRightId, cellLeftId ){
-	alert("In");
 	if ( $("#" + listRightId ).val() == "other" || $("#" + listLeftId ).val() == "other" ){
 		// Show Row
-		alert("Show");
 		if ( $("#" + listRightId ).val() == "other" && $("#" + listLeftId ).val() == "other" ){
 			// Show both cells
 			$("#" + cellRightId ).removeClass("hidden");
@@ -83,7 +81,6 @@ function toggleTextBox( listRightId, listLeftId, rowId, cellRightId, cellLeftId 
 	}
 	else{
 		// Hide Row
-		alert("Hide");
 		$("#" + rowId ).addClass("hidden");
 	}
 	
@@ -101,3 +98,79 @@ $("#visionWithoutGlassLeft").on('change', function(event) {
 	toggleTextBox( 'visionWithoutGlassRight', 'visionWithoutGlassLeft', 'visionWithoutGlassRow', 
 			'visionWithoutGlassRightCell', 'visionWithoutGlassLeftCell');
 });
+
+
+//Toggle Text Box for Vision With Glass Right
+$("#visionWithGlassRight").on('change', function(event) {
+	toggleTextBox( 'visionWithGlassRight', 'visionWithGlassLeft', 'visionWithGlassRow', 
+			'visionWithGlassRightCell', 'visionWithGlassLeftCell');
+});
+
+//Toggle Text Box for Vision With Glass Left
+$("#visionWithGlassLeft").on('change', function(event) {
+	toggleTextBox( 'visionWithGlassRight', 'visionWithGlassLeft', 'visionWithGlassRow', 
+			'visionWithGlassRightCell', 'visionWithGlassLeftCell');
+});
+
+
+//Toggle Text Box for Lens Right
+$("#lensRight").on('change', function(event) {
+	toggleTextBox( 'lensRight', 'lensLeft', 'lensRow', 
+			'lensRightCell', 'lensLeftCell');
+});
+
+//Toggle Text Box for Lens Left
+$("#lensLeft").on('change', function(event) {
+	toggleTextBox( 'lensRight', 'lensLeft', 'lensRow', 
+			'lensRightCell', 'lensLeftCell');
+});
+
+//Toggle Text Box for Cornea Right
+$("#corneaRight").on('change', function(event) {
+	toggleTextBox( 'corneaRight', 'corneaLeft', 'corneaRow', 
+			'corneaRightCell', 'corneaLeftCell');
+});
+
+//Toggle Text Box for Cornea Left
+$("#corneaLeft").on('change', function(event) {
+	toggleTextBox( 'corneaRight', 'corneaLeft', 'corneaRow', 
+			'corneaRightCell', 'corneaLeftCell');
+});
+
+//Toggle Text Box for Pupil Right
+$("#pupilRight").on('change', function(event) {
+	toggleTextBox( 'pupilRight', 'pupilLeft', 'pupilRow', 
+			'pupilRightCell', 'pupilLeftCell');
+});
+
+//Toggle Text Box for Pupil Left
+$("#pupilLeft").on('change', function(event) {
+	toggleTextBox( 'pupilRight', 'pupilLeft', 'pupilRow', 
+			'pupilRightCell', 'pupilLeftCell');
+});
+
+//Toggle Text Box for Iris Right
+$("#irisRight").on('change', function(event) {
+	toggleTextBox( 'irisRight', 'irisLeft', 'irisRow', 
+			'irisRightCell', 'irisLeftCell');
+});
+
+//Toggle Text Box for Iris Left
+$("#irisLeft").on('change', function(event) {
+	toggleTextBox( 'irisRight', 'irisLeft', 'irisRow', 
+			'irisRightCell', 'irisLeftCell');
+});
+
+//Toggle Text Box for Anterior Right
+$("#antChamberRight").on('change', function(event) {
+	toggleTextBox( 'antChamberRight', 'antChamberLeft', 'anteriorRow', 
+			'anteriorRightCell', 'anteriorLeftCell');
+});
+
+//Toggle Text Box for Anterior Left
+$("#antChamberLeft").on('change', function(event) {
+	toggleTextBox( 'antChamberRight', 'antChamberLeft', 'anteriorRow', 
+			'anteriorRightCell', 'anteriorLeftCell');
+});
+
+
