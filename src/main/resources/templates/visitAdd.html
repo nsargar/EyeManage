@@ -147,14 +147,51 @@
 											<p class="text-left col-sm-offset-1 col-sm-3">Vision
 												Without Glass</p>
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{visionWithoutGlassRight}"
-													th:id="visionWithoutGlassRight" placeholder="Enter a Value" />
+												<select name="visionWithoutGlassRight"
+													th:id="visionWithoutGlassRight"
+													th:field="*{visionWithoutGlassRight}" class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="6/6">6/6</option>
+													<option th:value="6/12">6/12</option>
+													<option th:value="6/18">6/18</option>
+													<option th:value="6/24">6/24</option>
+													<option th:value="6/36">6/36</option>
+													<option th:value="6/60">6/60</option>
+													<option th:value="FC">FC</option>
+													<option th:value="MB">MB</option>
+													<option th:value="other">Other</option>
+												</select>
 											</div>
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{visionWithoutGlassLeft}"
-													th:id="visionWithoutGlassLeft" placeholder="Enter a Value" />
+												<select name="visionWithoutGlassLeft"
+													th:id="visionWithoutGlassLeft"
+													th:field="*{visionWithoutGlassLeft}" class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="6/6">6/6</option>
+													<option th:value="6/12">6/12</option>
+													<option th:value="6/18">6/18</option>
+													<option th:value="6/24">6/24</option>
+													<option th:value="6/36">6/36</option>
+													<option th:value="6/60">6/60</option>
+													<option th:value="FC">FC</option>
+													<option th:value="MB">MB</option>
+													<option th:value="other">Other</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group hidden" id="visionWithoutGlassRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="visionWithoutGlassRightCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWOGlassRightDesc}"
+													th:id="visionWOGlassRightDesc"
+													placeholder="Add Details for Right Eye" />
+											</div>
+											<div class="col-sm-3 hidden" id="visionWithoutGlassLeftCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWOGlassLeftDesc}"
+													th:id="visionWOGlassLeftDesc"
+													placeholder="Add Details for Left Eye" />
 											</div>
 										</div>
 
@@ -162,30 +199,95 @@
 											<p class="text-left col-sm-offset-1 col-sm-3">Vision With
 												Glass</p>
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{visionWithGlassRight}"
-													th:id="visionWithGlassRight" placeholder="Enter a Value" />
+												<select name="visionWithGlassRight"
+													th:id="visionWithGlassRight"
+													th:field="*{visionWithGlassRight}" class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="6/6">6/6</option>
+													<option th:value="6/12">6/12</option>
+													<option th:value="6/18">6/18</option>
+													<option th:value="6/24">6/24</option>
+													<option th:value="6/36">6/36</option>
+													<option th:value="6/60">6/60</option>
+													<option th:value="FC">FC</option>
+													<option th:value="other">Other</option>
+												</select>
 											</div>
+
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{visionWithGlassLeft}"
-													th:id="visionWithGlassLeft" placeholder="Enter a Value" />
+												<select name="visionWithGlassLeft"
+													th:id="visionWithGlassLeft"
+													th:field="*{visionWithGlassLeft}" class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="6/6">6/6</option>
+													<option th:value="6/12">6/12</option>
+													<option th:value="6/18">6/18</option>
+													<option th:value="6/24">6/24</option>
+													<option th:value="6/36">6/36</option>
+													<option th:value="6/60">6/60</option>
+													<option th:value="FC">FC</option>
+													<option th:value="other">Other</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group hidden" id="visionWithGlassRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="visionWithGlassRightCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWGlassRightDesc}"
+													th:id="visionWGlassRightDesc"
+													placeholder="Add Details for Right Eye" />
+											</div>
+											<div class="col-sm-3 hidden" id="visionWithGlassLeftCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{visionWGlassLeftDesc}"
+													th:id="visionWGlassLeftDesc"
+													placeholder="Add Details for Left Eye" />
 											</div>
 										</div>
 
 										<div class="form-group">
 											<p class="text-left col-sm-offset-1 col-sm-3">Lens</p>
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{lensRight}" th:id="lensRight"
-													placeholder="Enter a Value" />
+												<select name="lensRight" th:id="lensRight"
+													th:field="*{lensRight}" class="form-control">
+													<option value="">Select Lens Type</option>
+													<option th:value="opaque">Opaque</option>
+													<option th:value="subluxated">Sub Luxated</option>
+													<option th:value="phakic">Phakic</option>
+													<option th:value="aphakic">Aphakic</option>
+													<option th:value="other">Other</option>
+												</select>
 											</div>
+
 											<div class="col-sm-3">
-												<input type="text" maxlength="3" class="form-control"
-													th:field="*{lensLeft}" th:id="lensLeft"
-													placeholder="Enter a Value" />
+												<select name="lensLeft" th:id="lensLeft"
+													th:field="*{lensLeft}" class="form-control">
+													<option value="">Select Lens Type</option>
+													<option th:value="opaque">Opaque</option>
+													<option th:value="subluxated">Sub Luxated</option>
+													<option th:value="phakic">Phakic</option>
+													<option th:value="aphakic">Aphakic</option>
+													<option th:value="other">Other</option>
+												</select>
 											</div>
 										</div>
+
+										<div class="form-group hidden" id="lensRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="lensRightCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{lensRightDesc}" th:id="lensRightDesc"
+													placeholder="Add Details for Right Eye" />
+											</div>
+											<div class="col-sm-3 hidden" id="lensLeftCell">
+												<input type="text" maxlength="20" class="form-control"
+													th:field="*{lensLeftDesc}" th:id="lensLeftDesc"
+													placeholder="Add Details for Left Eye" />
+											</div>
+										</div>
+
 
 										<div class="form-group">
 											<p class="text-left col-sm-offset-1 col-sm-3">Remarks :</p>
@@ -204,244 +306,384 @@
 												class="text-center col-sm-offset-4 col-sm-3">Right</label> <label
 												id="left-right" class="text-center  col-sm-3">Left</label>
 										</div>
-										<div class="panel panel-default">
-											<div class="panel-heading">Basic Details</div>
-											<div class="panel-body">
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Cornea</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="10" class="form-control"
-															th:field="*{corneaRight}" th:id="corneaRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{corneaLeft}" th:id="corneaLeft"
-															placeholder="Enter a Value" />
-													</div>
+										<div class="panel-group" id="accordion">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion"
+															href="#collapse-basic">Basic Details</a>
+													</h4>
 												</div>
+												<div id="collapse-basic"
+													class="panel-body panel-collapse collapse in">
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Cornea</p>
+														<div class="col-sm-3">
+															<select name="corneaRight" th:id="corneaRight"
+																th:field="*{corneaRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="clear">Clear</option>
+																<option th:value="opaque">Opaque</option>
+																<option th:value="ulcer">Ulcer</option>
+																<option th:value="foreignbody">Foreign Body</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
 
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Pupil</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
+														<div class="col-sm-3">
+															<select name="corneaLeft" th:id="corneaLeft"
+																th:field="*{corneaLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="clear">Clear</option>
+																<option th:value="opaque">Opaque</option>
+																<option th:value="ulcer">Ulcer</option>
+																<option th:value="foreignbody">Foreign Body</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
 													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
 
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Iris</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{irisRight}" th:id="irisRight"
-															placeholder="Enter a Value" />
+													<div class="form-group hidden" id="corneaRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="corneaRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{corneaRightDesc}" th:id="corneaRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="corneaLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{corneaLeftDesc}" th:id="corneaLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
 													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{irisLeft}" th:id="irisLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
 
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Anterior
-														Chamber</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Pupil</p>
+														<div class="col-sm-3">
+															<select name="pupilRight" th:id="pupilRight"
+																th:field="*{pupilRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="regular">Regular</option>
+																<option th:value="coloboma">Coloboma</option>
+																<option th:value="synaechia">Synaechia</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="pupilLeft" th:id="pupilLeft"
+																th:field="*{pupilLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="regular">Regular</option>
+																<option th:value="coloboma">Coloboma</option>
+																<option th:value="synaechia">Synaechia</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
 													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
+													
+													<div class="form-group hidden" id="pupilRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="pupilRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{pupilRightDesc}" th:id="pupilRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="pupilLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{pupilLeftDesc}" th:id="pupilLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
 													</div>
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Iris</p>
+														<div class="col-sm-3">
+															<select name="irisRight" th:id="irisRight"
+																th:field="*{irisRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="dilated">Dilated</option>
+																<option th:value="constricted">Constricted</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="irisLeft" th:id="irisLeft"
+																th:field="*{irisLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="dilated">Dilated</option>
+																<option th:value="constricted">Constricted</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
+													</div>
+													
+													<div class="form-group hidden" id="irisRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="irisRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{irisRightDesc}" th:id="irisRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="irisLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{irisLeftDesc}" th:id="irisLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
+													</div>
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Anterior
+															Chamber</p>
+														<div class="col-sm-3">
+															<select name="antChamberRight" th:id="antChamberRight"
+																th:field="*{antChamberRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="hyphaema">Hyphaema</option>
+																<option th:value="hypopyon">Hypopyon</option>
+																<option th:value="shallow">Shallow</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="antChamberLeft" th:id="antChamberLeft"
+																th:field="*{antChamberLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="hyphaema">Hyphaema</option>
+																<option th:value="hypopyon">Hypopyon</option>
+																<option th:value="shallow">Shallow</option>
+																<option th:value="other">Other</option>
+															</select>
+														</div>
+													</div>
+													
+													<div class="form-group hidden" id="anteriorRow">
+														<div class="col-sm-4"></div>
+														<div class="col-sm-3 hidden" id="anteriorRightCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{antChamberRightDesc}" th:id="antChamberRightDesc"
+																placeholder="Add Details for Right Eye" />
+														</div>
+														<div class="col-sm-3 hidden" id="anteriorLeftCell">
+															<input type="text" maxlength="20" class="form-control"
+																th:field="*{antChamberLeftDesc}" th:id="antChamberLeftDesc"
+																placeholder="Add Details for Left Eye" />
+														</div>
+													</div>
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Fundus</p>
+														<div class="col-sm-3">
+															<textarea rows="3" class="form-control" draggable="false"
+																placeholder="Add Fundus Details (If Any)"
+																th:field="*{fundusRight}" th:id="fundusRight"></textarea>
+														</div>
+														<div class="col-sm-3">
+															<textarea rows="3" class="form-control" draggable="false"
+																placeholder="Add Fundus Details (If Any)"
+																th:field="*{fundusLeft}" th:id="fundusLeft"></textarea>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Ocular
+															Surgery</p>
+														<div class="col-sm-3">
+															<textarea rows="3" class="form-control" draggable="false"
+																placeholder="Add Ocular Surgery Details (If Any)"
+																th:field="*{ocularSurgeryRight}"
+																th:id="ocularSurgeryRight"></textarea>
+														</div>
+														<div class="col-sm-3">
+															<textarea rows="3" class="form-control" draggable="false"
+																placeholder="Add Ocular Surgery Details (If Any)"
+																th:field="*{ocularSurgeryLeft}"
+																th:id="ocularSurgeryLeft"></textarea>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Sac</p>
+														<div class="col-sm-3">
+															<p>
+																<input type="radio" name="sacPBl" value="P" /> P
+															</p>
+														</div>
+														<div class="col-sm-3">
+															<p>
+																<input type="radio" name="sacPBl" value="BL" /> BL
+															</p>
+														</div>
+													</div>
+
 												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Fundus</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
-													</div>
+											</div>
+
+
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion"
+															href="#collapse-lid">Lid Details</a>
+													</h4>
 												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Ocular Surgery</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
+												<div id="collapse-lid"
+													class="panel-body panel-collapse collapse out">
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Swelling</p>
+														<div class="col-sm-3">
+															<select name="swellingRight" th:id="swellingRight"
+																th:field="*{swellingRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="swellingLeft" th:id="swellingLeft"
+																th:field="*{swellingLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
 													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Corneal Ulcer</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Sac</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilRight}" th:id="pupilRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{pupilLeft}" th:id="pupilLeft"
-															placeholder="Enter a Value" />
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Redness</p>
+														<div class="col-sm-3">
+															<select name="rednessRight" th:id="rednessRight"
+																th:field="*{rednessRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="rednessLeft" th:id="rednessLeft"
+																th:field="*{rednessLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
 													</div>
 												</div>
 
 											</div>
-										</div>
 
-										<div class="panel panel-default">
-											<div class="panel-heading">Lid Details</div>
-											<div class="panel-body">
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Swelling</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingRight}" th:id="swellingRight"
-															placeholder="Enter a Value" />
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion"
+															href="#collapse-conjunctiva">Conjunctiva Details</a>
+													</h4>
+												</div>
+												<div id="collapse-conjunctiva"
+													class="panel-body panel-collapse collapse out">
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival
+															Redness</p>
+														<div class="col-sm-3">
+															<select name="conjRednessRight" th:id="conjRednessRight"
+																th:field="*{conjRednessRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="conjRednessLeft" th:id="conjRednessLeft"
+																th:field="*{conjRednessLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
 													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingLeft}" th:id="swellingLeft"
-															placeholder="Enter a Value" />
+
+													<div class="form-group">
+														<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival
+															Tear</p>
+														<div class="col-sm-3">
+															<select name="conjTearRight" th:id="conjTearRight"
+																th:field="*{conjTearRight}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="conjTearLeft" th:id="conjTearLeft"
+																th:field="*{conjTearLeft}" class="form-control">
+																<option value="">Select Option</option>
+																<option th:value="Y">Yes</option>
+																<option th:value="N">No</option>
+															</select>
+														</div>
 													</div>
 												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Redness</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingRight}" th:id="swellingRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingLeft}" th:id="swellingLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
+
 											</div>
 
-										</div>
-
-										<div class="panel panel-default">
-											<div class="panel-heading">Conjunctiva Details</div>
-											<div class="panel-body">
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival Redness</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingRight}" th:id="swellingRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingLeft}" th:id="swellingLeft"
-															placeholder="Enter a Value" />
-													</div>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion"
+															href="#collapse-general">General Details</a>
+													</h4>
 												</div>
-												
-												<div class="form-group">
-													<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival Tear</p>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingRight}" th:id="swellingRight"
-															placeholder="Enter a Value" />
-													</div>
-													<div class="col-sm-3">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{swellingLeft}" th:id="swellingLeft"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
-											</div>
+												<div id="collapse-general"
+													class="panel-body panel-collapse collapse out">
+													<div class="form-group">
+														<p class="control-label col-sm-2">Blood Pressure</p>
+														<div class="col-sm-1">
+															<input type="text" maxlength="3" class="form-control"
+																th:field="*{bloodPressureVal1}"
+																th:id="bloodPressureVal1" />
+														</div>
+														<p th:text="'/'" class="control-label col-sm-1"
+															style="text-align: center; width: 1px"></p>
+														<div class="col-sm-1">
+															<input type="text" maxlength="3" class="form-control"
+																th:field="*{bloodPressureVal2}"
+																th:id="bloodPressureVal2" />
+														</div>
+														<p th:text="'mmHg'" class="control-label col-sm-1"
+															style="text-align: left"></p>
 
-										</div>
-
-										<div class="panel panel-default">
-											<div class="panel-heading">General Details</div>
-											<div class="panel-body">
-												<div class="form-group">
-													<!-- <p class="text-left col-sm-offset-1 col-sm-3">Blood
-														Pressure</p> -->
-													<p class="control-label col-sm-2">Blood Pressure</p>
-													<div class="col-sm-1">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
+														<p class="control-label col-sm-2">Urine</p>
+														<div class="col-sm-3">
+															<input type="text" class="form-control"
+																th:field="*{urine}" th:id="urine"
+																placeholder="Enter a Value" />
+														</div>
 													</div>
-													<p th:text="'/'" class="control-label col-sm-1"
-														style="text-align: center; width: 1px"></p>
-													<div class="col-sm-1">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{bloodPressureVal2}" th:id="bloodPressureVal2" />
-													</div>
-													<p th:text="'mmHg'" class="control-label col-sm-1"
-														style="text-align: left"></p>
-
-													<p class="control-label col-sm-2">Urine</p>
-													<div class="col-sm-3">
-														<input type="text" class="form-control"
-															th:field="*{urine}" th:id="urine"
-															placeholder="Enter a Value" />
-													</div>
-												</div>
 
 
-												<div class="form-group">
-													<p class="control-label col-sm-2">Blood Sugar (Fasting)</p>
-													<div class="col-sm-1">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
-													</div>
-													<p class="control-label col-sm-1"
-														style="text-align: center; width: 3px">(PP)</p>
-													<div class="col-sm-1">
-														<input type="text" maxlength="3" class="form-control"
-															th:field="*{bloodPressureVal2}" th:id="bloodPressureVal2" />
-													</div>
-													<!-- <p class="control-label col-sm-offset-2 col-sm-2">Blood Sugar (PP)</p>
+													<div class="form-group">
+														<p class="control-label col-sm-2">Blood Sugar
+															(Fasting)</p>
+														<div class="col-sm-1">
+															<input type="text" maxlength="3" class="form-control"
+																th:field="*{bloodSugarFasting}"
+																th:id="bloodSugarFasting" />
+														</div>
+														<p class="control-label col-sm-1"
+															style="text-align: center; width: 3px">(PP)</p>
+														<div class="col-sm-1">
+															<input type="text" maxlength="3" class="form-control"
+																th:field="*{bloodSugarPp}" th:id="bloodSugarPp" />
+														</div>
+														<!-- <p class="control-label col-sm-offset-2 col-sm-2">Blood Sugar (PP)</p>
 													<div class="col-sm-1">
 														<input type="text" maxlength="3" class="form-control"
 															th:field="*{bloodPressureVal1}" th:id="bloodPressureVal1" />
 													</div> -->
+													</div>
 												</div>
 											</div>
-
 										</div>
-
 									</div>
 
 									<!-- Findings Tab -->
