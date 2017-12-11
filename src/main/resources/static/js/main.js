@@ -174,3 +174,10 @@ $("#antChamberLeft").on('change', function(event) {
 });
 
 
+
+//Reset Forms
+function init() {
+	document.getElementById("addVisit").reset();
+	document.getElementById("regForm").reset();
+}
+window.onload = init;

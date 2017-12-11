@@ -1,5 +1,4 @@
 // Delete Patient AJAX Starts
-
 function deleteBtn(patientId){
 	ajaxDelPost(patientId);
 }
@@ -36,12 +35,10 @@ function ajaxDelPost(patientId){
 function deleteRow(patientId){
 	$("#tr"+patientId).hide();
 } 
-
 //Delete Patient AJAX Ends
 
 
 //Edit Patient AJAX Starts
-
 function editBtn(patientId,firstName, lastName, gender, email, mobile, phoneNumber){
 	ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumber);
 }
@@ -79,12 +76,10 @@ function ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumb
         }
     });
 }
-
 //Edit Patient AJAX Ends
 
 
 //Add Visit AJAX Starts
-
 //$("#addVisitBtn").on('click', function(event) {
 /*function addVisitDetails1(){
 	var url	=	window.location;
@@ -189,12 +184,9 @@ function ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumb
 	$('#followUp').val("");        
 	$('#fees').val("");         
 }*/
-
 //Add Visit AJAX Ends
 
 //Print Report AJAX Starts
-
-
 function printReport(visitId){
 	var url	=	window.location + "/print/" + visitId;
 	alert("In , id : " + visitId);
