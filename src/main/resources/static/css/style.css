@@ -310,7 +310,7 @@ h3 {
 }
 
 .textCenter {
-	text-align: center;
+	text-align: center !important;
 }
 
 /*Visits Table*/

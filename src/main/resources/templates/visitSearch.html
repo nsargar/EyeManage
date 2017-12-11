@@ -115,6 +115,10 @@
 																		data-toggle="tab"
 																		th:href="'#glass_' + ${visit.visitId}">Glass
 																			Prescription</a></li>
+																	<li th:id="'li_other_' + ${visit.visitId}"><a
+																		data-toggle="tab"
+																		th:href="'#other_' + ${visit.visitId}">Other Details</a></li>
+																		
 																	<li th:id="'li_findings_' + ${visit.visitId}"><a
 																		data-toggle="tab"
 																		th:href="'#findings_' + ${visit.visitId}">Findings</a></li>
@@ -196,17 +200,429 @@
 																				</table>
 																			</div>
 																		</div>
+
+
 																		<div class="form-group">
-																			<p class="control-label col-sm-2">Remarks :</p>
-																			<div class="col-sm-6">
+																			<label id="left-right"
+																				class="text-center col-sm-offset-4 col-sm-3">Right</label>
+																			<label id="left-right" class="text-center  col-sm-3">Left</label>
+																		</div>
+																		
+																		<!-- Vision Without Glass -->
+																		<div class="form-group">
+																			<p class="text-left col-sm-offset-1 col-sm-3">Vision
+																				Without Glass</p>
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.visionWithoutGlassRight}"></p>
+																			</div>
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.visionWithoutGlassLeft}"></p>
+																			</div>
+																		</div>
+																		<div class="form-group"
+																			id="visionWithoutGlassRow" th:if="${ visit.visionWithoutGlassRight == 'other' or visit.visionWithoutGlassLeft == 'other'}">
+																			<div class="col-sm-4"></div>
+																			<div class="col-sm-3"
+																				id="visionWithoutGlassRightCell" th:if="${ visit.visionWithoutGlassRight == 'other'}">
 																				<textarea rows="2" class="form-control"
-																					draggable="false" th:text="${visit.remarks}"
-																					readonly="true"></textarea>
+																					readonly="true" draggable="false"
+																					th:text="${visit.visionWOGlassRightDesc}"></textarea>
+																			</div>
+																			<div class="col-sm-3"
+																				id="visionWithoutGlassLeftCell" th:if="${ visit.visionWithoutGlassLeft == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.visionWOGlassLeftDesc}"></textarea>
+																			</div>
+																		</div>
+
+																		<!-- Vision With Glass -->
+																		<div class="form-group">
+																			<p class="text-left col-sm-offset-1 col-sm-3">Vision
+																				With Glass</p>
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.visionWithGlassRight}"></p>
+																			</div>
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.visionWithGlassLeft}"></p>
+																			</div>
+																		</div>
+
+																		<div class="form-group"
+																			id="visionWithGlassRow" th:if="${ visit.visionWithGlassRight == 'other' or visit.visionWithGlassLeft == 'other'}">
+																			<div class="col-sm-4"></div>
+																			<div class="col-sm-3"
+																				id="visionWithGlassRightCell" th:if="${ visit.visionWithGlassRight == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.visionWGlassRightDesc}"></textarea>
+																			</div>
+																			<div class="col-sm-3"
+																				id="visionWithGlassLeftCell" th:if="${ visit.visionWithGlassLeft == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.visionWGlassLeftDesc}"></textarea>
+																			</div>
+																		</div>
+																		
+																		<!-- Lens -->
+																		<div class="form-group">
+																			<p class="text-left col-sm-offset-1 col-sm-3">Lens</p>
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.lensRight}"></p>
+																			</div>
+
+																			<div class="col-sm-3">
+																				<p class="control-label textCenter"
+																					th:text="${visit.lensLeft}"></p>
+																			</div>
+																		</div>
+
+																		<div class="form-group"
+																			id="lensRow" th:if="${ visit.lensRight == 'other' or visit.lensLeft == 'other'}">
+																			<div class="col-sm-4"></div>
+																			<div class="col-sm-3"
+																				id="lensRightCell" th:if="${ visit.lensRight == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.lensRightDesc}"></textarea>
+																			</div>
+																			<div class="col-sm-3"
+																				id="lensLeftCell" th:if="${ visit.lensLeft == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.lensLeftDesc}"></textarea>
+																			</div>
+																		</div>
+
+
+																		<div class="form-group">
+																			<p class="text-left col-sm-offset-1 col-sm-3">Remarks
+																				:</p>
+																			<div class="col-sm-6">
+																				<textarea rows="3" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.remarks}"></textarea>
 																			</div>
 																		</div>
 																	</div>
 																	<!-- Glass Prescription Tab Ends -->
 
+																	<!-- Other Details Tab Starts -->
+																	<div th:id="'other_' + ${visit.visitId}"
+																		class="tab-pane fade">
+																		<div class="form-group">
+																			<label id="left-right"
+																				class="text-center col-sm-offset-4 col-sm-3">Right</label>
+																			<label id="left-right" class="text-center  col-sm-3">Left</label>
+																		</div>
+																		<div class="panel-group" id="accordion">
+																			<div class="panel panel-default">
+																				<div class="panel-heading">
+																					<h4 class="panel-title">
+																						<a data-toggle="collapse" data-parent="#accordion"
+																							href="#collapse-basic">Basic Details</a>
+																					</h4>
+																				</div>
+																				<div id="collapse-basic"
+																					class="panel-body panel-collapse collapse in">
+
+																					<!-- Cornea -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Cornea</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.corneaRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.corneaLeft}"></p>
+																						</div>
+																					</div>
+
+																					<div class="form-group" id="corneaRow"
+																						th:if="${ visit.corneaRight == 'other' or visit.corneaLeft == 'other'}">
+																						<div class="col-sm-4"></div>
+																						<div class="col-sm-3" id="corneaRightCell"
+																							th:if="${ visit.corneaRight == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.corneaRightDesc}"></textarea>
+																						</div>
+																						<div class="col-sm-3" id="corneaLeftCell"
+																							th:if="${ visit.corneaLeft == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.corneaLeftDesc}"></textarea>
+																						</div>
+																					</div>
+
+																					<!-- Pupil -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Pupil</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.pupilRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.pupilLeft}"></p>
+																						</div>
+																					</div>
+
+																					<div class="form-group" id="pupilRow"
+																						th:if="${ visit.pupilRight == 'other' or visit.pupilLeft == 'other'}">
+																						<div class="col-sm-4"></div>
+																						<div class="col-sm-3" id="pupilRightCell"
+																							th:if="${ visit.pupilRight == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.pupilRightDesc}"></textarea>
+																						</div>
+																						<div class="col-sm-3" id="pupilLeftCell"
+																							th:if="${ visit.pupilLeft == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.pupilLeftDesc}"></textarea>
+																						</div>
+																					</div>
+
+																					<!-- Iris -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Iris</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.irisRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.irisLeft}"></p>
+																						</div>
+																					</div>
+
+																					<div class="form-group" id="irisRow"
+																						th:if="${ visit.irisRight == 'other' or visit.irisLeft == 'other'}">
+																						<div class="col-sm-4"></div>
+																						<div class="col-sm-3" id="irisRightCell"
+																							th:if="${ visit.irisRight == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.irisRightDesc}"></textarea>
+																						</div>
+																						<div class="col-sm-3" id="irisLeftCell"
+																							th:if="${ visit.irisLeft == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.irisLeftDesc}"></textarea>
+																						</div>
+																					</div>
+
+																					<!-- Anterior Chamber -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Anterior
+																							Chamber</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.antChamberRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.antChamberLeft}"></p>
+																						</div>
+																					</div>
+
+																					<div class="form-group" id="anteriorRow"
+																						th:if="${ visit.antChamberRight == 'other' or visit.antChamberLeft == 'other'}">
+																						<div class="col-sm-4"></div>
+																						<div class="col-sm-3" id="antChamberRightCell"
+																							th:if="${ visit.antChamberRight == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.antChamberRightDesc}"></textarea>
+																						</div>
+																						<div class="col-sm-3" id="antChamberLeftCell"
+																							th:if="${ visit.antChamberLeft == 'other'}">
+																							<textarea rows="2" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.antChamberLeftDesc}"></textarea>
+																						</div>
+																					</div>
+
+																					<!-- Fundus -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Fundus</p>
+																						<div class="col-sm-3">
+																							<textarea rows="3" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.fundusRight}"></textarea>
+																						</div>
+																						<div class="col-sm-3">
+																							<textarea rows="3" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.fundusLeft}"></textarea>
+																						</div>
+																					</div>
+
+																					<!-- Ocular Surgery -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Ocular
+																							Surgery</p>
+																						<div class="col-sm-3">
+																							<textarea rows="3" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.ocularSurgeryRight}"></textarea>
+																						</div>
+																						<div class="col-sm-3">
+																							<textarea rows="3" class="form-control"
+																								readonly="true" draggable="false"
+																								th:text="${visit.ocularSurgeryLeft}"></textarea>
+																						</div>
+																					</div>
+
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Sac</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.sacPBl}"></p>
+																						</div>
+																					</div>
+
+																				</div>
+																			</div>
+
+
+																			<div class="panel panel-default">
+																				<div class="panel-heading">
+																					<h4 class="panel-title">
+																						<a data-toggle="collapse" data-parent="#accordion"
+																							href="#collapse-lid">Lid Details</a>
+																					</h4>
+																				</div>
+																				<div id="collapse-lid"
+																					class="panel-body panel-collapse collapse out">
+
+																					<!-- Swelling -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Swelling</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.swellingRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.swellingLeft}"></p>
+																						</div>
+																					</div>
+
+																					<!-- Redness -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Redness</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.rednessRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.rednessLeft}"></p>
+																						</div>
+																					</div>
+																				</div>
+
+																			</div>
+
+																			<div class="panel panel-default">
+																				<div class="panel-heading">
+																					<h4 class="panel-title">
+																						<a data-toggle="collapse" data-parent="#accordion"
+																							href="#collapse-conjunctiva">Conjunctiva
+																							Details</a>
+																					</h4>
+																				</div>
+																				<div id="collapse-conjunctiva"
+																					class="panel-body panel-collapse collapse out">
+
+																					<!-- Conjunctival Redness -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival
+																							Redness</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.conjRednessRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.conjRednessLeft}"></p>
+																						</div>
+																					</div>
+
+																					<!-- Conjunctival Tear -->
+																					<div class="form-group">
+																						<p class="text-left col-sm-offset-1 col-sm-3">Conjunctival
+																							Tear</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.conjTearRight}"></p>
+																						</div>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.conjTearLeft}"></p>
+																						</div>
+																					</div>
+																				</div>
+
+																			</div>
+
+																			<div class="panel panel-default">
+																				<div class="panel-heading">
+																					<h4 class="panel-title">
+																						<a data-toggle="collapse" data-parent="#accordion"
+																							href="#collapse-general">General Details</a>
+																					</h4>
+																				</div>
+																				<div id="collapse-general"
+																					class="panel-body panel-collapse collapse out">
+
+																					<!-- Blood Pressure -->
+																					<div class="form-group">
+																						<p class="control-label col-sm-2">Blood
+																							Pressure</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.bloodPressureVal1} + ' / ' + ${visit.bloodPressureVal2} + '  mmHg'">
+																							</p>
+																						</div>
+
+																						<p class="control-label col-sm-2">Urine</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.urine}"></p>
+																						</div>
+																					</div>
+
+																					<!-- Blood Sugar -->
+																					<div class="form-group">
+																						<p class="control-label col-sm-2">Blood Sugar
+																							(Fasting)</p>
+																						<div class="col-sm-1">
+																							<p class="control-label textCenter"
+																								th:text="${visit.bloodSugarFasting}"></p>
+																						</div>
+																						<p class="control-label col-sm-2 col-sm-offset-2">Blood Sugar (PP)</p>
+																						<div class="col-sm-3">
+																							<p class="control-label textCenter"
+																								th:text="${visit.bloodSugarPp}"></p>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- Other Details Tab Ends -->
 
 																	<!-- Findings Tab -->
 																	<div th:id="'findings_' + ${visit.visitId}"
@@ -451,7 +867,7 @@
 																		</a>
 																	</div>
 																</div>
-																<br/>
+																<br />
 																<div class="row">
 																	<div class="col-sm-4 col-sm-offset-1">
 																		<a class="btn btn-primary"
@@ -517,12 +933,12 @@
 				$("#nameTextDiv").hide();
 			}
 
-			$('#searchDateFrom').datepicker({
+			/* $('#searchDateFrom').datepicker({
 				format : "dd-M-yy"
 			});
 			$('#searchDateTo').datepicker({
 				format : "dd-M-yy"
-			});
+			}); */
 		});
 	</script>
 </body>

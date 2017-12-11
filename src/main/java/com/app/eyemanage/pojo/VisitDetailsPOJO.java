@@ -170,25 +170,25 @@ public class VisitDetailsPOJO {
 	 * @since 2017-11-14
 	 */
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String visionWithoutGlassRight;
 	
 	@Column(unique = false, nullable = true, length=20)
 	private String visionWOGlassRightDesc;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String visionWithoutGlassLeft;
 	
 	@Column(unique = false, nullable = true, length=20)
 	private String visionWOGlassLeftDesc;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String visionWithGlassRight;
 	
 	@Column(unique = false, nullable = true, length=20)
 	private String visionWGlassRightDesc;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String visionWithGlassLeft;
 	
 	@Column(unique = false, nullable = true, length=20)
@@ -260,28 +260,28 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=50)
 	private String fundusLeft;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String swellingRight;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String swellingLeft;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String rednessRight;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String rednessLeft;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String conjRednessRight;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String conjRednessLeft;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String conjTearRight;
 	
-	@Column(unique = false, nullable = true, length=5)
+	@Column(unique = false, nullable = true, length=10)
 	private String conjTearLeft;
 	
 	@Column(unique = false, nullable = true, length=30)
