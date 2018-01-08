@@ -34,8 +34,14 @@ public class PatientDetailsPOJO {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Patient_SEQ")
 	private Integer patientId;
 	
+	@Column(unique = false, nullable = true, length=20)
+	private String title;
+	
 	@Column(unique = false, nullable = false, length=20)
 	private String firstName;
+	
+	@Column(unique = false, nullable = true, length=20)
+	private String middleName;
 	
 	@Column(unique = false, nullable = false, length=20)
 	private String lastName;
@@ -100,6 +106,14 @@ public class PatientDetailsPOJO {
 	public void setPatientId(Integer patientId) {
 		this.patientId = patientId;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -107,6 +121,14 @@ public class PatientDetailsPOJO {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 
 	public String getLastName() {
@@ -196,7 +218,7 @@ public class PatientDetailsPOJO {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
-
+	
 	public static Logger getLogger() {
 		return logger;
 	}
