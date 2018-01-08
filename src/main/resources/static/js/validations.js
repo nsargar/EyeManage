@@ -309,6 +309,9 @@ $(document).ready(function() {
 			address	:	{
 				required	:	true
 			},
+			age	:	{
+				required	:	true
+			},
 			email	:	{
 				email	:	true
 			},
