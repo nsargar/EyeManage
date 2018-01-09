@@ -30,7 +30,10 @@ function addVisitDetails(){
 			cylNearLeft 			: $('#cylNearLeft').val(),
 			axisNearLeft 			: $('#axisNearLeft').val(),
 			vaNearLeft 				: $('#vaNearLeft').val(),
-			remarks 				: $('#remarks').val(),
+			remarksRight			: $('#remarksRight').val(),
+			remarksRightDesc		: $('#remarksRightDesc').val(),
+			remarksLeft				: $('#remarksLeft').val(),
+			remarksLeftDesc			: $('#remarksLeftDesc').val(),
 			anteriorSeg 			: $('#anteriorSeg').val(),
 			posteriorSeg 			: $('#posteriorSeg').val(),
 			iopRight 				: $('#iopRight').val(),
@@ -300,6 +303,9 @@ $(document).ready(function() {
 		rules	:	{
 			firstName	:	{
 				required	:	true,
+				lettersonly	:	true
+			},
+			middleName	:	{
 				lettersonly	:	true
 			},
 			lastName	:	{

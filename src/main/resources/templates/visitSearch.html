@@ -304,10 +304,31 @@
 																		<div class="form-group">
 																			<p class="text-left col-sm-offset-1 col-sm-3">Remarks
 																				:</p>
-																			<div class="col-sm-6">
+																			<div class="col-sm-3">
 																				<textarea rows="3" class="form-control"
 																					readonly="true" draggable="false"
-																					th:text="${visit.remarks}"></textarea>
+																					th:text="${visit.remarksRight}"></textarea>
+																			</div>
+																			<div class="col-sm-3">
+																				<textarea rows="3" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.remarksLeft}"></textarea>
+																			</div>
+																		</div>
+																		<div class="form-group" id="remarksRow"
+																			th:if="${ visit.remarksRight == 'other' or visit.remarksLeft == 'other'}">
+																			<div class="col-sm-4"></div>
+																			<div class="col-sm-3" id="remarksRightCell"
+																				th:if="${ visit.remarksRight == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.remarksRightDesc}"></textarea>
+																			</div>
+																			<div class="col-sm-3" id="remarksLeftCell"
+																				th:if="${ visit.remarksLeft == 'other'}">
+																				<textarea rows="2" class="form-control"
+																					readonly="true" draggable="false"
+																					th:text="${visit.remarksLeftDesc}"></textarea>
 																			</div>
 																		</div>
 																	</div>
