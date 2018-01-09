@@ -55,6 +55,7 @@ $("#visitSearchDrop").on('change', function(event) {
  * 5. Pupil
  * 6. Iris
  * 7. Anterior Chamber
+ * 8. Remarks
  */
 function toggleTextBox( listRightId, listLeftId, rowId, cellRightId, cellLeftId ){
 	if ( $("#" + listRightId ).val() == "other" || $("#" + listLeftId ).val() == "other" ){
@@ -173,6 +174,17 @@ $("#antChamberLeft").on('change', function(event) {
 			'anteriorRightCell', 'anteriorLeftCell');
 });
 
+//Toggle Text Box for Remarks Right
+$("#remarksRight").on('change', function(event) {
+	toggleTextBox( 'remarksRight', 'remarksLeft', 'remarksRow', 
+			'remarksRightCell', 'remarksLeftCell');
+});
+
+//Toggle Text Box for Remarks Left
+$("#remarksLeft").on('change', function(event) {
+	toggleTextBox( 'remarksRight', 'remarksLeft', 'remarksRow', 
+			'remarksRightCell', 'remarksLeftCell');
+});
 
 
 //Reset Forms

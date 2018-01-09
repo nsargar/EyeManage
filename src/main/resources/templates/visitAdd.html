@@ -253,10 +253,10 @@
 												<select name="lensRight" th:id="lensRight"
 													th:field="*{lensRight}" class="form-control">
 													<option value="">Select Lens Type</option>
-													<option th:value="opaque">Opaque</option>
-													<option th:value="subluxated">Sub Luxated</option>
-													<option th:value="phakic">Phakic</option>
-													<option th:value="aphakic">Aphakic</option>
+													<option th:value="Opaque">Opaque</option>
+													<option th:value="'Sub Luxated'">Sub Luxated</option>
+													<option th:value="Phakic">Phakic</option>
+													<option th:value="Aphakic">Aphakic</option>
 													<option th:value="other">Other</option>
 												</select>
 											</div>
@@ -265,10 +265,10 @@
 												<select name="lensLeft" th:id="lensLeft"
 													th:field="*{lensLeft}" class="form-control">
 													<option value="">Select Lens Type</option>
-													<option th:value="opaque">Opaque</option>
-													<option th:value="subluxated">Sub Luxated</option>
-													<option th:value="phakic">Phakic</option>
-													<option th:value="aphakic">Aphakic</option>
+													<option th:value="Opaque">Opaque</option>
+													<option th:value="'Sub Luxated'">Sub Luxated</option>
+													<option th:value="Phakic">Phakic</option>
+													<option th:value="Aphakic">Aphakic</option>
 													<option th:value="other">Other</option>
 												</select>
 											</div>
@@ -291,12 +291,51 @@
 
 										<div class="form-group">
 											<p class="text-left col-sm-offset-1 col-sm-3">Remarks :</p>
-											<div class="col-sm-6">
+											<!-- <div class="col-sm-6">
 												<textarea rows="3" class="form-control" draggable="false"
 													placeholder="Add Remarks" th:field="*{remarks}"
 													th:id="remarks"></textarea>
+											</div> -->
+											<div class="col-sm-3">
+												<select name="remarksRight" th:id="remarksRight" th:field="*{remarksRight}"
+													class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="White">White</option>
+													<option th:value="'Photo Chromatic'">Photo Chromatic</option>
+													<option th:value="Unifocal">Unifocal</option>
+													<option th:value="Bifocal">Bifocal</option>
+													<option th:value="Progressive">Progressive</option>
+													<option th:value="other">Other</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<select name="remarksLeft" th:id="remarksLeft" th:field="*{remarksLeft}"
+													class="form-control">
+													<option value="">Select Option</option>
+													<option th:value="White">White</option>
+													<option th:value="'Photo Chromatic'">Photo Chromatic</option>
+													<option th:value="Unifocal">Unifocal</option>
+													<option th:value="Bifocal">Bifocal</option>
+													<option th:value="Progressive">Progressive</option>
+													<option th:value="other">Other</option>
+												</select>
 											</div>
 										</div>
+
+										<div class="form-group hidden" id="remarksRow">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-3 hidden" id="remarksRightCell">
+												<textarea rows="3" class="form-control" draggable="false"
+													placeholder="Add Remarks for Right Eye" th:field="*{remarksRightDesc}"
+													th:id="remarksRightDesc"></textarea>
+											</div>
+											<div class="col-sm-3 hidden" id="remarksLeftCell">
+												<textarea rows="3" class="form-control" draggable="false"
+													placeholder="Add Remarks for Left Eye" th:field="*{remarksLeftDesc}"
+													th:id="remarksLeftDesc"></textarea>
+											</div>
+										</div>
+
 									</div>
 
 									<!-- Other Details Tab -->
@@ -322,10 +361,10 @@
 															<select name="corneaRight" th:id="corneaRight"
 																th:field="*{corneaRight}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="clear">Clear</option>
-																<option th:value="opaque">Opaque</option>
-																<option th:value="ulcer">Ulcer</option>
-																<option th:value="foreignbody">Foreign Body</option>
+																<option th:value="Clear">Clear</option>
+																<option th:value="Opaque">Opaque</option>
+																<option th:value="Ulcer">Ulcer</option>
+																<option th:value="'Foreign Body'">Foreign Body</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
@@ -334,10 +373,10 @@
 															<select name="corneaLeft" th:id="corneaLeft"
 																th:field="*{corneaLeft}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="clear">Clear</option>
-																<option th:value="opaque">Opaque</option>
-																<option th:value="ulcer">Ulcer</option>
-																<option th:value="foreignbody">Foreign Body</option>
+																<option th:value="Clear">Clear</option>
+																<option th:value="Opaque">Opaque</option>
+																<option th:value="Ulcer">Ulcer</option>
+																<option th:value="'Foreign Body'">Foreign Body</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
@@ -364,9 +403,9 @@
 															<select name="pupilRight" th:id="pupilRight"
 																th:field="*{pupilRight}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="regular">Regular</option>
-																<option th:value="coloboma">Coloboma</option>
-																<option th:value="synaechia">Synaechia</option>
+																<option th:value="Regular">Regular</option>
+																<option th:value="Coloboma">Coloboma</option>
+																<option th:value="Synaechia">Synaechia</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
@@ -374,14 +413,14 @@
 															<select name="pupilLeft" th:id="pupilLeft"
 																th:field="*{pupilLeft}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="regular">Regular</option>
-																<option th:value="coloboma">Coloboma</option>
-																<option th:value="synaechia">Synaechia</option>
+																<option th:value="Regular">Regular</option>
+																<option th:value="Coloboma">Coloboma</option>
+																<option th:value="Synaechia">Synaechia</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
 													</div>
-													
+
 													<div class="form-group hidden" id="pupilRow">
 														<div class="col-sm-4"></div>
 														<div class="col-sm-3 hidden" id="pupilRightCell">
@@ -402,8 +441,9 @@
 															<select name="irisRight" th:id="irisRight"
 																th:field="*{irisRight}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="dilated">Dilated</option>
-																<option th:value="constricted">Constricted</option>
+																<option th:value="Dilated">Dilated</option>
+																<option th:value="Constricted">Constricted</option>
+																<option th:value="Normal">Normal</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
@@ -411,13 +451,14 @@
 															<select name="irisLeft" th:id="irisLeft"
 																th:field="*{irisLeft}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="dilated">Dilated</option>
-																<option th:value="constricted">Constricted</option>
+																<option th:value="Dilated">Dilated</option>
+																<option th:value="Constricted">Constricted</option>
+																<option th:value="Normal">Normal</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
 													</div>
-													
+
 													<div class="form-group hidden" id="irisRow">
 														<div class="col-sm-4"></div>
 														<div class="col-sm-3 hidden" id="irisRightCell">
@@ -439,9 +480,10 @@
 															<select name="antChamberRight" th:id="antChamberRight"
 																th:field="*{antChamberRight}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="hyphaema">Hyphaema</option>
-																<option th:value="hypopyon">Hypopyon</option>
-																<option th:value="shallow">Shallow</option>
+																<option th:value="Hyphaema">Hyphaema</option>
+																<option th:value="Hypopyon">Hypopyon</option>
+																<option th:value="Shallow">Shallow</option>
+																<option th:value="Normal">Normal</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
@@ -449,24 +491,27 @@
 															<select name="antChamberLeft" th:id="antChamberLeft"
 																th:field="*{antChamberLeft}" class="form-control">
 																<option value="">Select Option</option>
-																<option th:value="hyphaema">Hyphaema</option>
-																<option th:value="hypopyon">Hypopyon</option>
-																<option th:value="shallow">Shallow</option>
+																<option th:value="Hyphaema">Hyphaema</option>
+																<option th:value="Hypopyon">Hypopyon</option>
+																<option th:value="Shallow">Shallow</option>
+																<option th:value="Normal">Normal</option>
 																<option th:value="other">Other</option>
 															</select>
 														</div>
 													</div>
-													
+
 													<div class="form-group hidden" id="anteriorRow">
 														<div class="col-sm-4"></div>
 														<div class="col-sm-3 hidden" id="anteriorRightCell">
 															<input type="text" maxlength="30" class="form-control"
-																th:field="*{antChamberRightDesc}" th:id="antChamberRightDesc"
+																th:field="*{antChamberRightDesc}"
+																th:id="antChamberRightDesc"
 																placeholder="Add Details for Right Eye" />
 														</div>
 														<div class="col-sm-3 hidden" id="anteriorLeftCell">
 															<input type="text" maxlength="30" class="form-control"
-																th:field="*{antChamberLeftDesc}" th:id="antChamberLeftDesc"
+																th:field="*{antChamberLeftDesc}"
+																th:id="antChamberLeftDesc"
 																placeholder="Add Details for Left Eye" />
 														</div>
 													</div>

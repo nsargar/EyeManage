@@ -72,7 +72,10 @@ public class VisitServiceImpl {
 		visitDetails.setAxisNearLeft(null);
 		visitDetails.setVaNearRight(null);
 		visitDetails.setVaNearLeft(null);
-		visitDetails.setRemarks(null);
+		visitDetails.setRemarksLeft(null);
+		visitDetails.setRemarksRight(null);
+		visitDetails.setRemarksLeftDesc(null);
+		visitDetails.setRemarksRightDesc(null);
 		visitDetails.setAnteriorSeg(null);
 		visitDetails.setPosteriorSeg(null);
 		visitDetails.setIopLeft(null);

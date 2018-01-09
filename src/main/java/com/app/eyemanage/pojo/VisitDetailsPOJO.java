@@ -92,8 +92,17 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=10)
 	private String vaNearRight;
 	
+	@Column(unique = false, nullable = true, length=30)
+	private String remarksRight;
+	
 	@Column(unique = false, nullable = true, length=200)
-	private String remarks;
+	private String remarksRightDesc;
+	
+	@Column(unique = false, nullable = true, length=30)
+	private String remarksLeft;
+	
+	@Column(unique = false, nullable = true, length=200)
+	private String remarksLeftDesc;
 	
 	// Findings Details
 	
