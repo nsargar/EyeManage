@@ -91,7 +91,7 @@
 											<td
 												th:text="${visit.patient.firstName} + ' ' + ${visit.patient.lastName}"></td>
 											<td th:text="${#dates.format(visit.visitDate,'dd-MMM-yyyy')}"></td>
-											<td th:text="${visit.followUp}"></td>
+											<td th:text="${#dates.format(visit.followUp,'dd-MMM-yyyy')}"></td>
 											<td>
 												<button type="button" class="btn" data-toggle="modal"
 													th:attr="data-target='#viewModalVisit' + ${visit.visitId}">View</button>
@@ -117,8 +117,9 @@
 																			Prescription</a></li>
 																	<li th:id="'li_other_' + ${visit.visitId}"><a
 																		data-toggle="tab"
-																		th:href="'#other_' + ${visit.visitId}">Other Details</a></li>
-																		
+																		th:href="'#other_' + ${visit.visitId}">Other
+																			Details</a></li>
+
 																	<li th:id="'li_findings_' + ${visit.visitId}"><a
 																		data-toggle="tab"
 																		th:href="'#findings_' + ${visit.visitId}">Findings</a></li>
@@ -207,7 +208,7 @@
 																				class="text-center col-sm-offset-4 col-sm-3">Right</label>
 																			<label id="left-right" class="text-center  col-sm-3">Left</label>
 																		</div>
-																		
+
 																		<!-- Vision Without Glass -->
 																		<div class="form-group">
 																			<p class="text-left col-sm-offset-1 col-sm-3">Vision
@@ -221,17 +222,18 @@
 																					th:text="${visit.visionWithoutGlassLeft}"></p>
 																			</div>
 																		</div>
-																		<div class="form-group"
-																			id="visionWithoutGlassRow" th:if="${ visit.visionWithoutGlassRight == 'other' or visit.visionWithoutGlassLeft == 'other'}">
+																		<div class="form-group" id="visionWithoutGlassRow"
+																			th:if="${ visit.visionWithoutGlassRight == 'other' or visit.visionWithoutGlassLeft == 'other'}">
 																			<div class="col-sm-4"></div>
 																			<div class="col-sm-3"
-																				id="visionWithoutGlassRightCell" th:if="${ visit.visionWithoutGlassRight == 'other'}">
+																				id="visionWithoutGlassRightCell"
+																				th:if="${ visit.visionWithoutGlassRight == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.visionWOGlassRightDesc}"></textarea>
 																			</div>
-																			<div class="col-sm-3"
-																				id="visionWithoutGlassLeftCell" th:if="${ visit.visionWithoutGlassLeft == 'other'}">
+																			<div class="col-sm-3" id="visionWithoutGlassLeftCell"
+																				th:if="${ visit.visionWithoutGlassLeft == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.visionWOGlassLeftDesc}"></textarea>
@@ -252,23 +254,23 @@
 																			</div>
 																		</div>
 
-																		<div class="form-group"
-																			id="visionWithGlassRow" th:if="${ visit.visionWithGlassRight == 'other' or visit.visionWithGlassLeft == 'other'}">
+																		<div class="form-group" id="visionWithGlassRow"
+																			th:if="${ visit.visionWithGlassRight == 'other' or visit.visionWithGlassLeft == 'other'}">
 																			<div class="col-sm-4"></div>
-																			<div class="col-sm-3"
-																				id="visionWithGlassRightCell" th:if="${ visit.visionWithGlassRight == 'other'}">
+																			<div class="col-sm-3" id="visionWithGlassRightCell"
+																				th:if="${ visit.visionWithGlassRight == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.visionWGlassRightDesc}"></textarea>
 																			</div>
-																			<div class="col-sm-3"
-																				id="visionWithGlassLeftCell" th:if="${ visit.visionWithGlassLeft == 'other'}">
+																			<div class="col-sm-3" id="visionWithGlassLeftCell"
+																				th:if="${ visit.visionWithGlassLeft == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.visionWGlassLeftDesc}"></textarea>
 																			</div>
 																		</div>
-																		
+
 																		<!-- Lens -->
 																		<div class="form-group">
 																			<p class="text-left col-sm-offset-1 col-sm-3">Lens</p>
@@ -283,17 +285,17 @@
 																			</div>
 																		</div>
 
-																		<div class="form-group"
-																			id="lensRow" th:if="${ visit.lensRight == 'other' or visit.lensLeft == 'other'}">
+																		<div class="form-group" id="lensRow"
+																			th:if="${ visit.lensRight == 'other' or visit.lensLeft == 'other'}">
 																			<div class="col-sm-4"></div>
-																			<div class="col-sm-3"
-																				id="lensRightCell" th:if="${ visit.lensRight == 'other'}">
+																			<div class="col-sm-3" id="lensRightCell"
+																				th:if="${ visit.lensRight == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.lensRightDesc}"></textarea>
 																			</div>
-																			<div class="col-sm-3"
-																				id="lensLeftCell" th:if="${ visit.lensLeft == 'other'}">
+																			<div class="col-sm-3" id="lensLeftCell"
+																				th:if="${ visit.lensLeft == 'other'}">
 																				<textarea rows="2" class="form-control"
 																					readonly="true" draggable="false"
 																					th:text="${visit.lensLeftDesc}"></textarea>
@@ -633,7 +635,8 @@
 																							<p class="control-label textCenter"
 																								th:text="${visit.bloodSugarFasting}"></p>
 																						</div>
-																						<p class="control-label col-sm-2 col-sm-offset-2">Blood Sugar (PP)</p>
+																						<p class="control-label col-sm-2 col-sm-offset-2">Blood
+																							Sugar (PP)</p>
 																						<div class="col-sm-3">
 																							<p class="control-label textCenter"
 																								th:text="${visit.bloodSugarPp}"></p>
@@ -827,9 +830,14 @@
 																		</div>
 																		<div class="form-group">
 																			<p class="control-label col-sm-2">Follow Up</p>
-																			<p class="control-label col-sm-2 textCenter"
+																			<!-- <p class="control-label col-sm-2 textCenter"
 																				th:text="${visit.followUp} + ' days'"
-																				style="text-align: left"></p>
+																				style="text-align: left"></p> -->
+																			<div class="col-sm-3">
+																				<p th:if="${visit.followUp != null}"
+																					class="control-label textCenter"
+																					th:text="${#dates.format(visit.followUp,'dd-MMM-yyyy')}"></p>
+																			</div>
 																		</div>
 																	</div>
 

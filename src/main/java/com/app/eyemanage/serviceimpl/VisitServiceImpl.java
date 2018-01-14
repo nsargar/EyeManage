@@ -49,8 +49,8 @@ public class VisitServiceImpl {
 			visitDetails.setAxialLength(0.00F);
 		if ( null == visitDetails.getIolPower())
 			visitDetails.setIolPower(0.00F);
-		if ( null == visitDetails.getFollowUp())
-			visitDetails.setFollowUp(0);
+		/*if ( null == visitDetails.getFollowUp())
+			visitDetails.setFollowUp(0);*/
 		
 	}
 	

@@ -83,7 +83,7 @@ public class PdfServiceImpl implements PdfService{
 			stamper.getAcroFields().setField("surgeon", visit.getSurgeon());
 			stamper.getAcroFields().setField("anaesthetist", visit.getAnaesthetist());
 			stamper.getAcroFields().setField("investigations", visit.getInvestigations());
-			stamper.getAcroFields().setField("followUp", Integer.toString(visit.getFollowUp()));
+			stamper.getAcroFields().setField("followUp", Utils.formatDate(visit.getFollowUp()));
 
 			if( null != visit.getDrugs()) {
 				int rowNo	=	4;
