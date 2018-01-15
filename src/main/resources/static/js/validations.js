@@ -264,8 +264,10 @@ $(document).ready(function() {
 				rangelength	:	[1, 6]
 			},
 			followUp	:	{
-				number	:	true,
-				rangelength	:	[1,3]
+				//number	:	true,
+				//rangelength	:	[1,3]
+				dateCheck1	:	true,
+				dateCheck3	:	true
 			},
 			admissionDate	:	{
 				dateCheck1	:	true,

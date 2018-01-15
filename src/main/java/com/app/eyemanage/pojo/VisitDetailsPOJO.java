@@ -167,9 +167,12 @@ public class VisitDetailsPOJO {
 	@Column(unique = false, nullable = true, length=200)
 	private String investigations;
 	
-	@Column(unique = false, nullable = true, length=3 )
-	private Integer followUp;
+	@Column(unique = false, nullable = true)
+	private Date followUp;
 	
+	/*@Column(unique = false, nullable = true, length=3 )
+	private Integer followUp;
+	*/
 	
 	//Additional Fields
 	
