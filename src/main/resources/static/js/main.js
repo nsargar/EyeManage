@@ -193,3 +193,35 @@ function init() {
 	document.getElementById("regForm").reset();
 }
 window.onload = init;
+
+
+$("#checkDob").click(function(){
+	if( $("#checkDob").is(':checked') ){
+		$("#divDob").removeClass("hidden");
+		
+	}
+	else{
+		$("#divDob").addClass("hidden");
+		$("#birthDate").val('');
+		$("#age").val('');
+	}
+});
+
+$("#birthDate").on('change',function(event){
+	var dob		=	new Date($("#birthDate").val());
+	var today	=	new Date();	
+	var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+	$("#age").val(age);
+});
+
+$("#checkPhone").click(function(){
+	if( $("#checkPhone").is(':checked') ){
+		$("#divPhone").removeClass("hidden");
+		
+	}
+	else{
+		$("#divPhone").addClass("hidden");
+		$("#phoneNumber").val('');
+	}
+});
+

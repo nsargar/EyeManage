@@ -86,8 +86,14 @@
 										placeholder="Enter Email" />
 								</div>
 							</div>
-
+							
 							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-4">
+									<input type="checkbox" id="checkDob"/>
+									<label class="label label-default"> Show/Hide Birth Date</label>
+								</div>
+							</div>
+							<div class="form-group hidden" id="divDob">
 								<!-- <input type="text" class="form-control"> -->
 								<label class="control-label col-sm-2"> Date Of Birth : </label>
 								<div class="input-group date col-sm-3">
@@ -102,7 +108,7 @@
 								<label class="control-label col-sm-2"> Age : </label>
 								<div class="input-group col-sm-3">
 									<input type="text" th:field="*{age}" class="form-control"
-										placeholder="Enter Age" />
+										id="age" placeholder="Enter Age" />
 								</div>
 							</div>
 
@@ -125,16 +131,23 @@
 										class="form-control" placeholder="Enter a mobile number" />
 								</div>
 							</div>
-
+							
 							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-4">
+									<input type="checkbox" id="checkPhone"/>
+									<label class="label label-default"> Show/Hide Another Phone Number</label>
+								</div>
+							</div>
+							
+							<div class="form-group hidden" id="divPhone">
 								<label class="control-label col-sm-2"> Phone : </label>
 								<div class="input-group col-sm-3">
 									<input type="text" pattern="[0-9]{10}"
 										th:field="*{phoneNumber}" class="form-control"
-										placeholder="Enter a Phone Number" />
+										id="phoneNumber" placeholder="Enter a Phone Number" />
 								</div>
 							</div>
-
+							
 							<div class="form-group">
 								<span th:if="${patientCreateResult} != null" th:text=""></span>
 								<div class="col-sm-offset-2 col-sm-2">
