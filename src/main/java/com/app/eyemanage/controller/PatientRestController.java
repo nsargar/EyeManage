@@ -37,7 +37,7 @@ public class PatientRestController {
 		logger.info("Patient Edit Post");
 		logger.info("Patient Id : " + p.getPatientId());
 		try {
-			if (1 == patientService.editPatientDetails(p.getPatientId(), p.getFirstName(), p.getLastName(),
+			if (1 == patientService.editPatientDetails(p.getPatientId(),p.getTitle(), p.getFirstName(), p.getMiddleName(), p.getLastName(),
 					p.getGender(), p.getEmail(), p.getMobile(), p.getPhoneNumber())) {
 				logger.info("Edited Successfully");
 				return new Response("Done",p);

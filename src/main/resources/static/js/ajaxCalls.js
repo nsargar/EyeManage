@@ -39,15 +39,17 @@ function deleteRow(patientId){
 
 
 //Edit Patient AJAX Starts
-function editBtn(patientId,firstName, lastName, gender, email, mobile, phoneNumber){
-	ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumber);
+function editBtn(patientId,title, firstName, middleName, lastName, gender, email, mobile, phoneNumber){
+	ajaxEditPost(patientId,title, firstName, middleName, lastName,gender,email,mobile,phoneNumber);
 }
 
-function ajaxEditPost(patientId,firstName,lastName,gender,email,mobile,phoneNumber){
+function ajaxEditPost(patientId, title, firstName, middleName, lastName,gender,email,mobile,phoneNumber){
 	var url	=	window.location;
 	var formData ={
 			patientId	:	patientId,
+			title		:	title,
 			firstName	:	firstName,
+			middleName	:	middleName,
 			lastName	:	lastName,
 			gender		:	gender,
 			email		:	email,
