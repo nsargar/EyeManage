@@ -547,7 +547,11 @@
 																						<p class="control-label col-sm-2">Urine</p>
 																						<div class="col-sm-3">
 																							<p class="control-label textCenter"
+																								th:if="${visit.urine} != null"
 																								th:text="${visit.urine}"></p>
+																							<p class="control-label textCenter"
+																								th:if="${visit.urine} == null"
+																								th:text="'Not Available'"></p>
 																						</div>
 																					</div>
 
@@ -557,13 +561,21 @@
 																							(Fasting)</p>
 																						<div class="col-sm-1">
 																							<p class="control-label textCenter"
+																								th:if="${visit.bloodSugarFasting} != null"
 																								th:text="${visit.bloodSugarFasting}"></p>
+																							<p class="control-label textCenter"
+																								th:if="${visit.bloodSugarFasting} == null"
+																								th:text="'Not Available'"></p>
 																						</div>
 																						<p class="control-label col-sm-2 col-sm-offset-2">Blood
 																							Sugar (PP)</p>
 																						<div class="col-sm-3">
 																							<p class="control-label textCenter"
+																								th:if="${visit.bloodSugarPp} != null"
 																								th:text="${visit.bloodSugarPp}"></p>
+																							<p class="control-label textCenter"
+																								th:if="${visit.bloodSugarPp} == null"
+																								th:text="'Not Available'"></p>
 																						</div>
 																					</div>
 																				</div>
@@ -580,32 +592,52 @@
 																				Segment Finding :</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.anteriorSeg} != null"
 																					th:text="${visit.anteriorSeg}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.anteriorSeg} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																			<p class="control-label col-sm-2">Posterior
 																				Segment Finding :</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.posteriorSeg} != null"
 																					th:text="${visit.posteriorSeg}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.posteriorSeg} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																		<div class="form-group">
 																			<p class="control-label col-sm-2">IOP Left:</p>
-																			<div class="col-sm-2">
+																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.iopLeft} != null"
 																					th:text="${visit.iopLeft}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.iopLeft} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																			<p class="control-label col-sm-2">IOP Right:</p>
-																			<div class="col-sm-2">
+																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.iopRight} != null"
 																					th:text="${visit.iopRight}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.iopRight} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																		<div class="form-group">
 																			<p class="control-label col-sm-2">Complaints:</p>
 																			<div class="col-sm-8">
 																				<p class="control-label textCenter"
+																					th:if="${visit.complaints} != null"
 																					th:text="${visit.complaints}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.complaints} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																	</div>
@@ -658,12 +690,20 @@
 																					<p class="control-label col-sm-2">K1</p>
 																					<div class="col-sm-3">
 																						<p class="control-label textCenter"
+																							th:if="${visit.keraK1} != null"
 																							th:text="${visit.keraK1}"></p>
+																						<p class="control-label textCenter"
+																							th:if="${visit.keraK1} == null"
+																							th:text="'Not Available'"></p>
 																					</div>
 																					<p class="control-label col-sm-2">K2</p>
 																					<div class="col-sm-3">
 																						<p class="control-label textCenter"
+																							th:if="${visit.keraK2} != null"
 																							th:text="${visit.keraK2}"></p>
+																						<p class="control-label textCenter"
+																							th:if="${visit.keraK2} == null"
+																							th:text="'Not Available'"></p>
 																					</div>
 																				</div>
 																			</div>
@@ -675,12 +715,20 @@
 																					<p class="control-label col-sm-2">Axial Length</p>
 																					<div class="col-sm-3">
 																						<p class="control-label textCenter"
+																							th:if="${visit.axialLength} != null"
 																							th:text="${visit.axialLength}"></p>
+																						<p class="control-label textCenter"
+																							th:if="${visit.axialLength} == null"
+																							th:text="'Not Available'"></p>
 																					</div>
 																					<p class="control-label col-sm-2">IOL Power</p>
 																					<div class="col-sm-3">
 																						<p class="control-label textCenter"
+																							th:if="${visit.iolPower} != null"
 																							th:text="${visit.iolPower}"></p>
+																						<p class="control-label textCenter"
+																							th:if="${visit.iolPower} == null"
+																							th:text="'Not Available'"></p>
 																					</div>
 																				</div>
 																			</div>
@@ -689,7 +737,11 @@
 																			<p class="control-label col-sm-2">Surgical Plan</p>
 																			<div class="col-sm-5">
 																				<p class="control-label textCenter"
+																					th:if="${visit.surgicalPlan} != null"
 																					th:text="${visit.surgicalPlan}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.surgicalPlan} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																	</div>
@@ -734,7 +786,11 @@
 																			<p class="control-label col-sm-2">Diagnosis</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.diagnosis} != null"
 																					th:text="${visit.diagnosis}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.diagnosis} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																		<div class="form-group">
@@ -742,23 +798,40 @@
 																				Procedure</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.surgicalProc} != null"
 																					th:text="${visit.surgicalProc}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.surgicalProc} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																			<p class="control-label col-sm-2">Investigations</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.investigations} != null"
 																					th:text="${visit.investigations}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.investigations} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																		<div class="form-group">
 																			<p class="control-label col-sm-2">Anaesthetist</p>
 																			<div class="col-sm-3">
 																				<p class="control-label textCenter"
+																					th:if="${visit.anaesthetist} != null"
 																					th:text="${visit.anaesthetist}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.anaesthetist} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																			<p class="control-label col-sm-2">Surgeon</p>
 																			<div class="col-sm-3 textCenter">
-																				<p class="control-label" th:text="${visit.surgeon}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.surgeon} != null"
+																					th:text="${visit.surgeon}"></p>
+																				<p class="control-label textCenter"
+																					th:if="${visit.surgeon} == null"
+																					th:text="'Not Available'"></p>
 																			</div>
 																		</div>
 																		<div class="form-group">
