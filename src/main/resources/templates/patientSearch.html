@@ -104,12 +104,8 @@
 																		<td th:text="${patient.patientId}"></td>
 																	</tr>
 																	<tr>
-																		<th>Title</th>
-																		<td th:text="${patient.title}"></td>
-																	</tr>
-																	<tr>
 																		<th>First Name</th>
-																		<td th:text="${patient.firstName}"></td>
+																		<td th:text="${patient.title} + ' ' + ${patient.firstName}"></td>
 																	</tr>
 																	<tr>
 																		<th>Middle Name</th>
@@ -140,11 +136,17 @@
 																	</tr>
 																	<tr>
 																		<th>Mobile</th>
-																		<td th:text="${patient.mobile}"></td>
+																		<td th:if="${patient.mobile != null}"
+																			th:text="${patient.mobile}"></td>
+																		<td th:if="${patient.mobile == null}"
+																			th:text="'Not Available'"></td>
 																	</tr>
 																	<tr>
 																		<th>Phone</th>
-																		<td th:text="${patient.phoneNumber}"></td>
+																		<td th:if="${patient.phoneNumber != null}"
+																			th:text="${patient.phoneNumber}"></td>
+																		<td th:if="${patient.phoneNumber == null}"
+																			th:text="'Not Available'"></td>
 																	</tr>
 																	<tr>
 																		<th>Registration Date</th>
@@ -164,7 +166,10 @@
 											<td>
 												<button type="button" class="btn btn-success"
 													data-toggle="modal"
-													th:attr="data-target='#editModal' + ${patient.patientId}">
+													th:attr="data-target='#editModal' + ${patient.patientId}"
+													th:id="'editButton' + ${patient.patientId}"
+													th:onclick="'setTitleDropDown(\'' + ${patient.patientId} + '\',\'' + ${patient.title} + '\');
+													setGenderDropDown(\'' + ${patient.patientId} + '\',\'' + ${patient.gender} + '\');'">
 													<i class="glyphicon glyphicon-edit"></i>
 												</button> <!-- Edit Modal -->
 												<div th:attr="id='editModal' + ${patient.patientId}"
@@ -178,7 +183,7 @@
 															</div>
 															<div class="modal-body">
 																<table class="table table-striped">
-																	<tr>
+																	<tr>	
 																		<th>Patient Id</th>
 																		<td><input th:attr="id= ${patient.patientId}"
 																			type="text" th:value="${patient.patientId}"
@@ -186,10 +191,21 @@
 																	</tr>
 																	<tr>
 																		<th>Title</th>
-																		<td><input
+																		<!-- <td><input
 																			th:attr="id= ${patient.patientId} + '_' + ${patient.title}"
 																			type="text" class="form-control"
-																			th:value="${patient.title}" /></td>
+																			th:value="${patient.title}" /></td> -->
+																		<td>
+																			<div class="input-group col-sm-3">
+																				<select name="titleListEdit" class="form-control" 
+																				th:id="'titleEdit' + ${patient.patientId}">
+																					<option value="">Select Title</option>
+																					<option th:value="Mr.">Mr.</option>
+																					<option th:value="Mrs.">Mrs.</option>
+																					<option th:value="Ms.">Ms.</option>
+																				</select>
+																			</div>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>First Name</th>
@@ -214,19 +230,24 @@
 																	</tr>
 																	<tr>
 																		<th>Gender</th>
-																		<td><input
+																		<!-- <td><input
 																			th:attr="id=${patient.patientId} + '_'  + ${patient.gender}"
 																			type="text" class="form-control"
-																			th:value="${patient.gender}" /></td>
+																			th:value="${patient.gender}" /></td> -->
+																		<td>
+																			<div class="input-group col-sm-3">
+																				<select name="genderListEdit" class="form-control" 
+																				th:id="'genderEdit' + ${patient.patientId}">
+																					<option value="">Select Gender</option>
+																					<option th:value="M">Male</option>
+																					<option th:value="F">Female</option>
+																				</select>
+																			</div>
+																		</td>
 																	</tr>
 
 																	<tr>
 																		<th>Birth Date</th>
-																		<!-- <td><input th:if="${patient.birthDate != null}"
-																			th:attr="id= ${patient.patientId} + '_' + ${patient.birthDate}"
-																			type="text" class="form-control"
-																			th:value="${#dates.format(patient.birthDate,'dd-MM-yyyy')}"
-																			readonly="true" /></td> -->
 																		<td th:if="${patient.birthDate != null}"
 																			th:text="${#dates.format(patient.birthDate,'dd-MMM-yyyy')}"></td>
 																		<td th:if="${patient.birthDate == null}"
@@ -273,10 +294,13 @@
 																	data-dismiss="modal"
 																	th:onclick="'editBtn(
 																	document.getElementById(\'' + ${patient.patientId} + '\').value,
-																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.title} + '\').value,
+																	document.getElementById(\'' + titleEdit + ${patient.patientId} + '\').options
+																	[document.getElementById(\'' + titleEdit + ${patient.patientId} + '\').selectedIndex].value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.firstName} + '\').value,
+																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.middleName} + '\').value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.lastName} + '\').value,
-																	document.getElementById(\'' + ${patient.patientId} + '_' + ${patient.gender} + '\').value,
+																	document.getElementById(\'' + genderEdit + ${patient.patientId} + '\').options
+																	[document.getElementById(\'' + genderEdit + ${patient.patientId} + '\').selectedIndex].value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.email} + '\').value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.mobile} + '\').value,
 																	document.getElementById(\'' + ${patient.patientId} + '_'  + ${patient.phoneNumber} + '\').value);'">

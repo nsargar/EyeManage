@@ -198,11 +198,12 @@ window.onload = init;
 $("#checkDob").click(function(){
 	if( $("#checkDob").is(':checked') ){
 		$("#divDob").removeClass("hidden");
-		
+		$("#age").attr("readonly",true);
 	}
 	else{
 		$("#divDob").addClass("hidden");
 		$("#birthDate").val('');
+		$("#age").attr("readonly",false);
 		$("#age").val('');
 	}
 });
@@ -225,3 +226,12 @@ $("#checkPhone").click(function(){
 	}
 });
 
+function setTitleDropDown(patientId, title){
+	var id = 'titleEdit' + patientId;
+	$('#' + id).val(title); 
+}
+
+function setGenderDropDown(patientId, gender){
+	var id = 'genderEdit' + patientId;
+	$('#' + id).val(gender); 
+}

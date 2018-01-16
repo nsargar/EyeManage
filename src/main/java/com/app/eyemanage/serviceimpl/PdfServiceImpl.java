@@ -16,12 +16,7 @@ import com.app.eyemanage.pojo.VisitDetailsPOJO;
 import com.app.eyemanage.service.PdfService;
 import com.app.eyemanage.service.VisitService;
 import com.app.eyemanage.utility.Utils;
-import com.lowagie.text.Anchor;
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.pdf.BaseFont;
-import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 

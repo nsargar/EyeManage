@@ -133,10 +133,10 @@ $(document).ready(function() {
 
 	$("#regForm").validate({
 		rules	:	{
-			name	:	"required",
-			answer	:	"required",
+			name		:	"required",
+			answer		:	"required",
 			userName	:	"required",
-			role	:	"required",
+			role		:	"required",
 			secQuest	:	"required",
 			password	:	{
 				required	:	true,
@@ -144,7 +144,7 @@ $(document).ready(function() {
 			},
 			cnfPassword	:	{
 				required	:	true,
-				equalTo	:	"#password"
+				equalTo		:	"#password"
 			}
 		},
 		messages	:	{
@@ -163,7 +163,7 @@ $(document).ready(function() {
 			},
 			cpassword	:	{
 				required	:	"Please enter a password",
-				equalTo	:	"Please enter the same password as above"
+				equalTo		:	"Please enter the same password as above"
 			}
 		}
 	});
@@ -244,28 +244,26 @@ $(document).ready(function() {
 				digits	:	true
 			},
 			iop	:	{
-				digits	:	true,
+				digits		:	true,
 				rangelength	:	[1, 3]
 			},
 			keraK1	:	{
-				number	:	true,
+				number		:	true,
 				rangelength	:	[1, 6]
 			},
 			keraK2	:	{
-				number	:	true,
+				number		:	true,
 				rangelength	:	[1, 6]
 			},
 			axialLength	:	{
-				number	:	true,
+				number		:	true,
 				rangelength	:	[1, 6]
 			},
 			iolPower	:	{
-				number	:	true,
+				number		:	true,
 				rangelength	:	[1, 6]
 			},
 			followUp	:	{
-				//number	:	true,
-				//rangelength	:	[1,3]
 				dateCheck1	:	true,
 				dateCheck3	:	true
 			},
