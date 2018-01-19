@@ -222,6 +222,14 @@ public class PatientDetailsPOJO {
 	public static Logger getLogger() {
 		return logger;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "PatientDetailsPOJO [patientId=" + patientId + ", title=" + title + ", firstName=" + firstName
+				+ ", middleName=" + middleName + ", lastName=" + lastName + ", age=" + age + ", address=" + address
+				+ ", email=" + email + ", birthDate=" + birthDate + ", gender=" + gender + ", mobile=" + mobile
+				+ ", phoneNumber=" + phoneNumber + ", firstVisitDate=" + firstVisitDate + ", visits=" + visits
+				+ ", searchFilter=" + searchFilter + ", searchText=" + searchText + "]";
+	}
 	
 }

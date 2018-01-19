@@ -40,6 +40,7 @@ public class PatientRestController {
 			if (1 == patientService.editPatientDetails(p.getPatientId(),p.getTitle(), p.getFirstName(), p.getMiddleName(), p.getLastName(),
 					p.getGender(), p.getEmail(), p.getMobile(), p.getPhoneNumber())) {
 				logger.info("Edited Successfully");
+				logger.info(p);
 				return new Response("Done",p);
 			}
 			else
