@@ -15,8 +15,7 @@ public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integ
 	
 	String add(PatientDetailsPOJO patientDetails);
 	
-	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName)=:name) or (lower(p.lastName)=:name)")
-	//@Query(value="from PatientDetailsPOJO p where LOWER(p.firstName)=LOWER(:name)")
+	@Query(value="from PatientDetailsPOJO p where (lower(p.firstName) like %:name%) or (lower(p.middleName) like %:name%) or (lower(p.lastName) like %:name%)")
 	List<PatientDetailsPOJO> findPatientByName(@Param("name") String name);
 	
 	@Query(value="from PatientDetailsPOJO p where p.age=?1")
@@ -27,9 +26,9 @@ public interface PatientService extends CrudRepository<PatientDetailsPOJO, Integ
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value="update PatientDetailsPOJO p set p.firstName=?2, p.lastName=?3, "
-			+ "p.gender=?4, p.email=?5, p.mobile=?6,  p.phoneNumber=?7 where p.patientId=?1")
-	Integer editPatientDetails(Integer patientId,String firstName, String lastName, String gender, 
-			String email, Long mobile, Long phoneNumber);
+	@Query(value="update PatientDetailsPOJO p set p.title=?2, p.firstName=?3, p.middleName=?4, p.lastName=?5, "
+			+ "p.gender=?6, p.email=?7, p.mobile=?8,  p.phoneNumber=?9 where p.patientId=?1")
+	Integer editPatientDetails(Integer patientId, String title, String firstName, String middleName, String lastName, String gender, 
+			String email, String mobile, String phoneNumber);
 	
 }

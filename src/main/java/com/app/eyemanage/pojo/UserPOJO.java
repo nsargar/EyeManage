@@ -6,18 +6,43 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.*;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name="Users")
 @Component
-
 public class UserPOJO {
+	
+	@Column(name = "userName", unique = true, nullable = false, length=20)
+	@Id
 	private String userName;
+	
+	@Column(length=30)
+	@NotEmpty
 	private String name;
+	
+	@Column(length=16)
+	@NotEmpty
 	private String password;
+	
+	@Column(length=60)
+	@Email
 	private String email;
+	
+	@Transient
 	private String cnfPassword;
+	
+	@Column(length=100)
 	private String secQuest;
+	
+	@Column(length=30)
+	@NotEmpty
 	private String answer;
+	
+	@Column(length=15)
+	@NotEmpty
+	private String role;
 	
 	private static final Logger logger = Logger.getLogger(UserPOJO.class);
 	public UserPOJO() {
@@ -32,77 +57,4 @@ public class UserPOJO {
 		this.email = email;
 	}
 	
-	@Column(name = "userName", unique = true, nullable = false, length=20)
-	@Id
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	@Column(length=30)
-	@NotEmpty
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@Column(length=16)
-	@NotEmpty
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	@Column(length=60)
-	@Email
-	@NotEmpty
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	
-	@Transient
-	public String getCnfPassword() {
-		return cnfPassword;
-	}
-
-	public void setCnfPassword(String cnfPassword) {
-		this.cnfPassword = cnfPassword;
-	}
-	
-	@Column(length=100)
-	public String getSecQuest() {
-		return secQuest;
-	}
-
-	public void setSecQuest(String secQuest) {
-		this.secQuest = secQuest;
-	}
-	
-	@Column(length=30)
-	@NotEmpty
-	public String getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-
-	@Override
-	public String toString() {
-		return "UserPOJO [userName=" + userName + ", name=" + name + ", password=" + password + ", email=" + email
-				+ ", cnfPassword=" + cnfPassword + ", secQuest=" + secQuest + ", answer=" + answer + "]";
-	}
 }

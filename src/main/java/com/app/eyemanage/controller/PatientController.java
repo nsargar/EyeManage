@@ -37,6 +37,8 @@ public class PatientController {
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
 			return "patient";
 		}
 	}
@@ -50,6 +52,8 @@ public class PatientController {
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
 			model.addAttribute("newPatient",patientDetails);
 			return "patientAdd";
 		}
@@ -84,21 +88,26 @@ public class PatientController {
 	@RequestMapping(value="/patientSearch" , method=RequestMethod.GET)
 	public String viewPatient(Model model, HttpSession session) {
 		logger.info("Patient View Get");
+		//logger.info("Get Mode : " + getMode);
 		if( Utils.validateSession(session, "UserDetails") == false) {
 			logger.info("Session Attribute is Null");
 			logger.info("You are not logged in. Redirecting to Login Page");
 			return "redirect:/";
 		}
 		else {
+			session.getAttribute("UserDetails");
+			model.addAttribute("userName", session.getAttribute("UserDetails").toString());
 			model.addAttribute("viewPatient",patientDetails);
+			//model.addAttribute("getMode", getMode);
 			return "patientSearch";
 		}
 	}
 	
 	@SuppressWarnings("finally")
-	@RequestMapping(value="/patientSearch",method=RequestMethod.POST)
-	public String viewPatient(@ModelAttribute("viewPatient")PatientDetailsPOJO patient,ModelMap modelMap) {
+	@RequestMapping(value= {"/patientSearch"},method=RequestMethod.POST)
+	public String viewPatient(@ModelAttribute("viewPatient")PatientDetailsPOJO patient, ModelMap modelMap) {
 		logger.info("Patient View Post");
+		//logger.info("Post Mode : " + postMode);
 		List<PatientDetailsPOJO> patientDetails	=	new ArrayList<>();
 		try {
 			logger.info("Try Block");
@@ -123,14 +132,14 @@ public class PatientController {
 			else if(patient.getSearchFilter().equalsIgnoreCase("")) {	// for all
 				logger.info("Searching All");
 				patientDetails		=	patientService.findAllPatients();
-				logger.info("Searching Successfull");
+				logger.info("Searching Successful");
 			}
 			
 		} catch (NullPointerException e) {
 			logger.info("Catch Block");
 			logger.info("Searching All");
 			patientDetails		=	patientService.findAllPatients();
-			logger.info("Searching Successfull");
+			logger.info("Searching Successful");
 			
 		} finally {
 			logger.info("Finally Block");
@@ -140,6 +149,7 @@ public class PatientController {
 			else {
 				//if( patientDetails.size() <= 1 &&  )
 				modelMap.addAttribute("patientDetails",patientDetails);
+				//modelMap.addAttribute("postMode", postMode);
 			}
 			return "patientSearch";
 		}

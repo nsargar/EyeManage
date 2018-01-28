@@ -19,7 +19,7 @@ public class PatientRestController {
 	
 	private static final Logger logger = Logger.getLogger(PatientRestController.class);
 	
-	@RequestMapping(value="/patientSearch/patientDelete",method=RequestMethod.POST)
+	@RequestMapping(value= "/patientSearch/patientDelete",method=RequestMethod.POST)
 	public Response deletePatient(@RequestBody PatientDetailsPOJO p ) {
 		logger.info("Patient Delete Post");
 		logger.info("Patient Id : " + p.getPatientId());
@@ -32,14 +32,15 @@ public class PatientRestController {
 		}
 	}
 	
-	@RequestMapping(value="/patientSearch/patientEdit",method=RequestMethod.POST)
+	@RequestMapping(value= "/patientSearch/patientEdit",method=RequestMethod.POST)
 	public Response editPatient(@RequestBody PatientDetailsPOJO p ) {
 		logger.info("Patient Edit Post");
 		logger.info("Patient Id : " + p.getPatientId());
 		try {
-			if (1 == patientService.editPatientDetails(p.getPatientId(), p.getFirstName(), p.getLastName(),
+			if (1 == patientService.editPatientDetails(p.getPatientId(),p.getTitle(), p.getFirstName(), p.getMiddleName(), p.getLastName(),
 					p.getGender(), p.getEmail(), p.getMobile(), p.getPhoneNumber())) {
 				logger.info("Edited Successfully");
+				logger.info(p);
 				return new Response("Done",p);
 			}
 			else

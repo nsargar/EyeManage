@@ -28,7 +28,6 @@ public class UserController {
 	@Autowired
 	SecQuestionService passwordService;
 	
-	@SuppressWarnings("finally")
 	@RequestMapping(method=RequestMethod.GET , value="/")
 	public String index(Model model,  HttpSession session) {
 		logger.info("Index Get");
@@ -38,27 +37,13 @@ public class UserController {
 			logger.info("You are already logged in. Redirecting to Dashboard");
 			return "redirect:/dashboard/home";
 		}
+		
 		UserLogin loginReq=new UserLogin();
 		model.addAttribute("user",loginReq);
 		
 		UserPOJO pojo	=	new UserPOJO();
 		model.addAttribute("newUser", pojo);
-		
-		List<SecQuestions> question		=	new ArrayList<>();
-		model.addAttribute("question",question);
-		
-		try {
-			logger.info("Get Questions Try Block");
-			List<SecQuestions> questions	=	passwordService.findAllQues();
-			logger.info(questions);
-			model.addAttribute("questions", questions);
-		} catch (NullPointerException e) {
-			// TODO: handle exception
-			logger.info("Get Questions Catch Block");
-		}finally {
-			logger.info("Get Questions Finally Block");
-			return "index";
-		}
+		return "index";
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
@@ -77,6 +62,7 @@ public class UserController {
 			else {
 				logger.info("Successfully Logged in");
 				session.setAttribute("UserDetails", user.getUserName() );
+				session.setAttribute("userRole", userService.getUserRole(user.getUserName()));
 				//logger.info(session.getAttribute("UserDetails").toString());
 				return "redirect:/dashboard/home";
 			}
@@ -85,57 +71,6 @@ public class UserController {
 			logger.info("Catch Block");
 			return "redirect:/dashboard/home";
 		}
-	}
-	
-	@RequestMapping(value="/registration",method=RequestMethod.POST)
-	public String register(@ModelAttribute("newUser")UserPOJO user,ModelMap modelMap) {
-		logger.info("Register Post");
-		Integer value = null;
-		try {
-			
-			switch (userService.add(user)) {
-			case 1:
-				logger.info("Registration Successful, Redirecting to Login page");
-				value	=	1;
-				break;
-			case 2:
-				logger.info("Registration Failed, Could not add the new user");
-				value	=	2;
-				break;
-			case 3:
-				logger.info("Registration Failed, Passwords Do Not Match");
-				value	=	3;
-				break;
-			case 4:
-				logger.info("Registration Failed, Username already exists");
-				value	=	4;
-				break;
-			default:
-				break;
-			}
-			
-			/*if( 1 == userService.add(user) ){
-				logger.info("Registration Successful, Redirecting to Login page");
-				value	=	1;
-			}
-			else if( 2 == userService.add(user) ) {
-				logger.info("Registration Failed, Could not add the new user");
-				value	=	2;
-			}
-			else if ( 3 == userService.add(user) ) {
-				logger.info("Registration Failed, Passwords Do Not Match");
-				value	=	3;
-			}
-			else {
-				logger.info("Registration Failed, Username already exists");
-				value	=	4;
-			}*/
-		} catch (Exception e) {
-			logger.info("Registration Failed, Exception Occured");
-			value	=	0;
-		}
-		modelMap.addAttribute("signUpResult", value);
-		return "redirect:/?signUpResult=" + value.toString();
 	}
 	
 	@SuppressWarnings("finally")
@@ -172,13 +107,14 @@ public class UserController {
 				logger.info(" Count : " + userService.quesAnswerCheck(user.getUserName(), user.getSecQuest(), user.getAnswer()));
 				if(userService.forgotPassCheck(user)) {
 					logger.info("Password Reset Successfully");
-					return "redirect:/";		// /login to / (due to merging of Login and Register on Index page)
+					//modelMap.addAttribute("isForgotPassSuccess", true);
+					return "redirect:/?reset="	+	"success";
 				}
 				else
-					return "redirect:/forgotPassword";
+					return "redirect:/forgotPassword?reset="	+	"failedPassword" ;
 			}
 			else
-				return "redirect:/forgotPassword";
+				return "redirect:/forgotPassword?reset="	+	"failedQues";
 		} catch (Exception e) {
 			logger.info("Forgot Password Catch Block");
 			return "redirect:/forgotPassword";
